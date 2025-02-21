@@ -30,3 +30,9 @@ rootProject.name = "MovieCatalog"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(":app")
+include(":core:common")
+include(":core:domain")
+include(":core:network")
+include(":core:data")
+include(":core:datastore")
+include(":core:ui")
