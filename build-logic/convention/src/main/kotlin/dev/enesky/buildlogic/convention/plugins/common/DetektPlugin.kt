@@ -23,9 +23,9 @@ class DetektPlugin : Plugin<Project> {
 
     override fun apply(project: Project) = with(project) {
         val sourcePath: String = rootDir.absolutePath
-        val mainConfigFile = "$rootDir/tools/detekt/config.yml"
-        val composeConfigFile = "$rootDir/tools/detekt/compose-config.yml"
-        val baselineFile = "$rootDir/tools/detekt/baseline.xml"
+        val mainConfigFile = "$rootDir/.tools/detekt/config.yml"
+        val composeConfigFile = "$rootDir/.tools/detekt/compose-config.yml"
+        val baselineFile = "$rootDir/.tools/detekt/baseline.xml"
         val kotlinFiles = "**/*.kt"
         val resourceFiles = "**/resources/**"
         val buildFiles = "**/build/**"

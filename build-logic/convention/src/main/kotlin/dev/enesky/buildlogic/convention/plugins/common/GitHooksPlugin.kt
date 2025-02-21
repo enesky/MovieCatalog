@@ -16,7 +16,7 @@ class GitHooksPlugin : Plugin<Project> {
         tasks.register("copyGitHooks", Copy::class.java) {
             description = "Copies the git hooks from /git-hooks to the .git folder."
             group = "Git Hooks"
-            from("${project.rootDir}/tools/git-hooks/") {
+            from("${project.rootDir}/.tools/git-hooks/") {
                 include("**/*.sh")
                 rename { it.replace(".sh", "") }
             }
@@ -24,7 +24,7 @@ class GitHooksPlugin : Plugin<Project> {
         }
 
         tasks.register("installGitHooks", Exec::class.java) {
-            description = "Installs the git hooks from /tools/git-hooks/."
+            description = "Installs the git hooks from /.tools/git-hooks/."
             group = "Git Hooks"
             workingDir = project.rootDir
             commandLine = listOf("chmod")

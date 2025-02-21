@@ -27,7 +27,7 @@ class ModuleDependencyGraphPlugin : Plugin<Project> {
 
                 val moduleGroups = detectModuleGroups()
 
-                val dotFile = File("$rootDir/tools/dependency-graph/mermaid-graph.dot")
+                val dotFile = File("$rootDir/.tools/dependency-graph/mermaid-graph.dot")
                 dotFile.generateDotFile(dependencyTree, moduleGroups)
 
                 val readme = File("$rootDir/README.md")
