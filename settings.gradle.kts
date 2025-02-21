@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "MovieCatalog"
 include(":app")
- 
+include(":build-logic")
