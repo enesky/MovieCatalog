@@ -7,18 +7,19 @@ import kotlinx.serialization.Serializable
  * Created by Enes Kamil YILMAZ on 22/02/2025
  */
 @Serializable
-data class MovieResponse(
+data class MovieDto(
     val id: Int,
-    val name: String,
+    val title: String,
     val overview: String,
     val popularity: Double,
-    @SerialName("backdrop_path") val backdropPath: String,
-    @SerialName("first_air_date") val firstAirDate: String,
+    val adult: Boolean,
+    val video: Boolean,
+    @SerialName("backdrop_path") val backdropPath: String?,
     @SerialName("genre_ids") val genreIds: List<Int>,
-    @SerialName("origin_country") val originCountry: List<String>,
     @SerialName("original_language") val originalLanguage: String,
-    @SerialName("original_name") val originalName: String,
-    @SerialName("poster_path") val posterPath: String,
+    @SerialName("original_title") val originalTitle: String,
+    @SerialName("poster_path") val posterPath: String?,
+    @SerialName("release_date") val releaseDate: String,
     @SerialName("vote_average") val voteAverage: Double,
     @SerialName("vote_count") val voteCount: Int
 )

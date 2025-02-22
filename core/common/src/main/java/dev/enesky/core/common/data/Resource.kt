@@ -1,5 +1,7 @@
 package dev.enesky.core.common.data
 
+import dev.enesky.core.common.data.base.BaseException
+
 /**
  * A generic class that holds a value with its loading status.
  */
