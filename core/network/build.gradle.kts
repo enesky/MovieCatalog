@@ -1,43 +1,21 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
+    id(libs.plugins.library.main.get().pluginId)
+    id(libs.plugins.common.hilt.get().pluginId)
+    id(libs.plugins.common.api.key.provider.get().pluginId)
 }
 
-android {
-    namespace = "dev.enesky.core.network"
-    compileSdk = 35
-
-    defaultConfig {
-        minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
-}
+android.namespace = "dev.enesky.core.network"
 
 dependencies {
+    // Modules
+    implementation(projects.core.data)
+    implementation(projects.core.common)
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    // Libraries
+    implementation(libs.retrofit.main)
+    implementation(libs.retrofit.converter)
+    implementation(libs.paging.main)
+    implementation(libs.paging.compose)
+    debugImplementation(libs.chucker.debug)
+    releaseImplementation(libs.chucker.release)
 }

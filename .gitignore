@@ -17,3 +17,11 @@ local.properties
 # Project exclude paths
 /build-logic/convention/build/
 /build-logic/convention/build/classes/kotlin/main/
+/core/common/build/
+/core/data/build/
+/core/network/build/
+/core/ui/build/
+/core/datastore/build/
+
+/feature/detail/build/
+/feature/home/build/
