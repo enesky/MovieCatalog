@@ -19,6 +19,7 @@ local.properties
 /build-logic/convention/build/classes/kotlin/main/
 /core/common/build/
 /core/data/build/
+/core/domain/build/
 /core/network/build/
 /core/ui/build/
 /core/datastore/build/

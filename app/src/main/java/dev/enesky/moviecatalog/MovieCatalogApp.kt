@@ -6,8 +6,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import dev.enesky.moviecatalog.ui.theme.MovieCatalogTheme
+import dev.enesky.core.ui.theme.MovieCatalogTheme
 
 /**
  * Created by Enes Kamil YILMAZ on 21/02/2025
@@ -21,7 +22,7 @@ fun MovieCatalogApp(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding),
-                contentAlignment = androidx.compose.ui.Alignment.Center
+                contentAlignment = Alignment.Center
             ) {
                 Text(
                     modifier = Modifier.padding(innerPadding),
