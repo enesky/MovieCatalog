@@ -1,4 +1,4 @@
-package dev.enesky.core.common.data
+package dev.enesky.core.common.data.base
 
 open class BaseException(message: String) : Exception(message)
 
