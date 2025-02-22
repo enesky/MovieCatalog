@@ -2,8 +2,8 @@ package dev.enesky.core.network.repository
 
 import androidx.paging.PagingData
 import dev.enesky.core.common.data.Resource
-import dev.enesky.core.data.model.MovieDetailResponse
-import dev.enesky.core.data.model.MovieResponse
+import dev.enesky.core.data.model.MovieDetailDto
+import dev.enesky.core.data.model.MovieDto
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.Flow
  */
 interface MovieDbDataSource {
 
-    fun getPopularMovies(): Flow<PagingData<MovieResponse>>
-    fun getTopRatedMovies(): Flow<PagingData<MovieResponse>>
-    fun getUpcomingMovies(): Flow<PagingData<MovieResponse>>
-    suspend fun getMovieDetails(id: Int): Resource<MovieDetailResponse>
+    fun getPopularMovies(): Flow<PagingData<MovieDto>>
+    fun getTopRatedMovies(): Flow<PagingData<MovieDto>>
+    fun getUpcomingMovies(): Flow<PagingData<MovieDto>>
+    suspend fun getMovieDetails(id: Int): Resource<MovieDetailDto>
 }
