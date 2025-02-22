@@ -2,28 +2,28 @@ package dev.enesky.core.common.data
 
 open class BaseException(message: String) : Exception(message)
 
-class EmptyResponseException(message: String = "") : BaseException(
-    message.ifEmpty { ExceptionMessage.UNKNOWN }
+class EmptyResponseException(message: String? = null) : BaseException(
+    message ?: ExceptionMessage.UNKNOWN
 )
 
-class BadRequestException(message: String = "") : BaseException(
-    message.ifEmpty { ExceptionMessage.BAD_REQUEST }
+class BadRequestException(message: String? = null) : BaseException(
+    message ?: ExceptionMessage.BAD_REQUEST
 )
 
-class AuthorizationException(message: String = "") : BaseException(
-    message.ifEmpty { ExceptionMessage.AUTHORIZATION }
+class AuthorizationException(message: String? = null) : BaseException(
+    message ?: ExceptionMessage.AUTHORIZATION
 )
 
-class NotFoundException(message: String = "") : BaseException(
-    message.ifEmpty { ExceptionMessage.NOT_FOUND }
+class NotFoundException(message: String? = null) : BaseException(
+    message ?: ExceptionMessage.NOT_FOUND
 )
 
-class UnknownException(message: String = "") : BaseException(
-    message.ifEmpty { ExceptionMessage.UNKNOWN }
+class UnknownException(message: String? = null) : BaseException(
+    message ?: ExceptionMessage.UNKNOWN
 )
 
-class NetworkException(message: String = "") : BaseException(
-    message.ifEmpty { ExceptionMessage.NETWORK }
+class NetworkException(message: String? = null) : BaseException(
+    message ?: ExceptionMessage.NETWORK
 )
 
 object ExceptionMessage {
