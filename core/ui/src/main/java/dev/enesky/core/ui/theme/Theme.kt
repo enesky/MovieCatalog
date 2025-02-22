@@ -1,4 +1,4 @@
-package dev.enesky.moviecatalog.ui.theme
+package dev.enesky.core.ui.theme
 
 import android.app.Activity
 import android.os.Build
