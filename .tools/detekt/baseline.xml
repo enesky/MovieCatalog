@@ -2,6 +2,7 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
+    <ID>CyclomaticComplexMethod:MovieDetailMapper.kt$MovieDetailMapper$fun mapToDomain(dto: MovieDetailDto): MovieDetail</ID>
     <ID>ForbiddenComment:MainActivity.kt$MainActivity$// TODO: Add splash screen api</ID>
   </CurrentIssues>
 </SmellBaseline>

@@ -1,13 +1,13 @@
 package dev.enesky.core.network
 
-import dev.enesky.core.common.data.AuthorizationException
-import dev.enesky.core.common.data.BadRequestException
-import dev.enesky.core.common.data.EmptyResponseException
-import dev.enesky.core.common.data.ExceptionCode
-import dev.enesky.core.common.data.NetworkException
-import dev.enesky.core.common.data.NotFoundException
+import dev.enesky.core.common.data.base.AuthorizationException
+import dev.enesky.core.common.data.base.BadRequestException
+import dev.enesky.core.common.data.base.EmptyResponseException
+import dev.enesky.core.common.data.base.ExceptionCode
+import dev.enesky.core.common.data.base.NetworkException
+import dev.enesky.core.common.data.base.NotFoundException
 import dev.enesky.core.common.data.Resource
-import dev.enesky.core.common.data.UnknownException
+import dev.enesky.core.common.data.base.UnknownException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json

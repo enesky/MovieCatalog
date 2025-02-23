@@ -2,7 +2,7 @@ package dev.enesky.core.network.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import dev.enesky.core.data.model.MovieResponse
+import dev.enesky.core.data.model.MovieDto
 import dev.enesky.core.network.api.MovieDbApi
 import retrofit2.HttpException
 import java.io.IOException
@@ -13,13 +13,13 @@ import javax.inject.Inject
  */
 class UpcomingMoviesPagingSource @Inject constructor(
     private val moviesService: MovieDbApi,
-) : PagingSource<Int, MovieResponse>() {
+) : PagingSource<Int, MovieDto>() {
 
-    override fun getRefreshKey(state: PagingState<Int, MovieResponse>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, MovieDto>): Int? {
         return state.anchorPosition
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieResponse> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieDto> {
         return try {
             val nextPage = params.key ?: 1
             val upcomingMovies = moviesService.getUpcomingMovies(nextPage)

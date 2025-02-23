@@ -1,7 +1,7 @@
 package dev.enesky.core.network.api
 
-import dev.enesky.core.data.model.MovieDetailResponse
-import dev.enesky.core.data.model.MoviePagingResponse
+import dev.enesky.core.data.model.MovieDetailDto
+import dev.enesky.core.data.model.MoviePagingDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -14,20 +14,20 @@ interface MovieDbApi {
     @GET(ApiEndpoints.Movie.POPULAR)
     suspend fun getPopularMovies(
         @Query(ApiEndpoints.Query.PAGE) page: Int = ApiEndpoints.DefaultValues.DEFAULT_PAGE
-    ): MoviePagingResponse
+    ): MoviePagingDto
 
     @GET(ApiEndpoints.Movie.TOP_RATED)
     suspend fun getTopRatedMovies(
         @Query(ApiEndpoints.Query.PAGE) page: Int = ApiEndpoints.DefaultValues.DEFAULT_PAGE
-    ): MoviePagingResponse
+    ): MoviePagingDto
 
     @GET(ApiEndpoints.Movie.UPCOMING)
     suspend fun getUpcomingMovies(
         @Query(ApiEndpoints.Query.PAGE) page: Int = ApiEndpoints.DefaultValues.DEFAULT_PAGE
-    ): MoviePagingResponse
+    ): MoviePagingDto
 
     @GET(ApiEndpoints.Movie.DETAILS)
     suspend fun getMovieDetails(
         @Path(ApiEndpoints.Query.MOVIE_ID) movieId: Int
-    ): Response<MovieDetailResponse>
+    ): Response<MovieDetailDto>
 }

@@ -4,8 +4,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import dev.enesky.core.common.data.Resource
-import dev.enesky.core.data.model.MovieDetailResponse
-import dev.enesky.core.data.model.MovieResponse
+import dev.enesky.core.data.model.MovieDetailDto
+import dev.enesky.core.data.model.MovieDto
 import dev.enesky.core.network.api.MovieDbApi
 import dev.enesky.core.network.paging.PopularMoviesPagingSource
 import dev.enesky.core.network.paging.TopRatedMoviesPagingSource
@@ -22,28 +22,28 @@ class MovieDbDataSourceImpl(
     private val movieDbApi: MovieDbApi
 ) : MovieDbDataSource {
 
-    override fun getPopularMovies(): Flow<PagingData<MovieResponse>> {
+    override fun getPopularMovies(): Flow<PagingData<MovieDto>> {
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE),
             pagingSourceFactory = { PopularMoviesPagingSource(movieDbApi) }
         ).flow
     }
 
-    override fun getTopRatedMovies(): Flow<PagingData<MovieResponse>> {
+    override fun getTopRatedMovies(): Flow<PagingData<MovieDto>> {
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE),
             pagingSourceFactory = { TopRatedMoviesPagingSource(movieDbApi) }
         ).flow
     }
 
-    override fun getUpcomingMovies(): Flow<PagingData<MovieResponse>> {
+    override fun getUpcomingMovies(): Flow<PagingData<MovieDto>> {
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE),
             pagingSourceFactory = { PopularMoviesPagingSource(movieDbApi) }
         ).flow
     }
 
-    override suspend fun getMovieDetails(id: Int): Resource<MovieDetailResponse> {
+    override suspend fun getMovieDetails(id: Int): Resource<MovieDetailDto> {
         return safeApiCall { movieDbApi.getMovieDetails(id) }
     }
 }

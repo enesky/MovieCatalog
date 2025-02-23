@@ -57,7 +57,11 @@ internal object NetworkModule {
     @Provides
     @Singleton
     fun provideJsonConverterFactory(): Converter.Factory {
-        val json = Json { ignoreUnknownKeys = true }
+        val json = Json {
+            ignoreUnknownKeys = true // Ignores fields not present in the DTO
+            coerceInputValues = true // Forces values that don't match expected types
+            isLenient = true // Provides more flexible parsing
+        }
         val mediaType = JSON_MEDIA_TYPE.toMediaType()
         return json.asConverterFactory(mediaType)
     }

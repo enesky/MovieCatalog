@@ -30,6 +30,7 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideMovieRepository(movieDbDataSource: MovieDbDataSource): MovieRepository =
-        MovieRepository(movieDbDataSource)
+    fun provideMovieRepository(
+        movieDbDataSource: MovieDbDataSource
+    ): MovieRepository = MovieRepository(movieDbDataSource)
 }
