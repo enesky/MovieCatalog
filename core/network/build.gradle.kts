@@ -9,6 +9,7 @@ android.namespace = "dev.enesky.core.network"
 dependencies {
     // Modules
     implementation(projects.core.data)
+    implementation(projects.core.domain)
     implementation(projects.core.common)
 
     // Libraries

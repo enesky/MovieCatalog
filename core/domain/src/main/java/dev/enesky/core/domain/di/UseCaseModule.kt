@@ -4,6 +4,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dev.enesky.core.domain.mapper.MovieDetailMapper
+import dev.enesky.core.domain.mapper.MovieMapper
+import dev.enesky.core.domain.usecase.GetCategorizedMoviesUseCase
 import dev.enesky.core.domain.usecase.GetMovieDetailsUseCase
 import dev.enesky.core.network.repository.MovieRepository
 
@@ -15,7 +18,18 @@ import dev.enesky.core.network.repository.MovieRepository
 object UseCaseModule {
 
     @Provides
-    fun provideGetMovieDetailsUseCase(movieRepository: MovieRepository): GetMovieDetailsUseCase {
-        return GetMovieDetailsUseCase(movieRepository)
+    fun provideGetCategorizedMoviesUseCase(
+        movieRepository: MovieRepository,
+        movieMapper: MovieMapper
+    ): GetCategorizedMoviesUseCase {
+        return GetCategorizedMoviesUseCase(movieRepository, movieMapper)
+    }
+
+    @Provides
+    fun provideGetMovieDetailsUseCase(
+        movieRepository: MovieRepository,
+        movieDetailMapper: MovieDetailMapper
+        ): GetMovieDetailsUseCase {
+        return GetMovieDetailsUseCase(movieRepository, movieDetailMapper)
     }
 }
