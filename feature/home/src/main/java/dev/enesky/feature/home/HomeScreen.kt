@@ -3,6 +3,7 @@ package dev.enesky.feature.home
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import dev.enesky.core.ui.theme.MovieCatalogTheme
 
 /**
@@ -11,8 +12,8 @@ import dev.enesky.core.ui.theme.MovieCatalogTheme
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel,
-    onMovieClick: (Int) -> Unit,
+    viewModel: HomeViewModel = hiltViewModel(),
+    onMovieClick: (Int) -> Unit = {},
 ) {
     // HomeRoute implementation
 }
@@ -21,18 +22,15 @@ fun HomeScreen(
 fun HomeContent(
     modifier: Modifier = Modifier,
     homeUiState: HomeUiState = HomeUiState(),
-    onMovieClick: (Int) -> Unit,
+    onMovieClick: (Int) -> Unit = {},
 ) {
     // HomeContent implementation
 }
 
 @Preview
 @Composable
-fun HomeScreenPreview() {
+private fun HomeScreenPreview() {
     MovieCatalogTheme {
-        HomeContent {
-
-        }
+        HomeContent {}
     }
 }
-

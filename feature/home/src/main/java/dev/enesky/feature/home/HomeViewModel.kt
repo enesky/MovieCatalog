@@ -24,7 +24,7 @@ data class HomeUiState(
     val popularMovies: List<Movie>? = null,
     val topRatedMovies: List<Movie>? = null,
     val upcomingMovies: List<Movie>? = null,
-): IUiState
+) : IUiState
 
 sealed interface HomeEvent : IEvent {
     data class OnError(override val errorMessage: String) : HomeEvent, IErrorEvent

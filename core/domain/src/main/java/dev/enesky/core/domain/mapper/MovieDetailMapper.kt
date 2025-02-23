@@ -65,5 +65,4 @@ class MovieDetailMapper @Inject constructor() {
             originCountry = dto.originCountry
         )
     }
-
 }
