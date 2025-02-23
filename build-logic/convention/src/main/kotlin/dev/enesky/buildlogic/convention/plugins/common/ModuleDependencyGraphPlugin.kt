@@ -201,10 +201,8 @@ private fun updateReadmeFile(mermaidContent: String, readmePath: String) {
             appendLine("```")
             if (contentAfter.isNotEmpty()) {
                 appendLine()
-                appendLine()
                 appendLine(contentAfter)
             }
-            appendLine()
         }
     }
 
