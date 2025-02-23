@@ -1,5 +1,6 @@
 package dev.enesky.buildlogic.convention.plugins.common
 
+import dev.enesky.buildlogic.convention.plugins.common.GraphConstants.MERMAID_FENCE_LENGTH
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.ProjectDependency
@@ -145,7 +146,7 @@ private fun findMermaidSectionEnd(content: String, startIndex: Int): Int {
     val mermaidEnd = content.indexOf("```", mermaidStart + 10)
     if (mermaidEnd == -1) return content.length
 
-    return mermaidEnd + 3
+    return mermaidEnd + MERMAID_FENCE_LENGTH
 }
 
 /**
@@ -222,6 +223,7 @@ data class ModuleGroup(
 
 private object GraphConstants {
     const val README_SECTION_HEADER = "## Module Dependency Graph"
+    const val MERMAID_FENCE_LENGTH = 3 // Length of "```" fence markers
     const val THEME_CONFIG = """
         %%{
             init: {
