@@ -104,13 +104,20 @@ jobs:
 
   success:
     name: Success Check
-    needs: [detekt, build]  # This job runs only after the detekt and build jobs have successfully completed
+    needs: [ detekt, build ]
     runs-on: ubuntu-latest
-    if: success()  # Will only run if the previous jobs were successful
+    if: success()
+
     steps:
-      - name: Set Success Status
-        run: |
-          echo "All checks passed successfully!"
-          echo "✅ Detekt checks passed"
-          echo "✅ Build completed"
-          echo "✅ APK generated and uploaded"
+      - name: Create Success Status
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.sha,
+              state: 'success',
+              context: 'success',
+              description: 'All checks passed successfully!'
+            });
