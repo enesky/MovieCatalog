@@ -7,6 +7,11 @@
 
 name: Detekt Lint Check & Build
 
+# Permissions required for the workflow
+permissions:
+  checks: write
+  statuses: write
+
 # Triggers the workflow on push or pull request events but only for default and protected branches
 on:
   push:
