@@ -31,8 +31,6 @@ class LibraryMainPlugin : Plugin<Project> {
             }
 
             extensions.configure<LibraryExtension> {
-                buildFeatures.buildConfig = true
-
                 configureKotlinAndroid(this)
 
                 defaultConfig {
