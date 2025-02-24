@@ -4,7 +4,7 @@ plugins {
     id(libs.plugins.common.hilt.get().pluginId)
 }
 
-android.namespace = "dev.enesky.core.ui"
+android.namespace = "dev.enesky.core.navigation"
 
 dependencies {
     // Module dependencies

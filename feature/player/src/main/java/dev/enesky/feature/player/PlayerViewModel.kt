@@ -1,6 +1,8 @@
 package dev.enesky.feature.player
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.toRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.enesky.core.common.data.base.BaseViewModel
 import dev.enesky.core.common.data.delegate.IErrorEvent
@@ -9,6 +11,7 @@ import dev.enesky.core.common.data.delegate.IUiState
 import dev.enesky.core.common.data.fold
 import dev.enesky.core.domain.model.MovieDetail
 import dev.enesky.core.domain.usecase.GetMovieDetailsUseCase
+import dev.enesky.feature.player.navigation.Player
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,18 +21,20 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class PlayerViewModel @Inject constructor(
-    private val getMovieDetailsUseCase: GetMovieDetailsUseCase
+    private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
+    savedStateHandle: SavedStateHandle
 ) : BaseViewModel<PlayerUiState, PlayerEvent>(
     initialState = { PlayerUiState() }
 ) {
 
     init {
+        val args: Player = savedStateHandle.toRoute()
         viewModelScope.launch(Dispatchers.IO) {
-            getMoviePlayers(1231)
+            getMovieDetails(args.movieId)
         }
     }
 
-    private suspend fun getMoviePlayers(movieId: Int) {
+    private suspend fun getMovieDetails(movieId: Int) {
         updateUiState { copy(isLoading = true) }
         getMovieDetailsUseCase.invoke(id = movieId).fold(
             onSuccess = {

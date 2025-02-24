@@ -1,6 +1,8 @@
 package dev.enesky.feature.detail
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.toRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.enesky.core.common.data.base.BaseViewModel
 import dev.enesky.core.common.data.delegate.IErrorEvent
@@ -9,6 +11,7 @@ import dev.enesky.core.common.data.delegate.IUiState
 import dev.enesky.core.common.data.fold
 import dev.enesky.core.domain.model.MovieDetail
 import dev.enesky.core.domain.usecase.GetMovieDetailsUseCase
+import dev.enesky.feature.detail.navigation.Detail
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,14 +21,16 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val getMovieDetailUseCase: GetMovieDetailsUseCase
+    private val getMovieDetailUseCase: GetMovieDetailsUseCase,
+    savedStateHandle: SavedStateHandle
 ) : BaseViewModel<DetailUiState, DetailEvent>(
     initialState = { DetailUiState() }
 ) {
 
     init {
+        val args: Detail = savedStateHandle.toRoute()
         viewModelScope.launch(Dispatchers.IO) {
-            getMovieDetails(1231)
+            getMovieDetails(args.movieId)
         }
     }
 

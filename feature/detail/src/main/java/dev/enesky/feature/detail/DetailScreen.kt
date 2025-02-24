@@ -49,6 +49,7 @@ fun DetailScreen(
         modifier = modifier,
         movieDetail = uiState.movieDetail,
         onMovieClick = onMovieClick,
+        onNavigateToPlayer = onNavigateToPlayerScreen,
     )
 }
 
@@ -57,6 +58,7 @@ fun DetailContent(
     modifier: Modifier = Modifier,
     movieDetail: MovieDetail? = null,
     onMovieClick: (Int) -> Unit = {},
+    onNavigateToPlayer: (Int) -> Unit = {},
 ) {
     Column(
         modifier = modifier
@@ -69,7 +71,7 @@ fun DetailContent(
 
         Spacer(modifier = Modifier.padding(16.dp))
 
-        Button(onClick = { onMovieClick(1) }) {
+        Button(onClick = { onNavigateToPlayer(1) }) {
             Text(text = "Navigate to Player")
         }
 

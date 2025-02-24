@@ -15,7 +15,9 @@ import kotlinx.serialization.Serializable
  */
 
 @Serializable
-data object Player : Screen
+data class Player(
+    val movieId: Int
+) : Screen
 
 fun NavGraphBuilder.playerScreen() {
     composable<Player> {

@@ -15,7 +15,9 @@ import kotlinx.serialization.Serializable
  */
 
 @Serializable
-data object Detail : Screen
+data class Detail(
+    val movieId: Int
+) : Screen
 
 fun NavGraphBuilder.detailScreen(
     onNavigateToPlayer: (Int) -> Unit,
