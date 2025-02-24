@@ -12,8 +12,8 @@ import dev.enesky.core.ui.navigation.Screen
  */
 @Composable
 fun MovieCatalogNavGraph(
-    modifier: Modifier = Modifier,
     navController: NavHostController,
+    modifier: Modifier = Modifier,
 ) {
     NavHost(
         navController = navController,

@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun BoxScope.BuildTypeIndicator(
-    modifier: Modifier = Modifier,
     text: String,
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
@@ -42,12 +42,11 @@ fun BoxScope.BuildTypeIndicator(
             style = MaterialTheme.typography.bodySmall,
         )
     }
-
 }
 
 @Preview
 @Composable
-fun BuildTypeIndicatorPreview() {
+private fun BuildTypeIndicatorPreview() {
     Box {
          BuildTypeIndicator(
             text = "Debug"

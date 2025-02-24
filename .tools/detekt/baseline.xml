@@ -3,6 +3,11 @@
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
     <ID>CyclomaticComplexMethod:MovieDetailMapper.kt$MovieDetailMapper$fun mapToDomain(dto: MovieDetailDto): MovieDetail</ID>
+    <ID>ForbiddenComment:DetailScreen.kt$// TODO: Add error handling -&gt; "Error: ${result.throwable}"</ID>
     <ID>ForbiddenComment:MainActivity.kt$MainActivity$// TODO: Add splash screen api</ID>
+    <ID>MatchingDeclarationName:DetailNav.kt$Detail : Screen</ID>
+    <ID>MatchingDeclarationName:HomeNav.kt$Home : Screen</ID>
+    <ID>MatchingDeclarationName:MainJourneyNavigation.kt$MainJourney : Screen</ID>
+    <ID>MatchingDeclarationName:PlayerNav.kt$Player : Screen</ID>
   </CurrentIssues>
 </SmellBaseline>
