@@ -8,8 +8,11 @@ android.namespace = "dev.enesky.feature.home"
 
 dependencies {
     // Module dependencies
-    implementation(projects.core.ui)
-    implementation(projects.core.domain)
     implementation(projects.core.common)
-    implementation(projects.core.network)
+    implementation(projects.core.domain)
+    implementation(projects.core.ui)
+
+    // Libraries
+    implementation(libs.paging.main)
+    implementation(libs.paging.compose)
 }

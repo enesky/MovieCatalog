@@ -18,6 +18,7 @@ android {
 dependencies {
     // Module dependencies
     implementation(projects.core.ui)
+    implementation(projects.core.navigation)
     implementation(projects.feature.home)
     implementation(projects.feature.detail)
 }
