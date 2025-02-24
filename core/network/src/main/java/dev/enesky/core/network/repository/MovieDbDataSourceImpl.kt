@@ -9,6 +9,7 @@ import dev.enesky.core.data.model.MovieDto
 import dev.enesky.core.network.api.MovieDbApi
 import dev.enesky.core.network.paging.PopularMoviesPagingSource
 import dev.enesky.core.network.paging.TopRatedMoviesPagingSource
+import dev.enesky.core.network.paging.UpcomingMoviesPagingSource
 import dev.enesky.core.network.safeApiCall
 import kotlinx.coroutines.flow.Flow
 
@@ -39,7 +40,7 @@ class MovieDbDataSourceImpl(
     override fun getUpcomingMovies(): Flow<PagingData<MovieDto>> {
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE),
-            pagingSourceFactory = { PopularMoviesPagingSource(movieDbApi) }
+            pagingSourceFactory = { UpcomingMoviesPagingSource(movieDbApi) }
         ).flow
     }
 
