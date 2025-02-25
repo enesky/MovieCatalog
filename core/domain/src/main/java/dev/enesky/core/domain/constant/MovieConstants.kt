@@ -45,7 +45,7 @@ object MovieConstants {
         genreText = "Drama | Thriller | Comedy",
         homepage = "https://www.foxmovies.com/movies/fight-club",
         revenue = 100853753,
-        runtime = 139,
+        runtime = "139 min",
         status = "Released",
         tagline = "How much can you know about yourself if you've never been in a fight?",
         video = false,
@@ -54,7 +54,7 @@ object MovieConstants {
         language = "en",
         originalTitle = "Fight Club",
         posterUrl = "https://image.tmdb.org/t/p/original/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
-        releaseDate = "1999-10-15",
+        releaseDate = "Nov 1999",
         rating = "8.4",
         voteCount = 24856,
         productionCompanies = listOf(
