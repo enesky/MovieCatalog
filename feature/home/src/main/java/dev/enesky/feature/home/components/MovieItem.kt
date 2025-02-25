@@ -1,5 +1,6 @@
 package dev.enesky.feature.home.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -38,8 +39,14 @@ fun MovieItem(
 ) {
     // Calculate item width and height to make sure last item slightly visible
     val config = LocalConfiguration.current
+    val isLandscape = config.orientation == Configuration.ORIENTATION_LANDSCAPE
     val screenWidth = config.screenWidthDp.dp
-    val itemWidth = screenWidth / 4f
+    // Use different calculations based on orientation
+    val itemWidth = if (isLandscape) {
+        screenWidth / 8f  // More items visible in landscape
+    } else {
+        screenWidth / 4f  // Current portrait calculation
+    }
     val itemHeight = itemWidth * 1.75f
 
     Column(

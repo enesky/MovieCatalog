@@ -1,5 +1,6 @@
 package dev.enesky.feature.home.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -37,8 +38,16 @@ fun MoviePreview(
     onMovieClick: ((id: Int) -> Unit)? = null,
 ) {
     val config = LocalConfiguration.current
+    val isLandscape = config.orientation == Configuration.ORIENTATION_LANDSCAPE
     val screenWidth = config.screenWidthDp.dp
-    val itemHeight = screenWidth * 0.75f
+    val screenHeight = config.screenHeightDp.dp
+
+    // In landscape, limit the height based on available screen height
+    val itemHeight = if (isLandscape) {
+        minOf(screenHeight * 0.7f, screenWidth * 0.4f)
+    } else {
+        screenWidth * 0.75f
+    }
 
     Box(
         modifier = modifier
