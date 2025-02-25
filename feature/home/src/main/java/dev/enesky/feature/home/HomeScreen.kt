@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -74,12 +76,14 @@ fun HomeContent(
     upcomingMovies: LazyPagingItems<Movie>? = null,
     onMovieClick: (Int) -> Unit = {},
 ) {
-
+    val listState = rememberLazyListState()
     LazyColumn(
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(
+            top = WindowInsets.systemBars.asPaddingValues().calculateTopPadding(),
             bottom = WindowInsets.systemBars.asPaddingValues().calculateBottomPadding(),
         ),
+        state = listState,
     ) {
         item {
             MoviePreview(
