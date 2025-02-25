@@ -25,7 +25,7 @@ import javax.inject.Inject
  * Created by Enes Kamil YILMAZ on 22/02/2025
  */
 
-const val PREVIEW_MOVIE_ID = 395834 // Wind River
+const val PREVIEW_MOVIE_ID = 155
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -43,6 +43,12 @@ class HomeViewModel @Inject constructor(
     private fun getMovies() {
         viewModelScope.launch(Dispatchers.IO) {
             updateUiState { copy(isLoading = true) }
+
+            val nowPlayingMovies = getCategorizedMoviesUseCase.invoke(MovieCategory.NOW_PLAYING)
+                .distinctUntilChanged()
+                .flowOn(Dispatchers.IO)
+                .cachedIn(viewModelScope)
+
             val popularMovies = getCategorizedMoviesUseCase.invoke(MovieCategory.POPULAR)
                 .distinctUntilChanged()
                 .flowOn(Dispatchers.IO)
@@ -61,6 +67,7 @@ class HomeViewModel @Inject constructor(
             updateUiState {
                 copy(
                     isLoading = false,
+                    nowPlayingMovies = nowPlayingMovies,
                     popularMovies = popularMovies,
                     topRatedMovies = topRatedMovies,
                     upcomingMovies = upcomingMovies
@@ -99,6 +106,7 @@ data class HomeUiState(
     override val isLoading: Boolean = false,
     val errorMessage: String? = null,
     val previewMovieDetail: MovieDetail? = null,
+    val nowPlayingMovies: Flow<PagingData<Movie>>? = null,
     val popularMovies: Flow<PagingData<Movie>>? = null,
     val topRatedMovies: Flow<PagingData<Movie>>? = null,
     val upcomingMovies: Flow<PagingData<Movie>>? = null,
