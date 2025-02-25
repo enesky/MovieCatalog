@@ -25,7 +25,7 @@ fun BoxScope.BuildTypeIndicator(
     Box(
         modifier = modifier
             .align(Alignment.BottomStart)
-            .padding(top = 32.dp)
+            .padding(vertical = 8.dp)
     ) {
         Text(
             modifier = Modifier

@@ -52,7 +52,7 @@ private fun Project.configureCompose(commonExtension: CommonExtension<*, *, *, *
             implementation(libs.androidx.ui.tooling.preview)
             implementation(libs.androidx.material3)
 
-            implementation(libs.androidx.navigation.compose)
+            implementation(libs.accompanist.placeholder)
             implementation(libs.coil.compose)
             implementation(libs.coil.network)
         }
