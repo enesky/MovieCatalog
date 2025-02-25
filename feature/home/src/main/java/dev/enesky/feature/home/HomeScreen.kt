@@ -87,7 +87,7 @@ fun HomeContent(
     ) {
         item {
             MoviePreview(
-                isLoading = isConfigLoaded,
+                isLoading = isConfigLoaded.not(),
                 movieDetail = movieDetail,
                 onMovieClick = onMovieClick,
             )
