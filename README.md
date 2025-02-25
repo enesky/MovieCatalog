@@ -21,6 +21,13 @@ Featuring TheMovieDB API, Jetpack Compose, MVVM, Clean Architecture and ExoPlaye
   </a>
 </p>
 
+<p align="center">
+  <a>
+    <img width=300, src="docs/details-screen-dark.png" alt="Details Screen - Dark">
+    <img width=300, src="docs/details-screen-light.png" alt="Details Screen - Light">
+  </a>
+</p>
+
 ## Features
 
 
