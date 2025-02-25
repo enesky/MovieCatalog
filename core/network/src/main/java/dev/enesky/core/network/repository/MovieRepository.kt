@@ -7,6 +7,8 @@ class MovieRepository(
     private val movieDbDataSource: MovieDbDataSource
 ) {
 
+    fun getNowPlayingMoviesPagingData() = movieDbDataSource.getNowPlayingMovies()
+
     fun getPopularMoviesPagingData() = movieDbDataSource.getPopularMovies()
 
     fun getTopRatedMoviesPagingData() = movieDbDataSource.getTopRatedMovies()

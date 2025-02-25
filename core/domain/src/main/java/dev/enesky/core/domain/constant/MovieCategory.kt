@@ -7,6 +7,7 @@ package dev.enesky.core.domain.constant
  * Used to maintain type safety when requesting different movie categories
  */
 enum class MovieCategory {
+    NOW_PLAYING,
     POPULAR,
     TOP_RATED,
     UPCOMING

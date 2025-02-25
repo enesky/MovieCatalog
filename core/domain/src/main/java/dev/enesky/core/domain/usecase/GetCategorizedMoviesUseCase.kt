@@ -29,6 +29,7 @@ class GetCategorizedMoviesUseCase @Inject constructor(
      */
     operator fun invoke(movieCategory: MovieCategory): Flow<PagingData<Movie>> {
         val pagingFlow = when (movieCategory) {
+            MovieCategory.NOW_PLAYING -> movieRepository.getNowPlayingMoviesPagingData()
             MovieCategory.POPULAR -> movieRepository.getPopularMoviesPagingData()
             MovieCategory.TOP_RATED -> movieRepository.getTopRatedMoviesPagingData()
             MovieCategory.UPCOMING -> movieRepository.getUpcomingMoviesPagingData()

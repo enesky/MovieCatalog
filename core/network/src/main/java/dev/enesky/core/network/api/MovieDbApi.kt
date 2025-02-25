@@ -11,6 +11,11 @@ import retrofit2.http.Query
  * Created by Enes Kamil YILMAZ on 22/02/2025
  */
 interface MovieDbApi {
+    @GET(ApiEndpoints.Movie.NOW_PLAYING)
+    suspend fun getNowPlayingMovies(
+        @Query(ApiEndpoints.Query.PAGE) page: Int = ApiEndpoints.DefaultValues.DEFAULT_PAGE
+    ): MoviePagingDto
+
     @GET(ApiEndpoints.Movie.POPULAR)
     suspend fun getPopularMovies(
         @Query(ApiEndpoints.Query.PAGE) page: Int = ApiEndpoints.DefaultValues.DEFAULT_PAGE
