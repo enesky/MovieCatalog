@@ -100,7 +100,7 @@ fun DetailContent(
                 contentScale = ContentScale.FillHeight,
                 contentDescription = "",
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(MovieCatalogTheme.spacing.xSmall))
             Text(text = movieDetail.toString())
         }
     }

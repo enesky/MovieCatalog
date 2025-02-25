@@ -68,12 +68,15 @@ fun MovieItem(
                 Text(
                     modifier = Modifier
                         .align(Alignment.TopEnd)
-                        .padding(6.dp)
+                        .padding(MovieCatalogTheme.spacing.xSmall)
                         .background(
                             color = MaterialTheme.colorScheme.surface.copy(alpha = 0.3f),
                             shape = MaterialTheme.shapes.small
                         )
-                        .padding(vertical = 2.dp, horizontal = 4.dp),
+                        .padding(
+                            vertical = MovieCatalogTheme.spacing.xxxSmall,
+                            horizontal = MovieCatalogTheme.spacing.xxSmall
+                        ),
                     text = movie.rating,
                     maxLines = 1,
                     style = MovieCatalogTheme.typography.regular.h6,
@@ -86,7 +89,7 @@ fun MovieItem(
         Text(
             modifier = Modifier
                 .width(itemSize.first)
-                .padding(vertical = 2.dp)
+                .padding(vertical = MovieCatalogTheme.spacing.xxxSmall)
                 .then(
                     if (isPlaceholder) Modifier.placeholder() else Modifier
                 ),

@@ -115,7 +115,7 @@ fun TitleRow(
                 horizontal = MovieCatalogTheme.spacing.medium,
             ),
             color = MaterialTheme.colorScheme.onPrimary,
-            thickness = 1.dp,
+            thickness = MovieCatalogTheme.spacing.border,
         )
     }
 }

@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.enesky.core.ui.theme.MovieCatalogTheme
 
 /**
  * Created by Enes Kamil YILMAZ on 24/02/2025
@@ -25,18 +26,18 @@ fun BoxScope.BuildTypeIndicator(
     Box(
         modifier = modifier
             .align(Alignment.BottomStart)
-            .padding(vertical = 8.dp)
+            .padding(vertical = MovieCatalogTheme.spacing.xSmall)
     ) {
         Text(
             modifier = Modifier
                 .background(
                     color = MaterialTheme.colorScheme.error,
                     shape = RoundedCornerShape(
-                        topEnd = 8.dp,
-                        bottomEnd = 8.dp,
+                        topEnd = MovieCatalogTheme.spacing.xSmall,
+                        bottomEnd = MovieCatalogTheme.spacing.xSmall,
                     ),
                 )
-                .padding(horizontal = 8.dp),
+                .padding(horizontal = MovieCatalogTheme.spacing.xSmall),
             text = text,
             color = MaterialTheme.colorScheme.onError,
             style = MaterialTheme.typography.bodySmall,

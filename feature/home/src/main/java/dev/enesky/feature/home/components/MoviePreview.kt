@@ -110,12 +110,15 @@ fun MoviePreview(
             Text(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
-                    .padding(6.dp)
+                    .padding(MovieCatalogTheme.spacing.xSmall)
                     .background(
                         color = MaterialTheme.colorScheme.surface.copy(alpha = 0.3f),
                         shape = MaterialTheme.shapes.small
                     )
-                    .padding(vertical = 2.dp, horizontal = 4.dp),
+                    .padding(
+                        vertical = MovieCatalogTheme.spacing.xxxSmall,
+                        horizontal = MovieCatalogTheme.spacing.xxSmall
+                    ),
                 text = movieDetail?.rating ?: String.Empty,
                 maxLines = 1,
                 style = MovieCatalogTheme.typography.regular.h6,
