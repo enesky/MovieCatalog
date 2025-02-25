@@ -8,13 +8,21 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private var jankStats: JankStats? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         // TODO: Add splash screen api
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        setContent {
-            MovieCatalogApp()
-        }
+    override fun onResume() {
+        super.onResume()
+        jankStats?.isTrackingEnabled = true
+    }
+
+    override fun onPause() {
+        super.onPause()
+        jankStats?.isTrackingEnabled = false
     }
 }
