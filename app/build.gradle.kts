@@ -19,5 +19,6 @@ android {
 dependencies {
     // Module dependencies
     implementation(projects.core.ui)
+    implementation(projects.core.common)
     implementation(projects.core.navigation)
 }
