@@ -16,6 +16,8 @@ Featuring TheMovieDB API, Jetpack Compose, MVVM, Clean Architecture and ExoPlaye
 
 <p align="center">
   <a>
+    <img width=300, src="docs/home-screen-dark.png" alt="Home Screen - Dark">
+    <img width=300, src="docs/home-screen-light.png" alt="Home Screen - Light">
   </a>
 </p>
 

@@ -113,7 +113,7 @@ fun TitleRow(
             modifier = Modifier.padding(
                 horizontal = MovieCatalogTheme.spacing.medium,
             ),
-            color = MaterialTheme.colorScheme.onPrimary,
+            color = MaterialTheme.colorScheme.onSurface,
             thickness = MovieCatalogTheme.spacing.border,
         )
     }
