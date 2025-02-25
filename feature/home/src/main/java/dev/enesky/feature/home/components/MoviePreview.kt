@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import dev.enesky.core.common.utils.Empty
 import dev.enesky.core.domain.constant.MovieConstants
@@ -35,20 +36,9 @@ fun MoviePreview(
     modifier: Modifier = Modifier,
     movieDetail: MovieDetail?,
     isLoading: Boolean = false,
+    itemHeight: Dp = calculateMoviePreviewHeight(),
     onMovieClick: ((id: Int) -> Unit)? = null,
 ) {
-    val config = LocalConfiguration.current
-    val isLandscape = config.orientation == Configuration.ORIENTATION_LANDSCAPE
-    val screenWidth = config.screenWidthDp.dp
-    val screenHeight = config.screenHeightDp.dp
-
-    // In landscape, limit the height based on available screen height
-    val itemHeight = if (isLandscape) {
-        minOf(screenHeight * 0.7f, screenWidth * 0.4f)
-    } else {
-        screenWidth * 0.75f
-    }
-
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -132,6 +122,21 @@ fun MoviePreview(
                 color = MaterialTheme.colorScheme.onPrimary,
             )
         }
+    }
+}
+
+@Composable
+private fun calculateMoviePreviewHeight(): Dp {
+    val config = LocalConfiguration.current
+    val isLandscape = config.orientation == Configuration.ORIENTATION_LANDSCAPE
+    val screenWidth = config.screenWidthDp.dp
+    val screenHeight = config.screenHeightDp.dp
+
+    // In landscape, limit the height based on available screen height
+    return if (isLandscape) {
+        minOf(screenHeight * 0.7f, screenWidth * 0.4f)
+    } else {
+        screenWidth * 0.75f
     }
 }
 

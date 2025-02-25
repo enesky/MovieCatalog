@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import dev.enesky.core.domain.constant.MovieConstants
 import dev.enesky.core.domain.model.Movie
@@ -29,26 +30,14 @@ import dev.enesky.core.ui.theme.MovieCatalogTheme
 /**
  * Created by Enes Kamil YILMAZ on 25/02/2025
  */
-
 @Composable
 fun MovieItem(
     modifier: Modifier = Modifier,
     movie: Movie,
     isPlaceholder: Boolean = false,
+    itemSize: Pair<Dp, Dp> = CalculateMovieItemDimensions(),
     onNavigateDetailsClick: ((id: Int) -> Unit)? = null,
 ) {
-    // Calculate item width and height to make sure last item slightly visible
-    val config = LocalConfiguration.current
-    val isLandscape = config.orientation == Configuration.ORIENTATION_LANDSCAPE
-    val screenWidth = config.screenWidthDp.dp
-    // Use different calculations based on orientation
-    val itemWidth = if (isLandscape) {
-        screenWidth / 8f  // More items visible in landscape
-    } else {
-        screenWidth / 4f  // Current portrait calculation
-    }
-    val itemHeight = itemWidth * 1.75f
-
     Column(
         modifier = if (isPlaceholder) {
             modifier
@@ -64,13 +53,13 @@ fun MovieItem(
             if (isPlaceholder) {
                 ImagePlaceholder(
                     modifier = Modifier
-                        .size(itemWidth, itemHeight)
+                        .size(itemSize.first, itemSize.second)
                         .clip(MovieCatalogTheme.shapes.small),
                 )
             } else {
                 MyNetworkImage(
                     modifier = Modifier
-                        .size(itemWidth, itemHeight)
+                        .size(itemSize.first, itemSize.second)
                         .clip(MovieCatalogTheme.shapes.small),
                     model = movie.posterUrl,
                     contentDescription = movie.title,
@@ -96,7 +85,7 @@ fun MovieItem(
         // Movie Title
         Text(
             modifier = Modifier
-                .width(itemWidth)
+                .width(itemSize.first)
                 .padding(vertical = 2.dp)
                 .then(
                     if (isPlaceholder) Modifier.placeholder() else Modifier
@@ -110,6 +99,26 @@ fun MovieItem(
     }
 }
 
+/**
+ * Calculate movie item dimensions based on screen width and orientation
+ * Make sure last item slightly visible
+ */
+@Composable
+private fun CalculateMovieItemDimensions(): Pair<Dp, Dp> {
+    val config = LocalConfiguration.current
+    val isLandscape = config.orientation == Configuration.ORIENTATION_LANDSCAPE
+    val screenWidth = config.screenWidthDp.dp
+    // Use different calculations based on orientation
+    val itemWidth = if (isLandscape) {
+        screenWidth / 8f // More items visible in landscape
+    } else {
+        screenWidth / 4f // Portrait calculation
+    }
+    val itemHeight = itemWidth * 1.75f
+
+    return Pair(itemWidth, itemHeight)
+}
+
 @PreviewUiMode
 @Composable
 private fun AnimeItemPreview() {
@@ -120,4 +129,3 @@ private fun AnimeItemPreview() {
         )
     }
 }
-
