@@ -27,7 +27,7 @@ fun MovieCatalogApp(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
-                    .background(color = MaterialTheme.colorScheme.background,),
+                    .background(color = MaterialTheme.colorScheme.background),
                 contentAlignment = Alignment.Center
             ) {
                 MovieCatalogNavGraph(

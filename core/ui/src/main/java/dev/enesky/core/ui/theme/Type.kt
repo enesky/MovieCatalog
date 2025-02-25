@@ -2,6 +2,7 @@ package dev.enesky.core.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -18,7 +19,7 @@ private val NunitoSans = FontFamily(
 internal val Typography = defaultTypography()
 
 @Immutable
-class DoodleTypography {
+class MovieCatalogTypography {
     val regular = Regular()
     val bold = Bold()
 
@@ -123,25 +124,21 @@ private fun defaultTextStyle(
     letterSpacing = letterSpacing,
 )
 
-private fun defaultTypography() = with(DoodleTypography()) {
+private fun defaultTypography() = with(MovieCatalogTypography()) {
     Typography(
-        displayLarge = bold.h1,
-        displayMedium = bold.h2,
-        displaySmall = bold.h3,
         headlineLarge = regular.h1,
         headlineMedium = regular.h2,
         headlineSmall = regular.h3,
         titleLarge = regular.h4,
         titleMedium = regular.h5,
         titleSmall = regular.h6,
-        bodyLarge = regular.h1,
-        bodyMedium = regular.h2,
-        bodySmall = regular.h3,
-        labelLarge = regular.h4,
-        labelMedium = regular.h5,
-        labelSmall = regular.h6,
+        labelLarge = regular.h5,
+        labelMedium = regular.h6,
+        labelSmall = regular.h7,
     )
 }
+
+internal val LocalMovieCatalogTypography = staticCompositionLocalOf { MovieCatalogTypography() }
 
 // Font Sizing
 private val LetterSpacing = (0.12f).sp

@@ -2,6 +2,8 @@ package dev.enesky.core.ui.theme
 
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 private val BlazeOrange = Color(0xFFF96D00) // Main color
@@ -51,3 +53,31 @@ internal val LightColorScheme = lightColorScheme(
     onError = White,
     outline = Grey
 )
+
+@Immutable
+data class MovieCatalogColors(
+    val isSystemInDarkTheme: Boolean = false,
+    val default: Color = Color.Unspecified,
+    val transparent: Color = Color.Transparent,
+    val main: Color = BlazeOrange,
+    val background: Color = if (isSystemInDarkTheme) EbonyClay else SoothingBreeze,
+    val backgroundDark: Color = EbonyClay,
+    val backgroundLight: Color = Geyser,
+    val text: Color = if (isSystemInDarkTheme) White else Black,
+    val textDark: Color = White,
+    val textLight: Color = Black,
+    val secondary: Color = SoothingBreeze,
+    val dark: Color = Dark,
+    val softDark: Color = Soft,
+    val green: Color = Green,
+    val lightOrange: Color = Orange,
+    val red: Color = Red,
+    val white: Color = White,
+    val whiteGrey: Color = WhiteGrey,
+    val black: Color = Black,
+    val grey: Color = Grey,
+    val darkGrey: Color = DarkGrey,
+    val lineDark: Color = LineDark,
+)
+
+internal val LocalMovieCatalogColors = staticCompositionLocalOf { MovieCatalogColors() }
