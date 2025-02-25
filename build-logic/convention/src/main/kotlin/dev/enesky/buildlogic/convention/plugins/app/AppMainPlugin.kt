@@ -63,6 +63,8 @@ class AppMainPlugin : Plugin<Project> {
         dependencies {
             debugImplementation(libs.leak.canary)
             implementation(libs.kotlinx.serialization)
+            implementation(libs.splash.screen)
+            implementation(libs.jank.stats)
         }
     }
 }
