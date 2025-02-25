@@ -12,7 +12,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.Divider
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -108,7 +107,7 @@ fun TitleRow(
                 horizontal = MovieCatalogTheme.spacing.medium,
             ),
             text = title,
-            color = MaterialTheme.colorScheme.onPrimary,
+            color = MaterialTheme.colorScheme.onSurface,
             style = MaterialTheme.typography.titleMedium,
         )
         HorizontalDivider(
@@ -132,7 +131,8 @@ fun PlaceholderItem() {
 @PreviewUiMode
 @Composable
 private fun PreviewMoviePagingRow() {
-    val animeList = listOf(MovieConstants.PLACEHOLDER_MOVIE, MovieConstants.PLACEHOLDER_MOVIE, MovieConstants.PLACEHOLDER_MOVIE)
+    val animeList = listOf(MovieConstants.PLACEHOLDER_MOVIE, MovieConstants.PLACEHOLDER_MOVIE,
+        MovieConstants.PLACEHOLDER_MOVIE, MovieConstants.PLACEHOLDER_MOVIE)
     val filledPagingData = flowOf(PagingData.from(animeList)).collectAsLazyPagingItems()
     val emptyPagingData = flowOf(PagingData.from(emptyList<Movie>())).collectAsLazyPagingItems()
 

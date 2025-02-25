@@ -36,9 +36,10 @@ fun MovieItem(
     isPlaceholder: Boolean = false,
     onNavigateDetailsClick: ((id: Int) -> Unit)? = null,
 ) {
+    // Calculate item width and height to make sure last item slightly visible
     val config = LocalConfiguration.current
     val screenWidth = config.screenWidthDp.dp
-    val itemWidth = screenWidth / 3.8f
+    val itemWidth = screenWidth / 4f
     val itemHeight = itemWidth * 1.75f
 
     Column(
@@ -80,7 +81,7 @@ fun MovieItem(
                     text = movie.rating,
                     maxLines = 1,
                     style = MovieCatalogTheme.typography.regular.h6,
-                    color = MaterialTheme.colorScheme.onSurface,
+                    color = MaterialTheme.colorScheme.onPrimary,
                 )
             }
         }
