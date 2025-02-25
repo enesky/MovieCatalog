@@ -2,6 +2,7 @@ plugins {
     id(libs.plugins.app.main.get().pluginId)
     id(libs.plugins.common.compose.get().pluginId)
     id(libs.plugins.common.hilt.get().pluginId)
+    id(libs.plugins.app.firebase.get().pluginId)
 }
 
 android {
@@ -18,5 +19,6 @@ android {
 dependencies {
     // Module dependencies
     implementation(projects.core.ui)
+    implementation(projects.core.common)
     implementation(projects.core.navigation)
 }

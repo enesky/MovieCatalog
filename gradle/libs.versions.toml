@@ -28,6 +28,8 @@ compose-bom                        = "2025.02.00"
 coroutines                         = "1.10.1"
 kotlinx-serialization              = "1.7.3"
 datastore                          = "1.1.2"
+jank-stats                         = "1.0.0-beta01"
+splash-screen                      = "1.0.1"
 
 # Third-party libraries
 firebase-bom                       = "33.9.0"
@@ -100,12 +102,15 @@ androidx-ui-tooling                = { module = "androidx.compose.ui:ui-tooling"
 androidx-ui-tooling-preview        = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-material3                 = { module = "androidx.compose.material3:material3" }
 datasore-preferences               = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+jank-stats                         = { module = "androidx.metrics:metrics-performance", version.ref = "jank-stats" }
+splash-screen                      = { module = "androidx.core:core-splashscreen", version.ref = "splash-screen" }
 
 # Third-party libraries
 firebase-bom                       = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
 firebase-analytics                 = { module = "com.google.firebase:firebase-analytics" }
 firebase-crashlytics               = { module = "com.google.firebase:firebase-crashlytics" }
 firebase-performance               = { module = "com.google.firebase:firebase-perf" }
+firebase-config                    = { module = "com.google.firebase:firebase-config" }
 coil-compose                       = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil-compose" }
 coil-network                       = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil-compose" }
 leak-canary                        = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leak-canary" }

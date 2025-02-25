@@ -51,6 +51,8 @@ fun HomeScreen(
 
     HomeContent(
         modifier = modifier,
+        isLoading = uiState.isLoading,
+        isConfigLoaded = uiState.isConfigLoaded,
         movieDetail = uiState.previewMovieDetail,
         nowPlayingMovies = nowPlayingMovies,
         popularMovies = popularMovies,
@@ -63,6 +65,8 @@ fun HomeScreen(
 @Composable
 fun HomeContent(
     modifier: Modifier = Modifier,
+    isLoading: Boolean = false,
+    isConfigLoaded: Boolean = false,
     movieDetail: MovieDetail? = null,
     nowPlayingMovies: LazyPagingItems<Movie>? = null,
     popularMovies: LazyPagingItems<Movie>? = null,
@@ -79,6 +83,7 @@ fun HomeContent(
     ) {
         item {
             MoviePreview(
+                isLoading = isConfigLoaded,
                 movieDetail = movieDetail,
                 onMovieClick = onMovieClick,
             )
