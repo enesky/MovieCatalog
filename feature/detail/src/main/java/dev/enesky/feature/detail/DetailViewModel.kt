@@ -67,5 +67,4 @@ data class DetailUiState(
 
 sealed interface DetailEvent : IEvent {
     data class OnError(override val errorMessage: String) : DetailEvent, IErrorEvent
-    data class OnMovieClick(val movieId: Int) : DetailEvent
 }
