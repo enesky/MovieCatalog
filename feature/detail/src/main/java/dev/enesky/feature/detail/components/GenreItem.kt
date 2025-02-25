@@ -17,14 +17,15 @@ import dev.enesky.core.domain.constant.MovieConstants
 import dev.enesky.core.domain.model.Genre
 import dev.enesky.core.ui.annotation.PreviewUiMode
 import dev.enesky.core.ui.theme.MovieCatalogTheme
+import okhttp3.internal.immutableListOf
 
 /**
  * Created by Enes Kamil YILMAZ on 26/02/2025
  */
 @Composable
 fun GenreItem(
-    genreList: List<Genre>? = listOf(),
     modifier: Modifier = Modifier,
+    genreList: List<Genre>? = immutableListOf(),
 ) {
     Column(
         modifier = modifier

@@ -32,7 +32,6 @@ fun formatRating(rating: Double): String {
     return ratingFormat.format(rating).toString()
 }
 
-
 /**
  * Formats date to month year format
  */

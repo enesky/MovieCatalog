@@ -70,7 +70,6 @@ private fun SwipeRefreshPreview() {
                 ) {
                     Text("Content")
                 }
-
             }
         )
     }
