@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="dev.enesky.moviecatalog" />
+                  <option name="mobileSdkAppId" value="1:52423935302:android:cdeed52940583e7a27d147" />
+                  <option name="projectId" value="movie-app-84be8" />
+                  <option name="projectNumber" value="52423935302" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

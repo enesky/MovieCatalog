@@ -2,6 +2,7 @@ plugins {
     id(libs.plugins.app.main.get().pluginId)
     id(libs.plugins.common.compose.get().pluginId)
     id(libs.plugins.common.hilt.get().pluginId)
+    id(libs.plugins.app.firebase.get().pluginId)
 }
 
 android {

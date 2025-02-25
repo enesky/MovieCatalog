@@ -9,12 +9,9 @@ plugins {
     alias(libs.plugins.ksp.plugin) apply false
     alias(libs.plugins.hilt.plugin) apply false
 
-    /*
-        Todo: Uncomment the following lines when you have firebase plugins
-        alias(libs.plugins.google.services) apply false
-        alias(libs.plugins.firebase.crashlytics) apply false
-        alias(libs.plugins.firebase.performance) apply false
-     */
+    alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.firebase.crashlytics) apply false
+    alias(libs.plugins.firebase.performance) apply false
 
     // Convention Plugins
     id(libs.plugins.common.detekt.get().pluginId)
