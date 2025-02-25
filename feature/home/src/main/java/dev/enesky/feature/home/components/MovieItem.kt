@@ -32,10 +32,10 @@ import dev.enesky.core.ui.theme.MovieCatalogTheme
  */
 @Composable
 fun MovieItem(
-    modifier: Modifier = Modifier,
     movie: Movie,
+    modifier: Modifier = Modifier,
     isPlaceholder: Boolean = false,
-    itemSize: Pair<Dp, Dp> = CalculateMovieItemDimensions(),
+    itemSize: Pair<Dp, Dp> = calculateMovieItemDimensions(),
     onNavigateDetailsClick: ((id: Int) -> Unit)? = null,
 ) {
     Column(
@@ -104,17 +104,20 @@ fun MovieItem(
  * Make sure last item slightly visible
  */
 @Composable
-private fun CalculateMovieItemDimensions(): Pair<Dp, Dp> {
+private fun calculateMovieItemDimensions(): Pair<Dp, Dp> {
     val config = LocalConfiguration.current
     val isLandscape = config.orientation == Configuration.ORIENTATION_LANDSCAPE
     val screenWidth = config.screenWidthDp.dp
-    // Use different calculations based on orientation
+    val landscapeDivider = 8f
+    val portraitDivider = 4f
+    val heightMultiplier = 1.75f
+
     val itemWidth = if (isLandscape) {
-        screenWidth / 8f // More items visible in landscape
+        screenWidth / landscapeDivider
     } else {
-        screenWidth / 4f // Portrait calculation
+        screenWidth / portraitDivider
     }
-    val itemHeight = itemWidth * 1.75f
+    val itemHeight = itemWidth * heightMultiplier
 
     return Pair(itemWidth, itemHeight)
 }

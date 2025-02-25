@@ -26,8 +26,8 @@ import dev.enesky.core.ui.theme.MovieCatalogTheme
 @Composable
 fun Message(
     @StringRes messageResourceId: Int,
-    @DrawableRes imageResourceId: Int? = null,
     modifier: Modifier = Modifier,
+    @DrawableRes imageResourceId: Int? = null,
 ) {
     CenteredBox(modifier = modifier.padding(horizontal = MovieCatalogTheme.spacing.xLarge)) {
         Column(

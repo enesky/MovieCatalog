@@ -128,6 +128,5 @@ private fun HomeScreenPreview() {
                 movieDetail = MovieConstants.PLACEHOLDER_DETAILED_MOVIE
             ) {}
         }
-
     }
 }

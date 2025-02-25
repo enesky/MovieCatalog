@@ -33,8 +33,8 @@ import dev.enesky.core.ui.theme.MovieCatalogTheme
 @Suppress("LongMethod")
 @Composable
 fun MoviePreview(
-    modifier: Modifier = Modifier,
     movieDetail: MovieDetail?,
+    modifier: Modifier = Modifier,
     isLoading: Boolean = false,
     itemHeight: Dp = calculateMoviePreviewHeight(),
     onMovieClick: ((id: Int) -> Unit)? = null,
@@ -131,12 +131,15 @@ private fun calculateMoviePreviewHeight(): Dp {
     val isLandscape = config.orientation == Configuration.ORIENTATION_LANDSCAPE
     val screenWidth = config.screenWidthDp.dp
     val screenHeight = config.screenHeightDp.dp
+    val landscapeWidthMultiplier = 0.4f
+    val landscapeHeightMultiplier = 0.7f
+    val portraitMultiplier = 0.75f
 
     // In landscape, limit the height based on available screen height
     return if (isLandscape) {
-        minOf(screenHeight * 0.7f, screenWidth * 0.4f)
+        minOf(screenHeight * landscapeHeightMultiplier, screenWidth * landscapeWidthMultiplier)
     } else {
-        screenWidth * 0.75f
+        screenWidth * portraitMultiplier
     }
 }
 

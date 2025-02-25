@@ -42,8 +42,8 @@ import kotlinx.coroutines.flow.flowOf
 fun MoviePagingRow(
     modifier: Modifier = Modifier,
     title: String = stringResource(id = R.string.lorem_ipsum_medium),
-    pagingItems: LazyPagingItems<Movie>?,
-    onMovieClick: (id: Int) -> Unit,
+    pagingItems: LazyPagingItems<Movie>? = null,
+    onMovieClick: (id: Int) -> Unit = {},
     emptyContent: @Composable LazyItemScope.() -> Unit = {
         Message(
             modifier = Modifier.fillParentMaxSize(),
@@ -51,7 +51,7 @@ fun MoviePagingRow(
         )
     },
 ) {
-    TitleRow(Modifier, title)
+    TitleRow(title)
 
     Spacer(modifier = Modifier.size(MovieCatalogTheme.spacing.small))
 
@@ -96,8 +96,8 @@ fun MoviePagingRow(
 
 @Composable
 fun TitleRow(
-    modifier: Modifier = Modifier,
     title: String,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier,
@@ -108,7 +108,7 @@ fun TitleRow(
             ),
             text = title,
             color = MaterialTheme.colorScheme.onSurface,
-            style = MaterialTheme.typography.titleMedium,
+            style = MovieCatalogTheme.typography.bold.h5,
         )
         HorizontalDivider(
             modifier = Modifier.padding(
