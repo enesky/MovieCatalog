@@ -64,7 +64,6 @@ fun MovieItem(
                     model = movie.posterUrl,
                     contentDescription = movie.title,
                 )
-
                 Text(
                     modifier = Modifier
                         .align(Alignment.TopEnd)
@@ -84,15 +83,12 @@ fun MovieItem(
                 )
             }
         }
-
         // Movie Title
         Text(
             modifier = Modifier
                 .width(itemSize.first)
                 .padding(vertical = MovieCatalogTheme.spacing.xxxSmall)
-                .then(
-                    if (isPlaceholder) Modifier.placeholder() else Modifier
-                ),
+                .then(if (isPlaceholder) Modifier.placeholder() else Modifier),
             text = movie.title,
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
