@@ -24,6 +24,7 @@ class AppFirebasePlugin : Plugin<Project> {
                 implementation(libs.firebase.analytics)
                 implementation(libs.firebase.crashlytics)
                 implementation(libs.firebase.performance)
+                implementation(libs.firebase.config)
             }
         }
     }
