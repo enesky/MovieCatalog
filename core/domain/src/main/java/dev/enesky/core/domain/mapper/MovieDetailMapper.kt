@@ -7,6 +7,8 @@ import dev.enesky.core.domain.constant.ImageConstants
 import dev.enesky.core.domain.model.Genre
 import dev.enesky.core.domain.model.MovieDetail
 import dev.enesky.core.domain.model.ProductionCompany
+import dev.enesky.core.domain.utils.formatGenres
+import dev.enesky.core.domain.utils.formatRating
 import javax.inject.Inject
 
 /**
@@ -26,6 +28,7 @@ class MovieDetailMapper @Inject constructor() {
             adult = dto.adult ?: false,
             budget = dto.budget ?: 0,
             genres = dto.genres?.map { mapToDomain(it) } ?: emptyList(),
+            genreText = formatGenres(dto.genres?.map { mapToDomain(it) } ?: emptyList()),
             homepage = dto.homepage ?: "",
             revenue = dto.revenue ?: 0,
             runtime = dto.runtime ?: 0,
@@ -38,7 +41,7 @@ class MovieDetailMapper @Inject constructor() {
             originalTitle = dto.originalTitle ?: "",
             posterUrl = ImageConstants.getPosterUrl(dto.posterPath),
             releaseDate = dto.releaseDate ?: "",
-            rating = dto.voteAverage ?: 0.0,
+            rating = formatRating(dto.voteAverage ?: 0.0),
             voteCount = dto.voteCount ?: 0,
             productionCompanies = dto.productionCompanies?.map { mapToDomain(it) } ?: emptyList()
         )

@@ -18,7 +18,7 @@ data class Movie(
     val language: String,
     val originalTitle: String,
     val posterUrl: String?,
-    val rating: Double,
+    val rating: String,
     val voteCount: Int,
     val adult: Boolean,
     val video: Boolean

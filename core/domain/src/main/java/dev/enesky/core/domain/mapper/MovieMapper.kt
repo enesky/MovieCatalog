@@ -3,6 +3,7 @@ package dev.enesky.core.domain.mapper
 import dev.enesky.core.data.model.MovieDto
 import dev.enesky.core.domain.constant.ImageConstants
 import dev.enesky.core.domain.model.Movie
+import dev.enesky.core.domain.utils.formatRating
 import javax.inject.Inject
 
 /**
@@ -27,7 +28,7 @@ class MovieMapper @Inject constructor() {
             language = dto.originalLanguage,
             originalTitle = dto.originalTitle,
             posterUrl = ImageConstants.getPosterUrl(dto.posterPath),
-            rating = dto.voteAverage,
+            rating = formatRating(dto.voteAverage),
             voteCount = dto.voteCount,
             adult = dto.adult,
             video = dto.video

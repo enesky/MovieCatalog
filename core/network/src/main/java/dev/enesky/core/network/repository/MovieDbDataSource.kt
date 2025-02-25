@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.Flow
  */
 interface MovieDbDataSource {
 
+    fun getNowPlayingMovies(): Flow<PagingData<MovieDto>>
     fun getPopularMovies(): Flow<PagingData<MovieDto>>
     fun getTopRatedMovies(): Flow<PagingData<MovieDto>>
     fun getUpcomingMovies(): Flow<PagingData<MovieDto>>

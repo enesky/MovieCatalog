@@ -15,6 +15,7 @@ data class MovieDetail(
     val adult: Boolean,
     val budget: Int,
     val genres: List<Genre>,
+    val genreText: String,
     val homepage: String,
     val revenue: Int,
     val runtime: Int,
@@ -27,7 +28,7 @@ data class MovieDetail(
     val originalTitle: String,
     val posterUrl: String?,
     val releaseDate: String,
-    val rating: Double,
+    val rating: String,
     val voteCount: Int,
     val productionCompanies: List<ProductionCompany>
 )

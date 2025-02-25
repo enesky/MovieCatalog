@@ -9,4 +9,5 @@ android.namespace = "dev.enesky.core.ui"
 dependencies {
     // Module dependencies
     implementation(projects.core.common)
+    implementation(projects.core.domain)
 }
