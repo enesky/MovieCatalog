@@ -9,6 +9,7 @@ import dev.enesky.core.common.data.delegate.IErrorEvent
 import dev.enesky.core.common.data.delegate.IEvent
 import dev.enesky.core.common.data.delegate.IUiState
 import dev.enesky.core.common.data.fold
+import dev.enesky.core.common.remoteconfig.FetchStatus
 import dev.enesky.core.common.remoteconfig.RemoteConfigManager
 import dev.enesky.core.domain.constant.MovieCategory
 import dev.enesky.core.domain.model.Movie
@@ -29,13 +30,59 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getCategorizedMoviesUseCase: GetCategorizedMoviesUseCase,
     private val getMovieDetailUseCase: GetMovieDetailsUseCase
-) : BaseViewModel<HomeUiState, HomeEvent>(
-    initialState = { HomeUiState() }
-) {
+) : BaseViewModel<HomeUiState, HomeEvent>(initialState = { HomeUiState() }) {
 
     init {
+        getConfig()
         getMovies()
-        getMovieDetails()
+    }
+
+    private fun getConfig() {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateUiState { copy(isConfigLoaded = false) }
+            RemoteConfigManager.configStatus.collect { status ->
+                when (status) {
+                    FetchStatus.SUCCESS, FetchStatus.ERROR -> {
+                        updateUiState {
+                            copy(
+                                isConfigLoaded = true,
+                                previewMovieId = RemoteConfigManager.Values.previewMovieId
+                            )
+                        }
+                        getMovieDetails()
+                    }
+                    FetchStatus.LOADING -> {
+                        updateUiState {
+                            copy(isConfigLoaded = false)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private suspend fun getMovieDetails() {
+        val movieId = uiState.value.previewMovieDetail?.id ?: RemoteConfigManager.Values.previewMovieId
+        getMovieDetailUseCase.invoke(id = movieId.toInt()).fold(
+            onSuccess = {
+                updateUiState {
+                    copy(
+                        isLoading = false,
+                        previewMovieDetail = it,
+                        errorMessage = null
+                    )
+                }
+            },
+            onError = {
+                updateUiState {
+                    copy(
+                        isLoading = false,
+                        previewMovieDetail = null,
+                        errorMessage = it.message
+                    )
+                }
+            }
+        )
     }
 
     private fun getMovies() {
@@ -73,36 +120,13 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-
-    private fun getMovieDetails() {
-        viewModelScope.launch(Dispatchers.IO) {
-            getMovieDetailUseCase.invoke(id = RemoteConfigManager.Values.previewMovieId.toInt()).fold(
-                onSuccess = {
-                    updateUiState {
-                        copy(
-                            isLoading = false,
-                            previewMovieDetail = it,
-                            errorMessage = null
-                        )
-                    }
-                },
-                onError = {
-                    updateUiState {
-                        copy(
-                            isLoading = false,
-                            previewMovieDetail = null,
-                            errorMessage = it.message
-                        )
-                    }
-                }
-            )
-        }
-    }
 }
 
 data class HomeUiState(
     override val isLoading: Boolean = false,
     val errorMessage: String? = null,
+    val isConfigLoaded: Boolean = false,
+    val previewMovieId: Long? = null,
     val previewMovieDetail: MovieDetail? = null,
     val nowPlayingMovies: Flow<PagingData<Movie>>? = null,
     val popularMovies: Flow<PagingData<Movie>>? = null,

@@ -15,7 +15,7 @@ object RemoteConfigManager {
         get() = _configStatus
     private val _configStatus = MutableStateFlow(FetchStatus.LOADING)
     private val remoteConfig by lazy { Firebase.remoteConfig }
-    private const val FETCH_INTERVAL_DEBUG: Long = 60 // Fetch every 60 seconds in debug
+    private const val FETCH_INTERVAL_DEBUG: Long = 10 // Fetch every 10 seconds in debug
     private const val FETCH_INTERVAL: Long = 60 * 60 * 1 // Fetch every 1 hour
     private const val FETCH_RETRY: Long = 30
 
@@ -28,8 +28,9 @@ object RemoteConfigManager {
      * Initialize Remote Config with default values and fetch the remote config
      */
     fun init(isDebug: Boolean) {
-        val fetchInterval: Long = if (isDebug) FETCH_INTERVAL_DEBUG else FETCH_INTERVAL
+        fetchRemoteConfig()
 
+        val fetchInterval: Long = if (isDebug) FETCH_INTERVAL_DEBUG else FETCH_INTERVAL
         remoteConfig.apply {
             setConfigSettingsAsync(
                 remoteConfigSettings {
@@ -43,8 +44,6 @@ object RemoteConfigManager {
                 ),
             )
         }
-        // Fetch remote config
-        fetchRemoteConfig()
     }
 
     /**

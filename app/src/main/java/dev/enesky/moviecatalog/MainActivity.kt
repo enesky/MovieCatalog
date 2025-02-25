@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.metrics.performance.JankStats
 import dagger.hilt.android.AndroidEntryPoint
 import dev.enesky.core.common.jankstats.JankStat
+import dev.enesky.core.common.remoteconfig.FetchStatus
 import dev.enesky.core.common.remoteconfig.RemoteConfigManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,20 +21,19 @@ class MainActivity : ComponentActivity() {
     private var jankStats: JankStats? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
+        val splashScreen = installSplashScreen()
+        startInitialSync()
+        splashScreen.setKeepOnScreenCondition {
+            RemoteConfigManager.configStatus.value == FetchStatus.LOADING
+        }
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge()
-        setContent { MovieCatalogApp() }
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
-        lifecycleScope.launch(Dispatchers.IO) {
-            RemoteConfigManager.init(BuildConfig.DEBUG)
+        setContent {
+            MovieCatalogApp()
         }
-        jankStats = JankStats.createAndTrack(
-            window,
-            JankStat.jankFrameListener
-        )
     }
 
     override fun onResume() {
@@ -44,5 +44,15 @@ class MainActivity : ComponentActivity() {
     override fun onPause() {
         super.onPause()
         jankStats?.isTrackingEnabled = false
+    }
+
+    private fun startInitialSync() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            RemoteConfigManager.init(BuildConfig.DEBUG)
+        }
+        jankStats = JankStats.createAndTrack(
+            window,
+            JankStat.jankFrameListener
+        )
     }
 }
