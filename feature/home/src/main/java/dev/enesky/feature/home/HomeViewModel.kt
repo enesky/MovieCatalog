@@ -9,6 +9,7 @@ import dev.enesky.core.common.data.delegate.IErrorEvent
 import dev.enesky.core.common.data.delegate.IEvent
 import dev.enesky.core.common.data.delegate.IUiState
 import dev.enesky.core.common.data.fold
+import dev.enesky.core.common.remoteconfig.RemoteConfigManager
 import dev.enesky.core.domain.constant.MovieCategory
 import dev.enesky.core.domain.model.Movie
 import dev.enesky.core.domain.model.MovieDetail
@@ -24,9 +25,6 @@ import javax.inject.Inject
 /**
  * Created by Enes Kamil YILMAZ on 22/02/2025
  */
-
-const val PREVIEW_MOVIE_ID = 155
-
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getCategorizedMoviesUseCase: GetCategorizedMoviesUseCase,
@@ -78,7 +76,7 @@ class HomeViewModel @Inject constructor(
 
     private fun getMovieDetails() {
         viewModelScope.launch(Dispatchers.IO) {
-            getMovieDetailUseCase.invoke(id = PREVIEW_MOVIE_ID).fold(
+            getMovieDetailUseCase.invoke(id = RemoteConfigManager.Values.previewMovieId.toInt()).fold(
                 onSuccess = {
                     updateUiState {
                         copy(
