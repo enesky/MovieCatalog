@@ -49,7 +49,7 @@ fun MoviePreview(
                 onClick = { movieDetail?.id?.let { onMovieClick?.invoke(it) } },
             ),
     ) {
-        if (isLoading || movieDetail == null) {
+        if (isLoading) {
             ImagePlaceholder(
                 modifier = Modifier
                     .height(itemHeight)
@@ -65,8 +65,8 @@ fun MoviePreview(
         } else {
             MyNetworkImage(
                 modifier = Modifier.height(itemHeight),
-                model = movieDetail.posterUrl,
-                contentDescription = movieDetail.title,
+                model = movieDetail?.posterUrl,
+                contentDescription = movieDetail?.title,
             )
         }
         // Background gradient
@@ -96,7 +96,7 @@ fun MoviePreview(
                     modifier = Modifier,
                     text = movieDetail?.title ?: String.Empty,
                     color = MaterialTheme.colorScheme.onPrimary,
-                    style = MovieCatalogTheme.typography.regular.h3,
+                    style = MovieCatalogTheme.typography.regular.h4,
                 )
                 // Movie Genre
 
@@ -104,7 +104,7 @@ fun MoviePreview(
                     modifier = Modifier,
                     text = movieDetail?.genreText ?: String.Empty,
                     color = MaterialTheme.colorScheme.onPrimary,
-                    style = MovieCatalogTheme.typography.regular.h5,
+                    style = MovieCatalogTheme.typography.regular.h6,
                 )
             }
             Text(
@@ -148,7 +148,7 @@ private fun calculateMoviePreviewHeight(): Dp {
 
 @PreviewUiMode
 @Composable
-private fun TopAnimePreviewPreview() {
+private fun PreviewMoviePreview() {
     MovieCatalogTheme {
         MoviePreview(
             movieDetail = MovieConstants.PLACEHOLDER_DETAILED_MOVIE,

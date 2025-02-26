@@ -3,6 +3,7 @@ package dev.enesky.core.domain.mapper
 import dev.enesky.core.data.model.MovieDto
 import dev.enesky.core.domain.constant.ImageConstants
 import dev.enesky.core.domain.model.Movie
+import dev.enesky.core.domain.utils.formatDateToMonthYear
 import dev.enesky.core.domain.utils.formatRating
 import javax.inject.Inject
 
@@ -23,7 +24,7 @@ class MovieMapper @Inject constructor() {
             overview = dto.overview,
             popularity = dto.popularity,
             backdropUrl = ImageConstants.getBackdropUrl(dto.backdropPath),
-            releaseDate = dto.releaseDate,
+            releaseDate = formatDateToMonthYear(dto.releaseDate),
             genreIds = dto.genreIds,
             language = dto.originalLanguage,
             originalTitle = dto.originalTitle,

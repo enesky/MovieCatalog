@@ -18,7 +18,7 @@ data class MovieDetail(
     val genreText: String,
     val homepage: String,
     val revenue: Int,
-    val runtime: Int,
+    val runtime: String,
     val status: String,
     val tagline: String,
     val video: Boolean,
