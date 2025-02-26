@@ -10,6 +10,8 @@ import dev.enesky.feature.home.navigation.Home
 import dev.enesky.feature.home.navigation.homeScreen
 import dev.enesky.feature.player.navigation.Player
 import dev.enesky.feature.player.navigation.playerScreen
+import dev.enesky.feature.splash.navigation.Splash
+import dev.enesky.feature.splash.navigation.splashScreen
 import kotlinx.serialization.Serializable
 
 /**
@@ -20,7 +22,16 @@ import kotlinx.serialization.Serializable
 object MainJourney : Screen
 
 internal fun NavGraphBuilder.mainJourneyNavigation(navController: NavHostController) {
-    navigation<MainJourney>(startDestination = Home) {
+    navigation<MainJourney>(startDestination = Splash) {
+        splashScreen(
+            onNavigateToHome = {
+                navController.onScreenNavigate(
+                    destination = Home,
+                    inclusive = true,
+                    popUpToScreen = Splash
+                )
+            }
+        )
         homeScreen(
             onNavigateToDetail = { movieId ->
                 navController.onScreenNavigate(Detail(movieId))

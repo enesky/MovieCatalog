@@ -24,14 +24,19 @@ fun MovieCatalogNavGraph(
     }
 }
 
-fun NavHostController.onScreenNavigate(destination: Screen) {
+fun NavHostController.onScreenNavigate(
+    destination: Screen,
+    inclusive: Boolean = false,
+    popUpToScreen: Screen? = null,
+) {
     val navOptions = navOptions {
-        // Avoid multiple copies of the same destination when reselecting the same item.
-        launchSingleTop = true
-        // Restore state when reselecting a previously selected item.
         restoreState = true
+        popUpToScreen?.let {
+            popUpTo(it) {
+                this.inclusive = inclusive
+            }
+        }
 
-        // Animate the transition when navigating to a new destination.
         anim {
             enter = R.anim.from_left
             exit = R.anim.to_right
