@@ -22,5 +22,7 @@ object ApiEndpoints {
     object DefaultValues {
         const val DEFAULT_PAGE = 1
         const val DEFAULT_LANGUAGE = "en-US"
+        const val TURKISH_LANGUAGE = "tr-TR"
+        const val TURKISH = "tr"
     }
 }
