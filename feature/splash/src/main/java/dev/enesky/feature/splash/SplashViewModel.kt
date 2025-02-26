@@ -3,6 +3,7 @@ package dev.enesky.feature.splash
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.enesky.core.common.constants.Constants
 import dev.enesky.core.common.data.base.BaseViewModel
 import dev.enesky.core.common.data.delegate.IErrorEvent
 import dev.enesky.core.common.data.delegate.IEvent
@@ -28,7 +29,7 @@ class SplashViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             updateUiState { copy(isLoading = true) }
             // Simulate session check
-            delay(3000)
+            delay(Constants.SPLASH_SCREEN_DELAY)
             triggerEvent {
                 SplashEvent.OnNavigateToHomeScreen
             }

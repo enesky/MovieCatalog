@@ -44,8 +44,8 @@ fun SplashContent(modifier: Modifier = Modifier) {
 
     Box(
         modifier = modifier
-            .fillMaxSize().
-            background(MaterialTheme.colorScheme.background),
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center,
     ) {
         LottieAnimation(
