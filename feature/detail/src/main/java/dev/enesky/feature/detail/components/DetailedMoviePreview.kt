@@ -89,6 +89,7 @@ fun DetailedMoviePreview(
                             MovieCatalogTheme.colors.transparent,
                             MovieCatalogTheme.colors.transparent,
                             MovieCatalogTheme.colors.transparent,
+                            MovieCatalogTheme.colors.transparent,
                             MaterialTheme.colorScheme.background,
                             MaterialTheme.colorScheme.background,
                         ),
@@ -123,7 +124,7 @@ fun DetailedMoviePreview(
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(Alignment.BottomStart)
-                    .padding(bottom = posterSize.first / 2)
+                    .padding(bottom = MovieCatalogTheme.spacing.small)
                     .padding(start = titlePaddingStart)
                     .padding(MovieCatalogTheme.spacing.medium),
                 horizontalAlignment = Alignment.Start,
@@ -134,19 +135,12 @@ fun DetailedMoviePreview(
                     modifier = Modifier,
                     text = movieDetail?.title ?: String.Empty,
                     color = MaterialTheme.colorScheme.onBackground,
-                    style = MovieCatalogTheme.typography.regular.h4,
+                    style = MovieCatalogTheme.typography.bold.h4,
                 )
-                // Movie Release Date
+                // Movie Release Date and Runtime
                 Text(
                     modifier = Modifier,
-                    text = movieDetail?.releaseDate ?: String.Empty,
-                    color = MaterialTheme.colorScheme.onBackground,
-                    style = MovieCatalogTheme.typography.regular.h6,
-                )
-                // Movie Runtime
-                Text(
-                    modifier = Modifier,
-                    text = movieDetail?.runtime ?: String.Empty,
+                    text = "${movieDetail?.releaseDate} | ${movieDetail?.runtime}",
                     color = MaterialTheme.colorScheme.onBackground,
                     style = MovieCatalogTheme.typography.regular.h6,
                 )
