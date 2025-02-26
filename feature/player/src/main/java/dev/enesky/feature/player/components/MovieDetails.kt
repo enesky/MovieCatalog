@@ -8,10 +8,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import dev.enesky.core.domain.constant.MovieConstants
 import dev.enesky.core.domain.model.MovieDetail
 import dev.enesky.core.ui.annotation.PreviewUiMode
 import dev.enesky.core.ui.theme.MovieCatalogTheme
+import dev.enesky.feature.player.R
 
 /**
  * Created by Enes Kamil YILMAZ on 26/02/2025
@@ -49,7 +51,7 @@ fun MovieDetails(
         )
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = "Summary",
+            text = stringResource(R.string.label_summary),
             style = MovieCatalogTheme.typography.regular.h4,
             color = MaterialTheme.colorScheme.onBackground,
         )
