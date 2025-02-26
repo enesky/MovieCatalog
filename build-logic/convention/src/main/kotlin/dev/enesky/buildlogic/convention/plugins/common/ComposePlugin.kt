@@ -53,6 +53,7 @@ private fun Project.configureCompose(commonExtension: CommonExtension<*, *, *, *
             implementation(libs.androidx.material3)
 
             implementation(libs.accompanist.placeholder)
+            implementation(libs.accompanist.systemuicontroller)
             implementation(libs.coil.compose)
             implementation(libs.coil.network)
         }
