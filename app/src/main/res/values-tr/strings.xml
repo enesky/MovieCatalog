@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MovieCatalog</string>
+    <string name="label_no_connection">İnternet Bağlantısı Yok</string>
+    <string name="label_no_connection_try_again">Lütfen internet bağlantınızı kontrol edip tekrar deneyin.</string>
+</resources>
