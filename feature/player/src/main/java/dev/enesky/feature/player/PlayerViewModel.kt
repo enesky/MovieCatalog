@@ -67,5 +67,4 @@ data class PlayerUiState(
 
 sealed interface PlayerEvent : IEvent {
     data class OnError(override val errorMessage: String) : PlayerEvent, IErrorEvent
-    data class OnMovieClick(val movieId: Int) : PlayerEvent
 }
