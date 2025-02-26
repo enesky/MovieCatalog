@@ -21,17 +21,16 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
-        startInitialSync()
+        initRemoteConfig()
         splashScreen.setKeepOnScreenCondition {
             RemoteConfigManager.configStatus.value == FetchStatus.LOADING
         }
         super.onCreate(savedInstanceState)
-
         enableEdgeToEdge()
-
         setContent {
             MovieCatalogApp()
         }
+        setJankStats()
     }
 
     override fun onResume() {
@@ -44,10 +43,13 @@ class MainActivity : ComponentActivity() {
         jankStats?.isTrackingEnabled = false
     }
 
-    private fun startInitialSync() {
+    private fun initRemoteConfig() {
         lifecycleScope.launch(Dispatchers.IO) {
             RemoteConfigManager.init(BuildConfig.DEBUG)
         }
+    }
+
+    private fun setJankStats() {
         jankStats = JankStats.createAndTrack(
             window,
             JankStat.jankFrameListener

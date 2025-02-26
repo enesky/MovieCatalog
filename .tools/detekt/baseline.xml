@@ -2,11 +2,14 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
+    <ID>ComposableEventParameterNaming:MediaPlayer.kt$onIsFullscreenChanged: (Boolean) -&gt; Unit</ID>
     <ID>CyclomaticComplexMethod:MovieDetailMapper.kt$MovieDetailMapper$fun mapToDomain(dto: MovieDetailDto): MovieDetail</ID>
     <ID>MatchingDeclarationName:DetailNav.kt$Detail : Screen</ID>
     <ID>MatchingDeclarationName:HomeNav.kt$Home : Screen</ID>
     <ID>MatchingDeclarationName:MainJourneyNavigation.kt$MainJourney : Screen</ID>
     <ID>MatchingDeclarationName:PlayerNav.kt$Player : Screen</ID>
+    <ID>ModifierReused:MediaPlayer.kt$AndroidView( modifier = modifier, factory = { ctx -&gt; createPlayerView( ctx, exoPlayer, isFullscreen, isLandscape, onFullscreenToggle, ).also { playerView -&gt; onPlayerViewCreate(playerView) } }, update = { playerView -&gt; updatePlayerView( playerView, exoPlayer, isFullscreen, isLandscape, onFullscreenToggle ) } )</ID>
+    <ID>ModifierReused:MediaPlayer.kt$Box( modifier = modifier, contentAlignment = Alignment.Center ) { Text( text = "Player not available", color = MaterialTheme.colorScheme.onSecondary ) }</ID>
     <ID>UnstableCollections:GenreItem.kt$List&lt;Genre&gt;?</ID>
   </CurrentIssues>
 </SmellBaseline>

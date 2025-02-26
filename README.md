@@ -16,15 +16,24 @@ Featuring TheMovieDB API, Jetpack Compose, MVVM, Clean Architecture and ExoPlaye
 
 <p align="center">
   <a>
-    <img width=300, src="docs/home-screen-dark.png" alt="Home Screen - Dark">
-    <img width=300, src="docs/home-screen-light.png" alt="Home Screen - Light">
+    <img width=300, src="docs/home-screen-dark.webp" alt="Home Screen - Dark">
+    <img width=300, src="docs/home-screen-light.webp" alt="Home Screen - Light">
   </a>
 </p>
 
 <p align="center">
   <a>
-    <img width=300, src="docs/details-screen-dark.png" alt="Details Screen - Dark">
-    <img width=300, src="docs/details-screen-light.png" alt="Details Screen - Light">
+    <img width=300, src="docs/details-screen-dark.webp" alt="Details Screen - Dark">
+    <img width=300, src="docs/details-screen-light.webp" alt="Details Screen - Light">
+  </a>
+</p>
+
+
+<p align="center">
+  <a>
+    <img width=300, src="docs/player-screen-dark.webp" alt="Player Screen - Dark">
+    <img width=300, src="docs/player-screen-light.webp" alt="Player Screen - Light">
+    <img width=300, src="docs/player-screen-landscape.webp" alt="Player Screen - Landscape">
   </a>
 </p>
 
