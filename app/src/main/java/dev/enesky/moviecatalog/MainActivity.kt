@@ -9,7 +9,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.metrics.performance.JankStats
 import dagger.hilt.android.AndroidEntryPoint
 import dev.enesky.core.common.jankstats.JankStat
-import dev.enesky.core.common.remoteconfig.FetchStatus
 import dev.enesky.core.common.remoteconfig.RemoteConfigManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,16 +19,13 @@ class MainActivity : ComponentActivity() {
     private var jankStats: JankStats? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val splashScreen = installSplashScreen()
-        initRemoteConfig()
-        splashScreen.setKeepOnScreenCondition {
-            RemoteConfigManager.configStatus.value == FetchStatus.LOADING
-        }
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             MovieCatalogApp()
         }
+        initRemoteConfig()
         setJankStats()
     }
 

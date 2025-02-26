@@ -29,7 +29,8 @@ fun SwipeRefresh(
         Indicator(
             modifier = Modifier.align(Alignment.TopCenter),
             isRefreshing = isRefreshing,
-            state = state
+            state = state,
+            containerColor = MaterialTheme.colorScheme.background,
         )
     },
     content: @Composable BoxScope.() -> Unit
@@ -58,9 +59,6 @@ private fun SwipeRefreshPreview() {
             modifier = Modifier.fillMaxSize(),
             state = rememberPullToRefreshState(),
             contentAlignment = Alignment.TopStart,
-            indicator = {
-                Text("Indicator")
-            },
             content = {
                 Box(
                     modifier = Modifier

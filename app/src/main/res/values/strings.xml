@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MovieCatalog</string>
+    <string name="label_no_connection">No Network Connection</string>
+    <string name="label_no_connection_try_again">Please check your internet connection and try again.</string>
 </resources>

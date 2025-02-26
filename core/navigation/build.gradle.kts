@@ -9,10 +9,8 @@ android.namespace = "dev.enesky.core.navigation"
 dependencies {
     // Module dependencies
     implementation(projects.core.ui)
+    implementation(projects.feature.splash)
     implementation(projects.feature.home)
     implementation(projects.feature.detail)
     implementation(projects.feature.player)
-
-    // Library dependencies
-
 }

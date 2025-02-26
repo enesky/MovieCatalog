@@ -3,6 +3,7 @@ plugins {
     id(libs.plugins.common.compose.get().pluginId)
     id(libs.plugins.common.hilt.get().pluginId)
     id(libs.plugins.app.firebase.get().pluginId)
+    id(libs.plugins.app.signing.config.get().pluginId)
 }
 
 android {

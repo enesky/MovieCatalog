@@ -150,7 +150,7 @@ fun DetailedMoviePreview(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
-                        modifier = Modifier.size(16.dp),
+                        modifier = Modifier.size(MovieCatalogTheme.spacing.medium),
                         imageVector = Icons.Default.Star,
                         contentDescription = "Rating Icon",
                         tint = MovieCatalogTheme.colors.lightOrange,
@@ -188,7 +188,7 @@ fun DetailedMoviePreview(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
-                    modifier = Modifier.size(24.dp),
+                    modifier = Modifier.size(MovieCatalogTheme.spacing.iconSize),
                     imageVector = Icons.Default.PlayArrow,
                     contentDescription = "Rating Icon",
                     tint = MovieCatalogTheme.colors.lightOrange,

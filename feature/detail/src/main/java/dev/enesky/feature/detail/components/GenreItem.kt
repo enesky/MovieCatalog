@@ -12,7 +12,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import dev.enesky.core.domain.constant.MovieConstants
 import dev.enesky.core.domain.model.Genre
 import dev.enesky.core.ui.annotation.PreviewUiMode
@@ -41,18 +40,18 @@ fun GenreItem(
             style = MovieCatalogTheme.typography.regular.h4,
             color = MaterialTheme.colorScheme.onBackground,
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(MovieCatalogTheme.spacing.xSmall))
         Row {
             genreList?.forEach { genre ->
                 Text(
                     modifier = Modifier
-                        .padding(end = 8.dp)
+                        .padding(end = MovieCatalogTheme.spacing.xSmall)
                         .border(
-                            width = 1.dp,
+                            width = MovieCatalogTheme.spacing.border,
                             color = MaterialTheme.colorScheme.onBackground,
                             shape = MovieCatalogTheme.shapes.small
                         )
-                        .padding(4.dp),
+                        .padding(MovieCatalogTheme.spacing.xxxSmall),
                     text = genre.name,
                     style = MovieCatalogTheme.typography.regular.h6,
                     color = MaterialTheme.colorScheme.onBackground,
