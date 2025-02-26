@@ -1,4 +1,4 @@
-package dev.enesky.moviecatalog
+package dev.enesky.moviecatalog.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,6 +10,7 @@ import androidx.metrics.performance.JankStats
 import dagger.hilt.android.AndroidEntryPoint
 import dev.enesky.core.common.jankstats.JankStat
 import dev.enesky.core.common.remoteconfig.RemoteConfigManager
+import dev.enesky.moviecatalog.BuildConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

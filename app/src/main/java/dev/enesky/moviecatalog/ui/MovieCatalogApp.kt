@@ -1,4 +1,4 @@
-package dev.enesky.moviecatalog
+package dev.enesky.moviecatalog.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -22,6 +22,8 @@ import dev.enesky.core.navigation.MovieCatalogNavGraph
 import dev.enesky.core.ui.components.BuildTypeIndicator
 import dev.enesky.core.ui.components.MovieDialog
 import dev.enesky.core.ui.theme.MovieCatalogTheme
+import dev.enesky.moviecatalog.BuildConfig
+import dev.enesky.moviecatalog.R
 import kotlinx.coroutines.flow.Flow
 
 /**
