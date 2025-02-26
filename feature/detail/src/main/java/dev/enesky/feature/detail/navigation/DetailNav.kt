@@ -28,6 +28,7 @@ fun NavGraphBuilder.detailScreen(
         DetailScreen(
             uiState = uiState,
             eventFlow = viewModel.eventFlow,
+            onRefresh = { viewModel.getMovieDetails() },
             onNavigateToPlayerScreen = onNavigateToPlayer
         )
     }

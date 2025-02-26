@@ -22,40 +22,41 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(
     private val getMovieDetailUseCase: GetMovieDetailsUseCase,
-    savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel<DetailUiState, DetailEvent>(
     initialState = { DetailUiState() }
 ) {
 
     init {
-        val args: Detail = savedStateHandle.toRoute()
-        viewModelScope.launch(Dispatchers.IO) {
-            getMovieDetails(args.movieId)
-        }
+        getMovieDetails()
     }
 
-    private suspend fun getMovieDetails(movieId: Int) {
-        updateUiState { copy(isLoading = true) }
-        getMovieDetailUseCase.invoke(id = movieId).fold(
-            onSuccess = {
-                updateUiState {
-                    copy(
-                        isLoading = false,
-                        movieDetail = it,
-                        errorMessage = null
-                    )
+    fun getMovieDetails() {
+        val args: Detail = savedStateHandle.toRoute()
+        viewModelScope.launch(Dispatchers.IO) {
+
+            updateUiState { copy(isLoading = true) }
+            getMovieDetailUseCase.invoke(id = args.movieId).fold(
+                onSuccess = {
+                    updateUiState {
+                        copy(
+                            isLoading = false,
+                            movieDetail = it,
+                            errorMessage = null
+                        )
+                    }
+                },
+                onError = {
+                    updateUiState {
+                        copy(
+                            isLoading = false,
+                            movieDetail = null,
+                            errorMessage = it.message
+                        )
+                    }
                 }
-            },
-            onError = {
-                updateUiState {
-                    copy(
-                        isLoading = false,
-                        movieDetail = null,
-                        errorMessage = it.message
-                    )
-                }
-            }
-        )
+            )
+        }
     }
 }
 
