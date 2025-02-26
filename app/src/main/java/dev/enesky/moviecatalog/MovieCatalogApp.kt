@@ -15,7 +15,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import dev.enesky.core.common.utils.ObserveAsEvents
@@ -23,6 +22,7 @@ import dev.enesky.core.navigation.MovieCatalogNavGraph
 import dev.enesky.core.ui.components.BuildTypeIndicator
 import dev.enesky.core.ui.components.MovieDialog
 import dev.enesky.core.ui.theme.MovieCatalogTheme
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by Enes Kamil YILMAZ on 21/02/2025
@@ -47,7 +47,7 @@ fun MovieCatalogApp(
                     navController = navController,
                 )
 
-                CheckConnectivity(viewModel)
+                CheckConnectivity(viewModel.eventFlow)
 
                 if (BuildConfig.DEBUG) {
                     BuildTypeIndicator(text = "Debug")
@@ -58,9 +58,9 @@ fun MovieCatalogApp(
 }
 
 @Composable
-private fun CheckConnectivity(viewModel: MainViewModel) {
+private fun CheckConnectivity(eventFlow: Flow<MainEvent>) {
     val showDialog = remember { mutableStateOf(false) }
-    ObserveAsEvents(viewModel.eventFlow) { mainEvent ->
+    ObserveAsEvents(eventFlow) { mainEvent ->
         if (mainEvent == MainEvent.OnNoNetworkDialog) {
             showDialog.value = true
         }
@@ -74,7 +74,7 @@ private fun CheckConnectivity(viewModel: MainViewModel) {
             message = stringResource(R.string.label_no_connection_try_again),
             icon = {
                 Icon(
-                    modifier = Modifier.size(48.dp),
+                    modifier = Modifier.size(MovieCatalogTheme.spacing.largeIconSize),
                     imageVector = Icons.Default.Warning,
                     tint = MovieCatalogTheme.colors.red,
                     contentDescription = "Info icon",

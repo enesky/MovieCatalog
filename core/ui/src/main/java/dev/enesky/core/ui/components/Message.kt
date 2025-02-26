@@ -20,7 +20,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import dev.enesky.core.ui.theme.MovieCatalogTheme
 
 @Composable
@@ -35,7 +34,7 @@ fun Message(
             verticalArrangement = Arrangement.spacedBy(MovieCatalogTheme.spacing.medium),
         ) {
             Image(
-                modifier = Modifier.size(72.dp),
+                modifier = Modifier.size(MovieCatalogTheme.spacing.largeIconSize),
                 painter = if (imageResourceId != null) {
                     painterResource(id = imageResourceId)
                 } else {

@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Card
@@ -21,10 +20,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import dev.enesky.core.ui.R
 import dev.enesky.core.ui.annotation.PreviewUiMode
 import dev.enesky.core.ui.theme.MovieCatalogTheme
 
@@ -35,8 +35,8 @@ fun MovieDialog(
     onConfirmAction: () -> Unit,
     title: String,
     message: String,
-    confirmButtonText: String = "OK",
-    dismissButtonText: String = "Cancel",
+    confirmButtonText: String = stringResource(R.string.label_ok),
+    dismissButtonText: String = stringResource(R.string.label_cancel),
     icon: @Composable (() -> Unit)? = null
 ) {
     if (showDialog) {
@@ -47,74 +47,83 @@ fun MovieDialog(
                 dismissOnClickOutside = true
             )
         ) {
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                shape = RoundedCornerShape(16.dp),
+            MovieDialogContent(
+                onDismissRequest = onDismissRequest,
+                onConfirmAction = onConfirmAction,
+                title = title,
+                message = message,
+                confirmButtonText = confirmButtonText,
+                dismissButtonText = dismissButtonText,
+                icon = icon
+            )
+        }
+    }
+}
+
+@Composable
+fun MovieDialogContent(
+    onDismissRequest: () -> Unit,
+    onConfirmAction: () -> Unit,
+    title: String,
+    message: String,
+    modifier: Modifier = Modifier,
+    confirmButtonText: String = "OK",
+    dismissButtonText: String = "Cancel",
+    icon: @Composable (() -> Unit)? = null
+) {
+    Card(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(MovieCatalogTheme.spacing.medium),
+        shape = MovieCatalogTheme.shapes.medium,
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.background)
+                .padding(MovieCatalogTheme.spacing.medium),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            icon?.let {
+                Box(
+                    modifier = Modifier.padding(bottom = MovieCatalogTheme.spacing.medium)
+                ) { it() }
+            }
+            Text(
+                text = title,
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = MovieCatalogTheme.spacing.medium)
+            )
+            Text(
+                text = message,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(bottom = MovieCatalogTheme.spacing.large)
+            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End,
             ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                TextButton(
+                    onClick = onDismissRequest,
+                    modifier = Modifier.padding(end = MovieCatalogTheme.spacing.xSmall)
                 ) {
-                    // Icon
-                    icon?.let {
-                        Box(
-                            modifier = Modifier.padding(bottom = 16.dp),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            it()
-                        }
-                    }
-
-                    // Title
                     Text(
-                        text = title,
-                        style = MaterialTheme.typography.headlineSmall,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(bottom = 16.dp)
+                        dismissButtonText,
+                        color = MaterialTheme.colorScheme.onSurface
                     )
-
-                    // Message
+                }
+                TextButton(
+                    onClick = {
+                        onConfirmAction()
+                        onDismissRequest()
+                    },
+                    modifier = Modifier.padding(end = MovieCatalogTheme.spacing.xSmall)
+                ) {
                     Text(
-                        text = message,
-                        style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.padding(bottom = 24.dp)
+                        confirmButtonText,
+                        color = MaterialTheme.colorScheme.onSurface
                     )
-
-                    // Buttons
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.End
-                    ) {
-                        // Cancel button
-                        TextButton(
-                            onClick = onDismissRequest,
-                            modifier = Modifier.padding(end = 8.dp)
-                        ) {
-                            Text(
-                                dismissButtonText,
-                                color = MaterialTheme.colorScheme.onSurface
-                            )
-                        }
-
-                        // Confirm button
-                        TextButton(
-                            onClick = {
-                                onConfirmAction()
-                                onDismissRequest()
-                            },
-                            modifier = Modifier.padding(end = 8.dp)
-                        ) {
-                            Text(
-                                confirmButtonText,
-                                color = MaterialTheme.colorScheme.onSurface
-                            )
-                        }
-                    }
                 }
             }
         }
@@ -123,7 +132,7 @@ fun MovieDialog(
 
 @PreviewUiMode
 @Composable
-fun MovieDialogPreview() {
+private fun MovieDialogPreview() {
     val showDialog = remember { mutableStateOf(true) }
 
     MovieCatalogTheme {
@@ -135,7 +144,7 @@ fun MovieDialogPreview() {
             message = "This is a custom dialog example. You can modify this component according to your needs.",
             icon = {
                 Icon(
-                    modifier = Modifier.size(48.dp),
+                    modifier = Modifier.size(MovieCatalogTheme.spacing.largeIconSize),
                     imageVector = Icons.Default.Warning,
                     tint = MovieCatalogTheme.colors.red,
                     contentDescription = "Info icon",

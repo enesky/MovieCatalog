@@ -8,7 +8,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import dev.enesky.core.domain.constant.MovieConstants
 import dev.enesky.core.domain.model.MovieDetail
 import dev.enesky.core.ui.annotation.PreviewUiMode
@@ -57,7 +56,7 @@ fun MovieDetails(
         Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp),
+                .padding(vertical = MovieCatalogTheme.spacing.xSmall),
             text = movieDetail.overview,
             style = MovieCatalogTheme.typography.regular.h6,
             color = MaterialTheme.colorScheme.onBackground,
