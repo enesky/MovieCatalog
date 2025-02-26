@@ -67,25 +67,34 @@ graph TD
         data
         datastore
         domain
+        navigation
         network
         ui
     end
     subgraph Feature Modules
         detail
         home
+        player
     end
     app-->ui
-    app-->home
-    app-->detail
+    app-->common
+    app-->navigation
     ui-->common
-    home-->ui
-    home-->domain
+    ui-->domain
+    navigation-->ui
+    navigation-->home
+    navigation-->detail
+    navigation-->player
     home-->common
-    home-->network
+    home-->domain
+    home-->ui
     detail-->ui
     detail-->domain
     detail-->common
     detail-->network
+    player-->common
+    player-->domain
+    player-->ui
     domain-->data
     domain-->network
     domain-->common
@@ -96,10 +105,8 @@ graph TD
 
 ```
 
-
 ## Tech Stack
 
 
 
 <p align="center"><a href="#readme-top"> - Back to top - </a></p>
-
