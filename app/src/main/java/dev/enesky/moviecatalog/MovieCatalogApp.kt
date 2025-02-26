@@ -3,21 +3,35 @@ package dev.enesky.moviecatalog
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
+import dev.enesky.core.common.utils.ObserveAsEvents
 import dev.enesky.core.navigation.MovieCatalogNavGraph
 import dev.enesky.core.ui.components.BuildTypeIndicator
+import dev.enesky.core.ui.components.MovieDialog
 import dev.enesky.core.ui.theme.MovieCatalogTheme
 
 /**
  * Created by Enes Kamil YILMAZ on 21/02/2025
  */
 @Composable
-fun MovieCatalogApp(modifier: Modifier = Modifier) {
+fun MovieCatalogApp(
+    modifier: Modifier = Modifier,
+    viewModel: MainViewModel = hiltViewModel(),
+) {
     val navController = rememberNavController()
 
     MovieCatalogTheme {
@@ -33,10 +47,39 @@ fun MovieCatalogApp(modifier: Modifier = Modifier) {
                     navController = navController,
                 )
 
+                CheckConnectivity(viewModel)
+
                 if (BuildConfig.DEBUG) {
                     BuildTypeIndicator(text = "Debug")
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun CheckConnectivity(viewModel: MainViewModel) {
+    val showDialog = remember { mutableStateOf(false) }
+    ObserveAsEvents(viewModel.eventFlow) { mainEvent ->
+        if (mainEvent == MainEvent.OnNoNetworkDialog) {
+            showDialog.value = true
+        }
+    }
+    if (showDialog.value) {
+        MovieDialog(
+            showDialog = showDialog.value,
+            onDismissRequest = { showDialog.value = false },
+            onConfirmAction = { /* Confirm action */ },
+            title = stringResource(R.string.label_no_connection),
+            message = stringResource(R.string.label_no_connection_try_again),
+            icon = {
+                Icon(
+                    modifier = Modifier.size(48.dp),
+                    imageVector = Icons.Default.Warning,
+                    tint = MovieCatalogTheme.colors.red,
+                    contentDescription = "Info icon",
+                )
+            }
+        )
     }
 }
