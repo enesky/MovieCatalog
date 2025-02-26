@@ -95,12 +95,12 @@ fun HomeContent(
     val listState = rememberLazyListState()
 
     SwipeRefresh(
-        modifier = modifier,
+        modifier = modifier.fillMaxSize(),
         isRefreshing = isRefreshing(),
         onRefresh = { refresh() },
     ) {
         LazyColumn(
-            modifier = modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(
                 top = WindowInsets.systemBars.asPaddingValues().calculateTopPadding(),
                 bottom = WindowInsets.systemBars.asPaddingValues().calculateBottomPadding(),

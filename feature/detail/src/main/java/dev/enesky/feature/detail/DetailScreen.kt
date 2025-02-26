@@ -64,12 +64,12 @@ fun DetailContent(
     val listState = rememberLazyListState()
 
     SwipeRefresh(
-        modifier = modifier,
+        modifier = modifier.fillMaxSize(),
         isRefreshing = isLoading,
         onRefresh = { onRefresh() },
     ) {
         LazyColumn(
-            modifier = modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top,
             contentPadding = PaddingValues(
@@ -91,7 +91,6 @@ fun DetailContent(
             }
         }
     }
-
 }
 
 @PreviewUiMode
