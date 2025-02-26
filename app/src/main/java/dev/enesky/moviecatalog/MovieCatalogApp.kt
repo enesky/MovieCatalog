@@ -61,8 +61,11 @@ fun MovieCatalogApp(
 private fun CheckConnectivity(eventFlow: Flow<MainEvent>) {
     val showDialog = remember { mutableStateOf(false) }
     ObserveAsEvents(eventFlow) { mainEvent ->
-        if (mainEvent == MainEvent.OnNoNetworkDialog) {
-            showDialog.value = true
+        when (mainEvent) {
+            is MainEvent.OnError -> {}
+            is MainEvent.OnNoNetworkDialog -> {
+                showDialog.value = !mainEvent.isOnline
+            }
         }
     }
     if (showDialog.value) {

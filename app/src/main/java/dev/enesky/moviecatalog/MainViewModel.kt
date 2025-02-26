@@ -7,6 +7,8 @@ import dev.enesky.core.common.data.base.BaseViewModel
 import dev.enesky.core.common.data.delegate.IErrorEvent
 import dev.enesky.core.common.data.delegate.IEvent
 import dev.enesky.core.common.data.delegate.IUiState
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,11 +27,13 @@ class MainViewModel @Inject constructor(
 
     private fun listenConnectivity() {
         viewModelScope.launch {
-            connectivityListener.isNetworkAvailable.collect {
-                if (!it) {
-                    triggerEvent { MainEvent.OnNoNetworkDialog }
+            connectivityListener.isNetworkAvailable
+                .distinctUntilChanged()
+                .collectLatest {
+                    triggerEvent {
+                        MainEvent.OnNoNetworkDialog(isOnline = it)
+                    }
                 }
-            }
         }
     }
 }
@@ -42,5 +46,5 @@ data class MainUiState(
 
 sealed interface MainEvent : IEvent {
     data class OnError(override val errorMessage: String) : MainEvent, IErrorEvent
-    data object OnNoNetworkDialog : MainEvent
+    data class OnNoNetworkDialog(val isOnline: Boolean) : MainEvent
 }
