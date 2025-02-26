@@ -26,7 +26,8 @@ fun NavGraphBuilder.homeScreen(
         HomeScreen(
             uiState = uiState,
             eventFlow = viewModel.eventFlow,
-            onNavigateToDetail = onNavigateToDetail
+            onNavigateToDetail = onNavigateToDetail,
+            onRefresh = { viewModel.getConfig() }
         )
     }
 }
