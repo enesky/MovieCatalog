@@ -23,7 +23,6 @@ import kotlinx.coroutines.flow.emptyFlow
 @Composable
 fun SplashScreen(
     modifier: Modifier = Modifier,
-    uiState: SplashUiState = SplashUiState(),
     eventFlow: Flow<SplashEvent> = emptyFlow(),
     onNavigateToHomeScreen: () -> Unit = {},
 ) {
@@ -58,7 +57,7 @@ fun SplashContent(modifier: Modifier = Modifier) {
 
 @PreviewUiMode
 @Composable
-private fun DetailScreenPreview() {
+private fun SplashScreenPreview() {
     MovieCatalogTheme {
         SplashContent(
             modifier = Modifier
