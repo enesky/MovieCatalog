@@ -19,16 +19,17 @@ import java.io.IOException
 /**
  * Created by Enes Kamil YILMAZ on 27/02/2025
  */
-@ExperimentalCoroutinesApi
-class UpcomingMoviesPagingSourceTest {
 
-    private lateinit var pagingSource: UpcomingMoviesPagingSource
+@ExperimentalCoroutinesApi
+class NowPlayingMoviesPagingSourceTest {
+
+    private lateinit var pagingSource: NowPlayingMoviesPagingSource
     private lateinit var moviesService: MovieDbApi
 
     @Before
     fun setup() {
         moviesService = mockk()
-        pagingSource = UpcomingMoviesPagingSource(moviesService)
+        pagingSource = NowPlayingMoviesPagingSource(moviesService)
     }
 
     @Test
@@ -37,17 +38,17 @@ class UpcomingMoviesPagingSourceTest {
         val movieList = listOf(
             MovieDto(
                 id = 1,
-                title = "Upcoming Movie",
-                overview = "Future release overview",
-                popularity = 120.0,
+                title = "Test Movie",
+                overview = "Test Overview",
+                popularity = 100.0,
                 backdropPath = "/backdrop.jpg",
-                releaseDate = "2025-05-15",
+                releaseDate = "2023-05-15",
                 genreIds = listOf(1, 2, 3),
                 originalLanguage = "en",
-                originalTitle = "Original Upcoming Movie",
+                originalTitle = "Original Test Movie",
                 posterPath = "/poster.jpg",
-                voteAverage = 0.0,
-                voteCount = 0,
+                voteAverage = 7.5,
+                voteCount = 1000,
                 adult = false,
                 video = false
             )
@@ -61,7 +62,7 @@ class UpcomingMoviesPagingSourceTest {
             totalResults = 100
         )
 
-        coEvery { moviesService.getUpcomingMovies(page) } returns response
+        coEvery { moviesService.getNowPlayingMovies(page) } returns response
 
         // When
         val result = pagingSource.load(
@@ -88,18 +89,18 @@ class UpcomingMoviesPagingSourceTest {
         // Given
         val movieList = listOf(
             MovieDto(
-                id = 2,
-                title = "Upcoming Movie 2",
-                overview = "Another future release",
-                popularity = 110.0,
-                backdropPath = "/backdrop2.jpg",
-                releaseDate = "2025-06-15",
-                genreIds = listOf(2, 3, 4),
+                id = 1,
+                title = "Test Movie",
+                overview = "Test Overview",
+                popularity = 100.0,
+                backdropPath = "/backdrop.jpg",
+                releaseDate = "2023-05-15",
+                genreIds = listOf(1, 2, 3),
                 originalLanguage = "en",
-                originalTitle = "Original Upcoming Movie 2",
-                posterPath = "/poster2.jpg",
-                voteAverage = 0.0,
-                voteCount = 0,
+                originalTitle = "Original Test Movie",
+                posterPath = "/poster.jpg",
+                voteAverage = 7.5,
+                voteCount = 1000,
                 adult = false,
                 video = false
             )
@@ -113,7 +114,7 @@ class UpcomingMoviesPagingSourceTest {
             totalResults = 100
         )
 
-        coEvery { moviesService.getUpcomingMovies(page) } returns response
+        coEvery { moviesService.getNowPlayingMovies(page) } returns response
 
         // When
         val result = pagingSource.load(
@@ -147,7 +148,7 @@ class UpcomingMoviesPagingSourceTest {
             totalResults = 0
         )
 
-        coEvery { moviesService.getUpcomingMovies(page) } returns response
+        coEvery { moviesService.getNowPlayingMovies(page) } returns response
 
         // When
         val result = pagingSource.load(
@@ -175,7 +176,7 @@ class UpcomingMoviesPagingSourceTest {
         val exception = IOException("Network error")
         val page = 1
 
-        coEvery { moviesService.getUpcomingMovies(page) } throws exception
+        coEvery { moviesService.getNowPlayingMovies(page) } throws exception
 
         // When
         val result = pagingSource.load(
@@ -199,7 +200,7 @@ class UpcomingMoviesPagingSourceTest {
         val exception = mockk<HttpException>()
         val page = 1
 
-        coEvery { moviesService.getUpcomingMovies(page) } throws exception
+        coEvery { moviesService.getNowPlayingMovies(page) } throws exception
 
         // When
         val result = pagingSource.load(
