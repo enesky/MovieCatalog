@@ -1,0 +1,4 @@
+appId: dev.enesky.moviecatalog.debug
+---
+- launchApp:
+    clearState: true
