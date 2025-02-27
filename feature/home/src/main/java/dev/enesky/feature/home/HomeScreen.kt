@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,6 +22,8 @@ import dev.enesky.core.common.utils.ObserveAsEvents
 import dev.enesky.core.domain.constant.MovieConstants
 import dev.enesky.core.domain.model.Movie
 import dev.enesky.core.domain.model.MovieDetail
+import dev.enesky.core.domain.utils.isLoading
+import dev.enesky.core.ui.components.SwipeRefresh
 import dev.enesky.core.ui.theme.MovieCatalogTheme
 import dev.enesky.feature.home.components.MoviePagingRow
 import dev.enesky.feature.home.components.MoviePreview
@@ -37,6 +40,7 @@ fun HomeScreen(
     eventFlow: Flow<HomeEvent> = emptyFlow(),
     onMovieClick: (Int) -> Unit = {},
     onNavigateToDetail: (Int) -> Unit = {},
+    onRefresh: () -> Unit = {},
 ) {
     ObserveAsEvents(eventFlow) { homeEvent ->
         when (homeEvent) {
@@ -52,72 +56,92 @@ fun HomeScreen(
 
     HomeContent(
         modifier = modifier,
-        isLoading = uiState.isLoading,
         isConfigLoaded = uiState.isConfigLoaded,
         movieDetail = uiState.previewMovieDetail,
         nowPlayingMovies = nowPlayingMovies,
         popularMovies = popularMovies,
         topRatedMovies = topRatedMovies,
         upcomingMovies = upcomingMovies,
+        onRefresh = onRefresh,
         onMovieClick = onNavigateToDetail,
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeContent(
     modifier: Modifier = Modifier,
-    isLoading: Boolean = false,
     isConfigLoaded: Boolean = false,
     movieDetail: MovieDetail? = null,
     nowPlayingMovies: LazyPagingItems<Movie>? = null,
     popularMovies: LazyPagingItems<Movie>? = null,
     topRatedMovies: LazyPagingItems<Movie>? = null,
     upcomingMovies: LazyPagingItems<Movie>? = null,
+    onRefresh: () -> Unit = {},
     onMovieClick: (Int) -> Unit = {},
 ) {
+    fun isRefreshing() = nowPlayingMovies?.loadState?.refresh?.isLoading == true ||
+            popularMovies?.loadState?.refresh?.isLoading == true ||
+            topRatedMovies?.loadState?.refresh?.isLoading == true ||
+            upcomingMovies?.loadState?.refresh?.isLoading == true
+
+    fun refresh() {
+        onRefresh()
+        nowPlayingMovies?.refresh()
+        popularMovies?.refresh()
+        topRatedMovies?.refresh()
+        upcomingMovies?.refresh()
+    }
     val listState = rememberLazyListState()
-    LazyColumn(
+
+    SwipeRefresh(
         modifier = modifier.fillMaxSize(),
-        contentPadding = PaddingValues(
-            top = WindowInsets.systemBars.asPaddingValues().calculateTopPadding(),
-            bottom = WindowInsets.systemBars.asPaddingValues().calculateBottomPadding(),
-        ),
-        state = listState,
+        isRefreshing = isRefreshing(),
+        onRefresh = { refresh() },
     ) {
-        item {
-            MoviePreview(
-                isLoading = isConfigLoaded.not(),
-                movieDetail = movieDetail,
-                onMovieClick = onMovieClick,
-            )
-        }
-        item {
-            MoviePagingRow(
-                title = stringResource(id = R.string.label_now_playing),
-                pagingItems = nowPlayingMovies,
-                onMovieClick = onMovieClick,
-            )
-        }
-        item {
-            MoviePagingRow(
-                title = stringResource(id = R.string.label_popular),
-                pagingItems = popularMovies,
-                onMovieClick = onMovieClick,
-            )
-        }
-        item {
-            MoviePagingRow(
-                title = stringResource(id = R.string.label_top_rated),
-                pagingItems = topRatedMovies,
-                onMovieClick = onMovieClick,
-            )
-        }
-        item {
-            MoviePagingRow(
-                title = stringResource(id = R.string.label_upcoming),
-                pagingItems = upcomingMovies,
-                onMovieClick = onMovieClick,
-            )
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(
+                top = WindowInsets.systemBars.asPaddingValues().calculateTopPadding(),
+                bottom = WindowInsets.systemBars.asPaddingValues().calculateBottomPadding(),
+            ),
+            state = listState,
+        ) {
+            item {
+                MoviePreview(
+                    isLoading = isConfigLoaded.not(),
+                    movieDetail = movieDetail,
+                    onMovieClick = onMovieClick,
+                )
+            }
+            item {
+                MoviePagingRow(
+                    title = stringResource(id = R.string.label_now_playing),
+                    pagingItems = nowPlayingMovies,
+                    onMovieClick = onMovieClick,
+                )
+            }
+            item {
+                MoviePagingRow(
+                    title = stringResource(id = R.string.label_popular),
+                    pagingItems = popularMovies,
+                    onMovieClick = onMovieClick,
+                )
+            }
+            item {
+                MoviePagingRow(
+                    title = stringResource(id = R.string.label_top_rated),
+                    pagingItems = topRatedMovies,
+                    onMovieClick = onMovieClick,
+                )
+            }
+            item {
+                MoviePagingRow(
+                    title = stringResource(id = R.string.label_upcoming),
+                    pagingItems = upcomingMovies,
+                    onMovieClick = onMovieClick,
+                )
+            }
         }
     }
 }

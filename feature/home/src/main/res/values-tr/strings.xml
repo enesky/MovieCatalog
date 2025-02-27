@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_now_playing">Vizyonda</string>
+    <string name="label_popular">Popüler</string>
+    <string name="label_top_rated">En Yüksek Puanlı</string>
+    <string name="label_upcoming">Yakında</string>
+</resources>

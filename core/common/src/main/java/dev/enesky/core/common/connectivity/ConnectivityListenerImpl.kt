@@ -14,6 +14,10 @@ internal class ConnectivityListenerImpl(context: Context) : ConnectivityListener
     private val connectivityManager = context.getSystemService<ConnectivityManager>()
 
     override val isNetworkAvailable: Flow<Boolean> = callbackFlow {
+        // Initial check for network state
+        val isCurrentlyConnected = isNetworkConnected()
+        trySend(isCurrentlyConnected)
+
         val callback = object : ConnectivityManager.NetworkCallback() {
             override fun onCapabilitiesChanged(network: Network, networkCapabilities: NetworkCapabilities) {
                 super.onCapabilitiesChanged(network, networkCapabilities)
@@ -39,5 +43,14 @@ internal class ConnectivityListenerImpl(context: Context) : ConnectivityListener
 
         connectivityManager?.registerDefaultNetworkCallback(callback)
         awaitClose { connectivityManager?.unregisterNetworkCallback(callback) }
+    }
+
+    // Helper function to check current network state
+    private fun isNetworkConnected(): Boolean {
+        val networkCapabilities = connectivityManager?.getNetworkCapabilities(
+            connectivityManager.activeNetwork
+        )
+        return networkCapabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true &&
+                networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
     }
 }

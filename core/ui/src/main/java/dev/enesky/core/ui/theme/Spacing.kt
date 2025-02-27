@@ -11,6 +11,8 @@ import androidx.compose.ui.unit.dp
 
 private val DefaultSpace = 0.dp
 private val BorderStroke = 1.dp
+private val IconSize = 24.dp
+private val LargeIconSize = 48.dp
 private val XXXS = 2.dp
 private val XXS = 4.dp
 private val XS = 8.dp
@@ -26,6 +28,8 @@ data class MovieCatalogSpacing(
     val default: Dp = DefaultSpace,
     val border: Dp = BorderStroke,
     val statusBarPadding: Dp = XXL,
+    val iconSize: Dp = IconSize,
+    val largeIconSize: Dp = LargeIconSize,
 
     val xxxSmall: Dp = XXXS,
     val xxSmall: Dp = XXS,

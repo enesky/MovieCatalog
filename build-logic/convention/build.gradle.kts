@@ -40,6 +40,10 @@ gradlePlugin {
             id = libs.plugins.app.firebase.get().pluginId
             implementationClass = "$rootPath.app.AppFirebasePlugin"
         }
+        register("appSigningConfig") {
+            id = libs.plugins.app.signing.config.get().pluginId
+            implementationClass = "$rootPath.app.AppSigningConfigPlugin"
+        }
 
         /**
          * Library module Related Convention Plugins
@@ -47,10 +51,6 @@ gradlePlugin {
         register("libraryMain") {
             id = libs.plugins.library.main.get().pluginId
             implementationClass = "$rootPath.library.LibraryMainPlugin"
-        }
-        register("libraryFeature") {
-            id = libs.plugins.library.feature.get().pluginId
-            implementationClass = "$rootPath.library.LibraryFeaturePlugin"
         }
 
         /**

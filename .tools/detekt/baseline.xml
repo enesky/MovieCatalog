@@ -8,8 +8,9 @@
     <ID>MatchingDeclarationName:HomeNav.kt$Home : Screen</ID>
     <ID>MatchingDeclarationName:MainJourneyNavigation.kt$MainJourney : Screen</ID>
     <ID>MatchingDeclarationName:PlayerNav.kt$Player : Screen</ID>
+    <ID>MatchingDeclarationName:SplashNav.kt$Splash : Screen</ID>
     <ID>ModifierReused:MediaPlayer.kt$AndroidView( modifier = modifier, factory = { ctx -&gt; createPlayerView( ctx, exoPlayer, isFullscreen, isLandscape, onFullscreenToggle, ).also { playerView -&gt; onPlayerViewCreate(playerView) } }, update = { playerView -&gt; updatePlayerView( playerView, exoPlayer, isFullscreen, isLandscape, onFullscreenToggle ) } )</ID>
-    <ID>ModifierReused:MediaPlayer.kt$Box( modifier = modifier, contentAlignment = Alignment.Center ) { Text( text = "Player not available", color = MaterialTheme.colorScheme.onSecondary ) }</ID>
+    <ID>ModifierReused:MediaPlayer.kt$Box( modifier = modifier, contentAlignment = Alignment.Center ) { Text( text = stringResource(R.string.label_player_not_available), color = MaterialTheme.colorScheme.onSecondary ) }</ID>
     <ID>UnstableCollections:GenreItem.kt$List&lt;Genre&gt;?</ID>
   </CurrentIssues>
 </SmellBaseline>

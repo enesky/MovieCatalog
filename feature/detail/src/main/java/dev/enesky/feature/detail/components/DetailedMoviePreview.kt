@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import dev.enesky.core.common.utils.Empty
@@ -32,6 +33,7 @@ import dev.enesky.core.ui.annotation.PreviewUiMode
 import dev.enesky.core.ui.components.ImagePlaceholder
 import dev.enesky.core.ui.components.MyNetworkImage
 import dev.enesky.core.ui.theme.MovieCatalogTheme
+import dev.enesky.feature.detail.R
 
 /**
  * Created by Enes Kamil YILMAZ on 25/02/2025
@@ -150,7 +152,7 @@ fun DetailedMoviePreview(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
-                        modifier = Modifier.size(16.dp),
+                        modifier = Modifier.size(MovieCatalogTheme.spacing.medium),
                         imageVector = Icons.Default.Star,
                         contentDescription = "Rating Icon",
                         tint = MovieCatalogTheme.colors.lightOrange,
@@ -188,13 +190,13 @@ fun DetailedMoviePreview(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Icon(
-                    modifier = Modifier.size(24.dp),
+                    modifier = Modifier.size(MovieCatalogTheme.spacing.iconSize),
                     imageVector = Icons.Default.PlayArrow,
                     contentDescription = "Rating Icon",
                     tint = MovieCatalogTheme.colors.lightOrange,
                 )
                 Text(
-                    text = "Watch Trailer",
+                    text = stringResource(R.string.label_watch_trailer),
                     style = MovieCatalogTheme.typography.regular.h6,
                     color = MaterialTheme.colorScheme.onBackground,
                 )

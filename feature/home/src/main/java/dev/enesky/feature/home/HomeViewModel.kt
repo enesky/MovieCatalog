@@ -37,7 +37,7 @@ class HomeViewModel @Inject constructor(
         getMovies()
     }
 
-    private fun getConfig() {
+    fun getConfig() {
         viewModelScope.launch(Dispatchers.IO) {
             updateUiState { copy(isConfigLoaded = false) }
             RemoteConfigManager.configStatus.collect { status ->

@@ -17,9 +17,8 @@
         android:theme="@style/Theme.MovieCatalog"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.MovieCatalog.Starting"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" >
             <intent-filter>

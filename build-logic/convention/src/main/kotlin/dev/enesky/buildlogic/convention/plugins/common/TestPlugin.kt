@@ -48,6 +48,7 @@ class TestPlugin : Plugin<Project> {
             testImplementation(libs.mockk.main)
             testImplementation(libs.coroutines.test)
             testImplementation(libs.test.core.ktx)
+            testImplementation(libs.turbine)
             androidTestImplementation(libs.androidx.junit)
             androidTestImplementation(libs.androidx.espresso.core)
             androidTestImplementation(platform(libs.androidx.compose.bom))
