@@ -85,9 +85,11 @@ graph TD
         ui
     end
     subgraph Feature Modules
+        adaptive
         detail
         home
         player
+        splash
     end
     app-->ui
     app-->common
@@ -95,9 +97,14 @@ graph TD
     ui-->common
     ui-->domain
     navigation-->ui
+    navigation-->splash
     navigation-->home
     navigation-->detail
     navigation-->player
+    navigation-->adaptive
+    splash-->common
+    splash-->domain
+    splash-->ui
     home-->common
     home-->domain
     home-->ui
@@ -108,9 +115,15 @@ graph TD
     player-->common
     player-->domain
     player-->ui
+    adaptive-->common
+    adaptive-->domain
+    adaptive-->ui
+    adaptive-->home
+    adaptive-->detail
     domain-->data
     domain-->network
     domain-->common
+    datastore-->domain
     network-->data
     network-->common
 
