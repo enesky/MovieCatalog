@@ -35,7 +35,10 @@ import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Ignore
+import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.TestWatcher
+import org.junit.runner.Description
 
 /**
  * Created by Enes Kamil YILMAZ on 27/02/2025
@@ -57,8 +60,8 @@ class HomeViewModelTest {
     fun setup() {
         Dispatchers.setMain(testDispatcher)
 
-        getCategorizedMoviesUseCase = mockk()
-        getMovieDetailsUseCase = mockk()
+        getCategorizedMoviesUseCase = mockk(relaxed = true)
+        getMovieDetailsUseCase = mockk(relaxed = true)
 
         // Mock RemoteConfigManager
         mockkObject(RemoteConfigManager)
