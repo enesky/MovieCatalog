@@ -1,6 +1,8 @@
 <a name="readme-top"></a>
 
+<div align="center">
 # MovieCatalog
+</div>
 
 <p align="center">
   <a href="https://android-arsenal.com/api?level=24" target="_blank"><img alt="API" src="https://img.shields.io/badge/API-24%2B-orange.svg?style=flat"/></a>
