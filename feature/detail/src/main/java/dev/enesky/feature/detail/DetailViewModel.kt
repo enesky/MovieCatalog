@@ -9,6 +9,7 @@ import dev.enesky.core.common.data.delegate.IErrorEvent
 import dev.enesky.core.common.data.delegate.IEvent
 import dev.enesky.core.common.data.delegate.IUiState
 import dev.enesky.core.common.data.fold
+import dev.enesky.core.common.remoteconfig.RemoteConfigManager
 import dev.enesky.core.domain.model.MovieDetail
 import dev.enesky.core.domain.usecase.GetMovieDetailsUseCase
 import dev.enesky.feature.detail.navigation.Detail
@@ -32,9 +33,12 @@ class DetailViewModel @Inject constructor(
     }
 
     fun getMovieDetails() {
-        val args: Detail = savedStateHandle.toRoute()
         viewModelScope.launch(Dispatchers.IO) {
-
+            val args: Detail = try {
+                savedStateHandle.toRoute()
+            } catch (e: Exception) {
+                Detail(movieId = RemoteConfigManager.Values.previewMovieId.toInt())
+            }
             updateUiState { copy(isLoading = true) }
             getMovieDetailUseCase.invoke(id = args.movieId).fold(
                 onSuccess = {
