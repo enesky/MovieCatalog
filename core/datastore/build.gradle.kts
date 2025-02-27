@@ -7,5 +7,8 @@ android.namespace = "dev.enesky.core.datastore"
 
 dependencies {
     // Modules
+    implementation(projects.core.domain)
+
+    // Libraries
     implementation(libs.datastore.preferences)
 }

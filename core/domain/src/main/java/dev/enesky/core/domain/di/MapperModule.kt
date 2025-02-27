@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.enesky.core.domain.mapper.MovieMapper
 import dev.enesky.core.domain.mapper.MovieDetailMapper
+import dev.enesky.core.domain.mapper.MovieToDetailMapper
 
 /**
  * Created by Enes Kamil YILMAZ on 22/02/2025
@@ -19,4 +20,7 @@ object MapperModule {
 
     @Provides
     fun provideMovieDetailMapper(): MovieDetailMapper = MovieDetailMapper()
+
+    @Provides
+    fun provideMovieToDetailMapper(): MovieToDetailMapper = MovieToDetailMapper()
 }
