@@ -1,5 +1,6 @@
 package dev.enesky.moviecatalog.ui
 
+import androidx.compose.runtime.Immutable
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.enesky.core.common.connectivity.ConnectivityListener
@@ -38,6 +39,7 @@ class MainViewModel @Inject constructor(
     }
 }
 
+@Immutable
 data class MainUiState(
     override val isLoading: Boolean = false,
     val errorMessage: String? = null,

@@ -1,5 +1,6 @@
 package dev.enesky.feature.detail
 
+import androidx.compose.runtime.Stable
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
@@ -64,6 +65,7 @@ class DetailViewModel @Inject constructor(
     }
 }
 
+@Stable
 data class DetailUiState(
     override val isLoading: Boolean = false,
     val errorMessage: String? = null,

@@ -1,5 +1,6 @@
 package dev.enesky.feature.player
 
+import androidx.compose.runtime.Stable
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
@@ -59,6 +60,7 @@ class PlayerViewModel @Inject constructor(
     }
 }
 
+@Stable
 data class PlayerUiState(
     override val isLoading: Boolean = false,
     val errorMessage: String? = null,

@@ -1,5 +1,6 @@
 package dev.enesky.feature.adaptive
 
+import androidx.compose.runtime.Immutable
 import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.toRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,6 +28,7 @@ class AdaptiveViewModel @Inject constructor(
     }
 }
 
+@Immutable
 data class AdaptiveUiState(
     override val isLoading: Boolean = false,
     val errorMessage: String? = null,

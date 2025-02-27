@@ -1,5 +1,6 @@
 package dev.enesky.feature.home
 
+import androidx.compose.runtime.Stable
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
@@ -122,6 +123,7 @@ class HomeViewModel @Inject constructor(
     }
 }
 
+@Stable
 data class HomeUiState(
     override val isLoading: Boolean = false,
     val errorMessage: String? = null,
