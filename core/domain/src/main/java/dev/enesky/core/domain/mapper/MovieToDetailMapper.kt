@@ -40,8 +40,7 @@ class MovieToDetailMapper @Inject constructor() {
             releaseDate = formatDateToMonthYear(movie.releaseDate),
             rating = movie.rating,
             voteCount = movie.voteCount,
-            productionCompanies =  emptyList()
+            productionCompanies = emptyList()
         )
     }
 }
-
