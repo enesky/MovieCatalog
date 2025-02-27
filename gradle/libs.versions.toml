@@ -105,7 +105,7 @@ androidx-ui-graphics               = { module = "androidx.compose.ui:ui-graphics
 androidx-ui-tooling                = { module = "androidx.compose.ui:ui-tooling" }
 androidx-ui-tooling-preview        = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-material3                 = { module = "androidx.compose.material3:material3" }
-datastore-preferences               = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+datastore-preferences              = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 jank-stats                         = { module = "androidx.metrics:metrics-performance", version.ref = "jank-stats" }
 splash-screen                      = { module = "androidx.core:core-splashscreen", version.ref = "splash-screen" }
 androidx-media3-common             = { module = "androidx.media3:media3-common", version.ref = "media3-exoplayer" }
@@ -114,7 +114,7 @@ androidx-media3-exoplayer-dash     = { module = "androidx.media3:media3-exoplaye
 androidx-media3-ui                 = { module = "androidx.media3:media3-ui", version.ref = "media3-exoplayer" }
 material3-adaptive-main            = { module = "androidx.compose.material3.adaptive:adaptive", version.ref = "material3-adaptive" }
 material3-adaptive-layout          = { module = "androidx.compose.material3.adaptive:adaptive-layout", version.ref = "material3-adaptive" }
-material3-adaptive-navigation       = { module = "androidx.compose.material3.adaptive:adaptive-navigation", version.ref = "material3-adaptive" }
+material3-adaptive-navigation      = { module = "androidx.compose.material3.adaptive:adaptive-navigation", version.ref = "material3-adaptive" }
 
 # Third-party libraries
 firebase-bom                       = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
