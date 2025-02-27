@@ -25,6 +25,13 @@
   </a>
 </p>
 
+<p align="center">
+  <a>
+    <img width=300, src="docs/adaptive-screen-dark.webp" alt="Adaptive Screen - Dark">
+    <img width=300, src="docs/adaptive-screen-light.webp" alt="Adaptive Screen - Light">
+  </a>
+</p>
+
 
 <p align="center">
   <a>
