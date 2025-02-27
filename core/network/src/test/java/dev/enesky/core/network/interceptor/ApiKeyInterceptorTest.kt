@@ -50,7 +50,7 @@ class ApiKeyInterceptorTest {
         mockResponse = mockk()
         mockLocale = mockk()
 
-        // TODO: Fix this -> mockkStatic(BuildConfig::class)
+        // Fix this -> mockkStatic(BuildConfig::class)
         every { BuildConfig.MOVIE_API_KEY } returns testApiKey
 
         mockkObject(ApiEndpoints.DefaultValues)

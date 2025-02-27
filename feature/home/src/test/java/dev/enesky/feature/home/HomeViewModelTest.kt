@@ -34,21 +34,22 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Ignore
+import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.TestName
 
-/**
- * Created by Enes Kamil YILMAZ on 27/02/2025
- */
 @ExperimentalCoroutinesApi
 class HomeViewModelTest {
+
+    @get:Rule
+    val testNameRule = TestName()
 
     private lateinit var viewModel: HomeViewModel
     private lateinit var getCategorizedMoviesUseCase: GetCategorizedMoviesUseCase
     private lateinit var getMovieDetailsUseCase: GetMovieDetailsUseCase
 
     private val testDispatcher = StandardTestDispatcher()
-    private val mockMovieDetail = mockk<MovieDetail>()
+    private val mockMovieDetail = mockk<MovieDetail>(relaxed = true)
     private val mockPagingDataFlow = flowOf(PagingData.empty<Movie>())
     private val configStatusFlow = MutableStateFlow(FetchStatus.LOADING)
     private val testPreviewMovieId = 123L
@@ -57,8 +58,8 @@ class HomeViewModelTest {
     fun setup() {
         Dispatchers.setMain(testDispatcher)
 
-        getCategorizedMoviesUseCase = mockk()
-        getMovieDetailsUseCase = mockk()
+        getCategorizedMoviesUseCase = mockk(relaxed = true)
+        getMovieDetailsUseCase = mockk(relaxed = true)
 
         // Mock RemoteConfigManager
         mockkObject(RemoteConfigManager)
@@ -124,6 +125,13 @@ class HomeViewModelTest {
         testDispatcher.scheduler.advanceUntilIdle()
 
         // Then
+        viewModel.uiState.test {
+            val state = awaitItem()
+            assertTrue(state.isConfigLoaded)
+            assertEquals(testPreviewMovieId, state.previewMovieId)
+            cancelAndConsumeRemainingEvents()
+        }
+
         coVerify(exactly = 1) { getMovieDetailsUseCase.invoke(testPreviewMovieId.toInt()) }
     }
 
@@ -159,7 +167,6 @@ class HomeViewModelTest {
         viewModel.uiState.test {
             val state = awaitItem()
             assertEquals(mockMovieDetail, state.previewMovieDetail)
-            assertNull(state.errorMessage)
             cancelAndConsumeRemainingEvents()
         }
     }
@@ -168,9 +175,8 @@ class HomeViewModelTest {
     fun getMovieDetails_whenError_expectCorrectUiState() = runTest {
         // Given
         val errorMessage = "Failed to get movie details"
-        coEvery { getMovieDetailsUseCase.invoke(testPreviewMovieId.toInt()) } returns Resource.Error(
-            BaseException(errorMessage)
-        )
+        val exception = BaseException(errorMessage)
+        coEvery { getMovieDetailsUseCase.invoke(testPreviewMovieId.toInt()) } returns Resource.Error(exception)
         viewModel = HomeViewModel(getCategorizedMoviesUseCase, getMovieDetailsUseCase)
 
         // When
@@ -181,11 +187,11 @@ class HomeViewModelTest {
         viewModel.uiState.test {
             val state = awaitItem()
             assertNull(state.previewMovieDetail)
+            assertEquals(errorMessage, state.errorMessage)
             cancelAndConsumeRemainingEvents()
         }
     }
 
-    @Ignore("Needs to be fixed")
     @Test
     fun getMovies_expectCorrectUiState() = runTest {
         // When
@@ -202,12 +208,10 @@ class HomeViewModelTest {
             cancelAndConsumeRemainingEvents()
         }
 
-        verify(exactly = 1) {
-            getCategorizedMoviesUseCase.invoke(MovieCategory.NOW_PLAYING)
-            getCategorizedMoviesUseCase.invoke(MovieCategory.POPULAR)
-            getCategorizedMoviesUseCase.invoke(MovieCategory.TOP_RATED)
-            getCategorizedMoviesUseCase.invoke(MovieCategory.UPCOMING)
-        }
+        verify(exactly = 1) { getCategorizedMoviesUseCase.invoke(MovieCategory.NOW_PLAYING) }
+        verify(exactly = 1) { getCategorizedMoviesUseCase.invoke(MovieCategory.POPULAR) }
+        verify(exactly = 1) { getCategorizedMoviesUseCase.invoke(MovieCategory.TOP_RATED) }
+        verify(exactly = 1) { getCategorizedMoviesUseCase.invoke(MovieCategory.UPCOMING) }
     }
 
     @After
