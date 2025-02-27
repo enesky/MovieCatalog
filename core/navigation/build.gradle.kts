@@ -13,4 +13,5 @@ dependencies {
     implementation(projects.feature.home)
     implementation(projects.feature.detail)
     implementation(projects.feature.player)
+    implementation(projects.feature.adaptive)
 }
