@@ -10,5 +10,5 @@ dependencies {
     implementation(projects.core.domain)
 
     // Libraries
-    implementation(libs.datasore.preferences)
+    implementation(libs.datastore.preferences)
 }

@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
+import dev.enesky.core.domain.mapper.DataStoreDtoMapper
 import dev.enesky.core.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -15,7 +16,8 @@ import javax.inject.Singleton
 
 @Singleton
 internal class MovieDataStoreHelperImpl @Inject constructor(
-    private val context: Context
+    private val context: Context,
+    private val dataStoreDtoMapper: DataStoreDtoMapper
 ) : MovieDataStoreHelper {
 
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(PreferencesKeys.STORE_NAME)

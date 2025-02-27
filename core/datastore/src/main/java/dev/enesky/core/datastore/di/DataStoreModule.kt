@@ -8,6 +8,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dev.enesky.core.datastore.MovieDataStoreHelper
 import dev.enesky.core.datastore.MovieDataStoreHelperImpl
+import dev.enesky.core.domain.mapper.DataStoreDtoMapper
 import javax.inject.Singleton
 
 @Module
@@ -18,5 +19,6 @@ internal object DataStoreModule {
     @Singleton
     fun provideMovieDataStoreHelper(
         @ApplicationContext context: Context,
-    ): MovieDataStoreHelper = MovieDataStoreHelperImpl(context)
+        dataStoreDtoMapper: DataStoreDtoMapper
+    ): MovieDataStoreHelper = MovieDataStoreHelperImpl(context, dataStoreDtoMapper)
 }
