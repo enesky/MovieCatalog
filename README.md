@@ -1,9 +1,9 @@
 <a name="readme-top"></a>
-
 <div align="center">
-# MovieCatalog
-</div>
 
+# MovieCatalog
+
+</div>
 <p align="center">
   <a href="https://android-arsenal.com/api?level=24" target="_blank"><img alt="API" src="https://img.shields.io/badge/API-24%2B-orange.svg?style=flat"/></a>
   <a><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-2.1.0-purple.svg?style=flat"/></a>
@@ -21,22 +21,28 @@
 ### Home Screen
 |                                 Dark Theme                                  |                                  Light Theme                                  |
 |:---------------------------------------------------------------------------:|:-----------------------------------------------------------------------------:|
-| <img width="250" src="docs/home-screen-dark.webp" alt="Home Screen - Dark"> | <img width="250" src="docs/home-screen-light.webp" alt="Home Screen - Light"> |
+| <img width="300" src="docs/home-screen-dark.webp" alt="Home Screen - Dark"> | <img width="300" src="docs/home-screen-light.webp" alt="Home Screen - Light"> |
 
 ### Details Screen
 |                                    Dark Theme                                     |                                     Light Theme                                     |
 |:---------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------:|
-| <img width="250" src="docs/details-screen-dark.webp" alt="Details Screen - Dark"> | <img width="250" src="docs/details-screen-light.webp" alt="Details Screen - Light"> |
+| <img width="300" src="docs/details-screen-dark.webp" alt="Details Screen - Dark"> | <img width="300" src="docs/details-screen-light.webp" alt="Details Screen - Light"> |
 
 ### Adaptive Screen
 |                                     Dark Theme                                      |                                      Light Theme                                      |
 |:-----------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------:|
-| <img width="250" src="docs/adaptive-screen-dark.webp" alt="Adaptive Screen - Dark"> | <img width="250" src="docs/adaptive-screen-light.webp" alt="Adaptive Screen - Light"> |
+| <img width="500" src="docs/adaptive-screen-dark.webp" alt="Adaptive Screen - Dark"> | <img width="500" src="docs/adaptive-screen-light.webp" alt="Adaptive Screen - Light"> |
 
 ### Player Screen
 |                                   Dark Theme                                    |                                    Light Theme                                    |                                         Landscape                                         |
 |:-------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------:|
-| <img width="250" src="docs/player-screen-dark.webp" alt="Player Screen - Dark"> | <img width="250" src="docs/player-screen-light.webp" alt="Player Screen - Light"> | <img width="250" src="docs/player-screen-landscape.webp" alt="Player Screen - Landscape"> |
+| <img width="300" src="docs/player-screen-dark.webp" alt="Player Screen - Dark"> | <img width="300" src="docs/player-screen-light.webp" alt="Player Screen - Light"> | <img width="500" src="docs/player-screen-landscape.webp" alt="Player Screen - Landscape"> |
+
+### Additional Features
+|                                  Localization                                   |                                 Network Connectivity Listener                                 |
+|:-------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------:|
+| <img width="300" src="docs/home-screen-turkish.webp" alt="Home Screen Turkish"> | <img width="300" src="docs/no-network-connection.webp" alt="Network Connectivity Listener  "> |
+
 
 ## Features
 
@@ -51,14 +57,14 @@
         - <a href="https://developer.android.com/jetpack/compose/navigation" target="_blank">Navigation with Compose</a>: Navigation component for Compose.
         - <a href="https://developer.android.com/topic/libraries/architecture/datastore" target="_blank">DataStore</a>: Jetpack DataStore is a data storage solution that allows you to store key-value pairs or typed objects with protocol buffers. DataStore uses Kotlin coroutines and Flow to store data asynchronously, consistently, and transactionally.
 - Firebase
-  - <a href="https://firebase.google.com/products/analytics" target="_blank">Analytics</a>: for tracking events.
-  - <a href="https://firebase.google.com/products/crashlytics" target="_blank">Crashlytics</a>: for tracking crashes.
-  - <a href="https://firebase.google.com/products/performance" target="_blank">Performance</a>: for tracking performance.
-  - <a href="https://firebase.google.com/products/remote-config" target="_blank">Remote Config</a>: for remote configuration.
+    - <a href="https://firebase.google.com/products/analytics" target="_blank">Analytics</a>: for tracking events.
+    - <a href="https://firebase.google.com/products/crashlytics" target="_blank">Crashlytics</a>: for tracking crashes.
+    - <a href="https://firebase.google.com/products/performance" target="_blank">Performance</a>: for tracking performance.
+    - <a href="https://firebase.google.com/products/remote-config" target="_blank">Remote Config</a>: for remote configuration.
 - Architecture
-  - Multi-Module Architecture with lots of customized convention plugins (build_logic - app - core - feature)
-  - MVVM Architecture
-  - Clean Architecture approach (Data - Domain - Presentation(UI))
+    - Multi-Module Architecture with lots of customized convention plugins (build_logic - app - core - feature)
+    - MVVM Architecture
+    - Clean Architecture approach (Data - Domain - Presentation(UI))
 - <a href="https://github.com/google/ksp" target="_blank">ksp</a>: Kotlin Symbol Processing API.
 - <a href="https://github.com/square/retrofit" target="_blank">Retrofit2 & OkHttp3</a>: Construct the REST APIs and paging network data.
 - <a href="https://github.com/google/ksp" target="_blank">ksp</a>: Kotlin Symbol Processing API.
@@ -160,11 +166,11 @@ graph TD
 
 ```
 
-## Nice to have
-[] WIP - Datastore Impl for Cache Mechanism
-[x] UI Tests using Maestro
-[] Benchmark Module and Baseline Profiles
-[] Transition animation for HomeScreen to DetailScreen
-[] JaCoCo for Code Coverage
+## Next Steps
+* [ ] WIP - Datastore Impl for Cache Mechanism
+* [x] UI Tests using Maestro
+* [ ] Benchmark Module and Baseline Profiles
+* [ ] Transition animation for HomeScreen to DetailScreen
+* [ ] JaCoCo for Code Coverage
 
 <p align="center"><a href="#readme-top"> - Back to top - </a></p>
