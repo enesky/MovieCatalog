@@ -1,0 +1,7 @@
+appId: dev.enesky.moviecatalog.debug
+---
+- launchApp:
+    clearState: true
+- runFlow: "splash/splash_to_home.yaml"
+- runFlow: "home/list_visibility.yaml"
+- runFlow: "home/check_corner_apps.yaml"

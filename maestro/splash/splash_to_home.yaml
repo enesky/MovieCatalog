@@ -1,0 +1,25 @@
+appId: dev.enesky.moviecatalog.debug
+---
+- runFlow:
+    commands:
+      # Check for Lottie animation instead of text
+      - assertVisible:
+          id: "lottieAnimation" # Add this test ID to your Lottie animation
+      - wait: 3000  # Wait for splash animation and loading
+      - assertVisible: "Now Playing"  # Check if one of the categories from HomeScreen is visible
+      - scrollUntilVisible:
+          element: "Popular"
+          direction: DOWN
+          timeout: 5000
+      - assertVisible: "Popular"
+      - scrollUntilVisible:
+          element: "Top Rated"
+          direction: DOWN
+          timeout: 5000
+      - assertVisible: "Top Rated"
+      - scrollUntilVisible:
+          element: "Upcoming"
+          direction: DOWN
+          timeout: 5000
+      - assertVisible: "Upcoming"
+      - takeScreenshot: "home_screen_with_lists"
