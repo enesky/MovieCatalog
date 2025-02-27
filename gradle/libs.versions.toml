@@ -104,7 +104,7 @@ androidx-ui-graphics               = { module = "androidx.compose.ui:ui-graphics
 androidx-ui-tooling                = { module = "androidx.compose.ui:ui-tooling" }
 androidx-ui-tooling-preview        = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-material3                 = { module = "androidx.compose.material3:material3" }
-datasore-preferences               = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+datastore-preferences               = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 jank-stats                         = { module = "androidx.metrics:metrics-performance", version.ref = "jank-stats" }
 splash-screen                      = { module = "androidx.core:core-splashscreen", version.ref = "splash-screen" }
 androidx-media3-common             = { module = "androidx.media3:media3-common", version.ref = "media3-exoplayer" }
