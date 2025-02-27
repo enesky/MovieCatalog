@@ -13,6 +13,7 @@
 
 <p align="center">
     <a href="https://github.com/enesky/MovieCatalog/blob/develop/.github/workflows/main.yml" target="_blank"><img alt="Detekt Lint Check, Tests & Build" src="https://github.com/enesky/MovieCatalog/actions/workflows/main.yml/badge.svg"/></a>
+    <a href="https://maestro.mobile.dev/" target="_blank"><img alt="Maestro UI Tests" src="https://img.shields.io/badge/Maestro UI Tests-passing-light_green.svg"/></a>
 </p>
 
 ## Screenshots
