@@ -4,6 +4,8 @@
   <CurrentIssues>
     <ID>ComposableEventParameterNaming:MediaPlayer.kt$onIsFullscreenChanged: (Boolean) -&gt; Unit</ID>
     <ID>CyclomaticComplexMethod:MovieDetailMapper.kt$MovieDetailMapper$fun mapToDomain(dto: MovieDetailDto): MovieDetail</ID>
+    <ID>MatchingDeclarationName:AdaptiveJourneyNavigation.kt$AdaptiveJourney : Screen</ID>
+    <ID>MatchingDeclarationName:AdaptiveNav.kt$Adaptive : Screen</ID>
     <ID>MatchingDeclarationName:DetailNav.kt$Detail : Screen</ID>
     <ID>MatchingDeclarationName:HomeNav.kt$Home : Screen</ID>
     <ID>MatchingDeclarationName:MainJourneyNavigation.kt$MainJourney : Screen</ID>

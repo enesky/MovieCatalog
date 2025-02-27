@@ -17,7 +17,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
-import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -26,6 +25,7 @@ import org.junit.Assert.assertNull
 import org.junit.Before
 import org.junit.Test
 import androidx.navigation.toRoute
+import kotlinx.coroutines.runBlocking
 
 /**
  * Created by Enes Kamil YILMAZ on 27/02/2025
@@ -60,7 +60,7 @@ class PlayerViewModelTest {
     }
 
     @Test
-    fun init_shouldCallGetMovieDetails() = runTest {
+    fun init_shouldCallGetMovieDetails() = runBlocking {
         // Given
         coEvery { getMovieDetailsUseCase.invoke(movieId) } returns Resource.Success(mockMovieDetail)
 
@@ -73,7 +73,7 @@ class PlayerViewModelTest {
     }
 
     @Test
-    fun getMovieDetails_whenSuccess_expectCorrectUiState() = runTest {
+    fun getMovieDetails_whenSuccess_expectCorrectUiState() = runBlocking {
         // Given
         coEvery { getMovieDetailsUseCase.invoke(movieId) } returns Resource.Success(mockMovieDetail)
 
@@ -93,7 +93,7 @@ class PlayerViewModelTest {
     }
 
     @Test
-    fun getMovieDetails_whenError_expectCorrectUiState() = runTest {
+    fun getMovieDetails_whenError_expectCorrectUiState() = runBlocking {
         // Given
         val errorMessage = "Failed to get movie details"
         val exception = mockk<BaseException>()
@@ -108,7 +108,6 @@ class PlayerViewModelTest {
         viewModel.uiState.test {
             val finalState = awaitItem()
             assertNull(finalState.movieDetail)
-
             cancelAndConsumeRemainingEvents()
         }
     }

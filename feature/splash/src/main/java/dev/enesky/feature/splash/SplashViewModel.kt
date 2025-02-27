@@ -1,5 +1,6 @@
 package dev.enesky.feature.splash
 
+import androidx.compose.runtime.Immutable
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -38,6 +39,7 @@ class SplashViewModel @Inject constructor(
     }
 }
 
+@Immutable
 data class SplashUiState(
     override val isLoading: Boolean = false,
     val errorMessage: String? = null,

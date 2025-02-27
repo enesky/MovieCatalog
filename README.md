@@ -9,6 +9,10 @@
   <a><img alt="JVM" src="https://img.shields.io/badge/JVM-17-blue.svg?style=flat"/></a>
 </p>
 
+<p align="center">
+    <a href="https://github.com/enesky/MovieCatalog/blob/develop/.github/workflows/main.yml" target="_blank"><img alt="Detekt Lint Check, Tests & Build" src="https://github.com/enesky/MovieCatalog/actions/workflows/main.yml/badge.svg"/></a>
+</p>
+
 ## Screenshots
 
 <p align="center">
@@ -22,6 +26,13 @@
   <a>
     <img width=300, src="docs/details-screen-dark.webp" alt="Details Screen - Dark">
     <img width=300, src="docs/details-screen-light.webp" alt="Details Screen - Light">
+  </a>
+</p>
+
+<p align="center">
+  <a>
+    <img width=300, src="docs/adaptive-screen-dark.webp" alt="Adaptive Screen - Dark">
+    <img width=300, src="docs/adaptive-screen-light.webp" alt="Adaptive Screen - Light">
   </a>
 </p>
 
@@ -78,9 +89,11 @@ graph TD
         ui
     end
     subgraph Feature Modules
+        adaptive
         detail
         home
         player
+        splash
     end
     app-->ui
     app-->common
@@ -88,9 +101,14 @@ graph TD
     ui-->common
     ui-->domain
     navigation-->ui
+    navigation-->splash
     navigation-->home
     navigation-->detail
     navigation-->player
+    navigation-->adaptive
+    splash-->common
+    splash-->domain
+    splash-->ui
     home-->common
     home-->domain
     home-->ui
@@ -101,9 +119,15 @@ graph TD
     player-->common
     player-->domain
     player-->ui
+    adaptive-->common
+    adaptive-->domain
+    adaptive-->ui
+    adaptive-->home
+    adaptive-->detail
     domain-->data
     domain-->network
     domain-->common
+    datastore-->domain
     network-->data
     network-->common
 
@@ -113,6 +137,13 @@ graph TD
 
 ## Tech Stack
 
+
+## Nice to have
+[] WIP - Datastore Impl for Cache Mechanism
+[] UI Tests using Maestro
+[] Benchmark Module and Baseline Profiles
+[] Transition animation for HomeScreen to DetailScreen
+[] JaCoCo for Code Coverage
 
 
 <p align="center"><a href="#readme-top"> - Back to top - </a></p>

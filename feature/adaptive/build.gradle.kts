@@ -4,14 +4,17 @@ plugins {
     id(libs.plugins.common.hilt.get().pluginId)
 }
 
-android.namespace = "dev.enesky.core.navigation"
+android.namespace = "dev.enesky.feature.adaptive"
 
 dependencies {
     // Module dependencies
+    implementation(projects.core.common)
+    implementation(projects.core.domain)
     implementation(projects.core.ui)
-    implementation(projects.feature.splash)
     implementation(projects.feature.home)
     implementation(projects.feature.detail)
-    implementation(projects.feature.player)
-    implementation(projects.feature.adaptive)
+
+    // Libraries
+    implementation(libs.paging.main)
+    implementation(libs.paging.compose)
 }

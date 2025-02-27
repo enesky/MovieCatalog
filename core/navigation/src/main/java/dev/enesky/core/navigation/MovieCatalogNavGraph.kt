@@ -6,21 +6,28 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.navOptions
 import dev.enesky.core.ui.navigation.Screen
+import dev.enesky.core.ui.utils.WindowSize
+import dev.enesky.core.ui.utils.rememberWindowSizeClass
 
 /**
  * Created by Enes Kamil YILMAZ on 24/02/2025
  */
+
 @Composable
 fun MovieCatalogNavGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
+    val windowSizeClass = rememberWindowSizeClass()
     NavHost(
         navController = navController,
         startDestination = MainJourney,
         modifier = modifier,
     ) {
-        mainJourneyNavigation(navController)
+        when (windowSizeClass) {
+            WindowSize.COMPACT -> mainJourneyNavigation(navController)
+            WindowSize.MEDIUM, WindowSize.EXPANDED -> adaptiveJourneyNavigation(navController)
+        }
     }
 }
 
