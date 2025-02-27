@@ -31,6 +31,7 @@ datastore                          = "1.1.2"
 jank-stats                         = "1.0.0-beta01"
 splash-screen                      = "1.0.1"
 media3-exoplayer                   = "1.5.1"
+material3-adaptive                 = "1.1.0-rc01"
 
 # Third-party libraries
 firebase-bom                       = "33.9.0"
@@ -111,6 +112,9 @@ androidx-media3-common             = { module = "androidx.media3:media3-common",
 androidx-media3-exoplayer          = { module = "androidx.media3:media3-exoplayer", version.ref = "media3-exoplayer" }
 androidx-media3-exoplayer-dash     = { module = "androidx.media3:media3-exoplayer-dash", version.ref = "media3-exoplayer" }
 androidx-media3-ui                 = { module = "androidx.media3:media3-ui", version.ref = "media3-exoplayer" }
+material3-adaptive-main            = { module = "androidx.compose.material3.adaptive:adaptive", version.ref = "material3-adaptive" }
+material3-adaptive-layout          = { module = "androidx.compose.material3.adaptive:adaptive-layout", version.ref = "material3-adaptive" }
+material3-adaptive-navigation       = { module = "androidx.compose.material3.adaptive:adaptive-navigation", version.ref = "material3-adaptive" }
 
 # Third-party libraries
 firebase-bom                       = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }

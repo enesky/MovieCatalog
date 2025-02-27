@@ -51,6 +51,9 @@ private fun Project.configureCompose(commonExtension: CommonExtension<*, *, *, *
             implementation(libs.androidx.ui.tooling)
             implementation(libs.androidx.ui.tooling.preview)
             implementation(libs.androidx.material3)
+            implementation(libs.material3.adaptive.main)
+            implementation(libs.material3.adaptive.layout)
+            implementation(libs.material3.adaptive.navigation)
 
             implementation(libs.accompanist.placeholder)
             implementation(libs.accompanist.systemuicontroller)
