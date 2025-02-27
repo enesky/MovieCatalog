@@ -9,6 +9,10 @@
   <a><img alt="JVM" src="https://img.shields.io/badge/JVM-17-blue.svg?style=flat"/></a>
 </p>
 
+<p align="center">
+    <a href="https://github.com/enesky/MovieCatalog/blob/develop/.github/workflows/main.yml" target="_blank"><img alt="Detekt Lint Check, Tests & Build" src="https://github.com/enesky/MovieCatalog/actions/workflows/main.yml/badge.svg"/></a>
+</p>
+
 ## Screenshots
 
 <p align="center">
