@@ -73,7 +73,6 @@ app-main                           = { id = "app.main" }
 app-firebase                       = { id = "app.firebase" }
 app-signing-config                 = { id = "app.signing.config" }
 library-main                       = { id = "library.main" }
-library-feature                    = { id = "library.feature" }
 common-compose                     = { id = "common.compose" }
 common-hilt                        = { id = "common.hilt" }
 common-test                        = { id = "common.test" }
