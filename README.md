@@ -2,9 +2,6 @@
 
 # MovieCatalog
 
-Technical challenge project for Turkcell TV+    
-Featuring TheMovieDB API, Jetpack Compose, MVVM, Clean Architecture and ExoPlayer integration
-
 <p align="center">
   <a href="https://android-arsenal.com/api?level=24" target="_blank"><img alt="API" src="https://img.shields.io/badge/API-24%2B-orange.svg?style=flat"/></a>
   <a><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-2.1.0-purple.svg?style=flat"/></a>

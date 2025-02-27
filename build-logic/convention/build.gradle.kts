@@ -52,10 +52,6 @@ gradlePlugin {
             id = libs.plugins.library.main.get().pluginId
             implementationClass = "$rootPath.library.LibraryMainPlugin"
         }
-        register("libraryFeature") {
-            id = libs.plugins.library.feature.get().pluginId
-            implementationClass = "$rootPath.library.LibraryFeaturePlugin"
-        }
 
         /**
          * Common Convention Plugins

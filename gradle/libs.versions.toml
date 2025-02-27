@@ -51,6 +51,7 @@ androidx-junit                     = "1.2.1"
 espresso-core                      = "3.6.1"
 coroutines-test                    = "1.10.1"
 mockk                              = "1.13.12"
+turbine                            = "1.2.0"
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -73,7 +74,6 @@ app-main                           = { id = "app.main" }
 app-firebase                       = { id = "app.firebase" }
 app-signing-config                 = { id = "app.signing.config" }
 library-main                       = { id = "library.main" }
-library-feature                    = { id = "library.feature" }
 common-compose                     = { id = "common.compose" }
 common-hilt                        = { id = "common.hilt" }
 common-test                        = { id = "common.test" }
@@ -104,7 +104,7 @@ androidx-ui-graphics               = { module = "androidx.compose.ui:ui-graphics
 androidx-ui-tooling                = { module = "androidx.compose.ui:ui-tooling" }
 androidx-ui-tooling-preview        = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-material3                 = { module = "androidx.compose.material3:material3" }
-datasore-preferences               = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+datastore-preferences               = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 jank-stats                         = { module = "androidx.metrics:metrics-performance", version.ref = "jank-stats" }
 splash-screen                      = { module = "androidx.core:core-splashscreen", version.ref = "splash-screen" }
 androidx-media3-common             = { module = "androidx.media3:media3-common", version.ref = "media3-exoplayer" }
@@ -142,6 +142,7 @@ androidx-espresso-core             = { module = "androidx.test.espresso:espresso
 coroutines-test                    = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines-test" }
 mockk-main                         = { module = "io.mockk:mockk", version.ref = "mockk" }
 mockk-android                      = { module = "io.mockk:mockk-android", version.ref = "mockk" }
+turbine                            = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 # Build logic plugins
 android-plugin                     = { module = "com.android.tools.build:gradle", version.ref = "agp" }
