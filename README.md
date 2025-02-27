@@ -138,5 +138,12 @@ graph TD
 ## Tech Stack
 
 
+## Nice to have
+[] WIP - Datastore Impl for Cache Mechanism
+[] UI Tests using Maestro
+[] Benchmark Module and Baseline Profiles
+[] Transition animation for HomeScreen to DetailScreen
+[] JaCoCo for Code Coverage
+
 
 <p align="center"><a href="#readme-top"> - Back to top - </a></p>
