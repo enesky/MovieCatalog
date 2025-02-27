@@ -2,6 +2,8 @@ package dev.enesky.moviecatalog
 
 import app.cash.turbine.test
 import dev.enesky.core.common.connectivity.ConnectivityListener
+import dev.enesky.moviecatalog.ui.MainEvent
+import dev.enesky.moviecatalog.ui.MainViewModel
 import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
