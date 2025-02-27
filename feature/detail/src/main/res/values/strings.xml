@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_watch_trailer">Watch Trailer</string>
+    <string name="label_genres">Genres</string>
+    <string name="label_summary">Summary</string>
+</resources>
