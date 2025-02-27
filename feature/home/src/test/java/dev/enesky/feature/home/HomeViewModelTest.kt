@@ -57,8 +57,8 @@ class HomeViewModelTest {
     fun setup() {
         Dispatchers.setMain(testDispatcher)
 
-        getCategorizedMoviesUseCase = mockk()
-        getMovieDetailsUseCase = mockk()
+        getCategorizedMoviesUseCase = mockk(relaxed = true)
+        getMovieDetailsUseCase = mockk(relaxed = true)
 
         // Mock RemoteConfigManager
         mockkObject(RemoteConfigManager)
