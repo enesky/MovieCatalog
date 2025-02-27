@@ -15,35 +15,25 @@
 
 ## Screenshots
 
-<p align="center">
-  <a>
-    <img width=300, src="docs/home-screen-dark.webp" alt="Home Screen - Dark">
-    <img width=300, src="docs/home-screen-light.webp" alt="Home Screen - Light">
-  </a>
-</p>
+### Home Screen
+|                                 Dark Theme                                  |                                  Light Theme                                  |
+|:---------------------------------------------------------------------------:|:-----------------------------------------------------------------------------:|
+| <img width="250" src="docs/home-screen-dark.webp" alt="Home Screen - Dark"> | <img width="250" src="docs/home-screen-light.webp" alt="Home Screen - Light"> |
 
-<p align="center">
-  <a>
-    <img width=300, src="docs/details-screen-dark.webp" alt="Details Screen - Dark">
-    <img width=300, src="docs/details-screen-light.webp" alt="Details Screen - Light">
-  </a>
-</p>
+### Details Screen
+|                                    Dark Theme                                     |                                     Light Theme                                     |
+|:---------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------:|
+| <img width="250" src="docs/details-screen-dark.webp" alt="Details Screen - Dark"> | <img width="250" src="docs/details-screen-light.webp" alt="Details Screen - Light"> |
 
-<p align="center">
-  <a>
-    <img width=300, src="docs/adaptive-screen-dark.webp" alt="Adaptive Screen - Dark">
-    <img width=300, src="docs/adaptive-screen-light.webp" alt="Adaptive Screen - Light">
-  </a>
-</p>
+### Adaptive Screen
+|                                     Dark Theme                                      |                                      Light Theme                                      |
+|:-----------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------:|
+| <img width="250" src="docs/adaptive-screen-dark.webp" alt="Adaptive Screen - Dark"> | <img width="250" src="docs/adaptive-screen-light.webp" alt="Adaptive Screen - Light"> |
 
-
-<p align="center">
-  <a>
-    <img width=300, src="docs/player-screen-dark.webp" alt="Player Screen - Dark">
-    <img width=300, src="docs/player-screen-light.webp" alt="Player Screen - Light">
-    <img width=300, src="docs/player-screen-landscape.webp" alt="Player Screen - Landscape">
-  </a>
-</p>
+### Player Screen
+|                                   Dark Theme                                    |                                    Light Theme                                    |                                         Landscape                                         |
+|:-------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------:|
+| <img width="250" src="docs/player-screen-dark.webp" alt="Player Screen - Dark"> | <img width="250" src="docs/player-screen-light.webp" alt="Player Screen - Light"> | <img width="250" src="docs/player-screen-landscape.webp" alt="Player Screen - Landscape"> |
 
 ## Features
 
