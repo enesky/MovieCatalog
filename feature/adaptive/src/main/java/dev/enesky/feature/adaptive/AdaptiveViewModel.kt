@@ -25,7 +25,6 @@ class AdaptiveViewModel @Inject constructor(
     init {
         val args: Adaptive = savedStateHandle.toRoute()
     }
-
 }
 
 data class AdaptiveUiState(

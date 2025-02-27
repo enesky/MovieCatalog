@@ -1,12 +1,11 @@
 package dev.enesky.core.ui.utils
 
-
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 
-enum class WindowSizeClass {
+enum class WindowSize {
     COMPACT,
     MEDIUM,
     EXPANDED
@@ -16,15 +15,15 @@ enum class WindowSizeClass {
  * Created by Enes Kamil YILMAZ on 27/02/2025
  */
 @Composable
-fun rememberWindowSizeClass(): WindowSizeClass {
+fun rememberWindowSizeClass(): WindowSize {
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
 
     return remember(screenWidth) {
         when {
-            screenWidth < 600.dp -> WindowSizeClass.COMPACT // Phone
-            screenWidth < 840.dp -> WindowSizeClass.MEDIUM  // Small tablet
-            else -> WindowSizeClass.EXPANDED                // Large tablet
+            screenWidth < 600.dp -> WindowSize.COMPACT // Phone
+            screenWidth < 840.dp -> WindowSize.MEDIUM // Small tablet
+            else -> WindowSize.EXPANDED // Large tablet
         }
     }
 }

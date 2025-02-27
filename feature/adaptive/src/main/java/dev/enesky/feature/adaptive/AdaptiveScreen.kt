@@ -108,12 +108,12 @@ fun AdaptiveContent(
             }
         },
     )
-
 }
 
 @Composable
 private fun calculateHomeScreenWidth(): Dp {
     val config = LocalConfiguration.current
     val screenWidth = config.screenWidthDp.dp
-    return screenWidth * (0.6f)
+    val listScreenMultiplier = 0.6f
+    return screenWidth * listScreenMultiplier
 }

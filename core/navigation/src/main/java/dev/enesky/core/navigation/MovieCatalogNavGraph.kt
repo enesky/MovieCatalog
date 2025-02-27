@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.navOptions
 import dev.enesky.core.ui.navigation.Screen
-import dev.enesky.core.ui.utils.WindowSizeClass
+import dev.enesky.core.ui.utils.WindowSize
 import dev.enesky.core.ui.utils.rememberWindowSizeClass
 
 /**
@@ -25,8 +25,8 @@ fun MovieCatalogNavGraph(
         modifier = modifier,
     ) {
         when (windowSizeClass) {
-            WindowSizeClass.COMPACT -> mainJourneyNavigation(navController)
-            WindowSizeClass.MEDIUM, WindowSizeClass.EXPANDED -> adaptiveJourneyNavigation(navController)
+            WindowSize.COMPACT -> mainJourneyNavigation(navController)
+            WindowSize.MEDIUM, WindowSize.EXPANDED -> adaptiveJourneyNavigation(navController)
         }
     }
 }
