@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -42,6 +43,7 @@ import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dev.enesky.core.ui.annotation.PreviewUiMode
 import dev.enesky.core.ui.theme.MovieCatalogTheme
+import dev.enesky.feature.player.R
 import dev.enesky.feature.player.helper.MediaConstants
 import dev.enesky.feature.player.helper.MediaSourceFactory
 
@@ -247,7 +249,7 @@ private fun MediaPlayerContent(
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "Player not available",
+                text = stringResource(R.string.label_player_not_available),
                 color = MaterialTheme.colorScheme.onSecondary
             )
         }
