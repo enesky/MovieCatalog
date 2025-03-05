@@ -2,12 +2,11 @@ package dev.enesky.core.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.booleanResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.navOptions
 import dev.enesky.core.ui.navigation.Screen
-import dev.enesky.core.ui.utils.WindowSize
-import dev.enesky.core.ui.utils.rememberWindowSizeClass
 
 /**
  * Created by Enes Kamil YILMAZ on 24/02/2025
@@ -18,15 +17,15 @@ fun MovieCatalogNavGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
-    val windowSizeClass = rememberWindowSizeClass()
+    val isTablet = booleanResource(id = dev.enesky.core.ui.R.bool.isTablet)
     NavHost(
         navController = navController,
         startDestination = MainJourney,
         modifier = modifier,
     ) {
-        when (windowSizeClass) {
-            WindowSize.COMPACT -> mainJourneyNavigation(navController)
-            WindowSize.MEDIUM, WindowSize.EXPANDED -> adaptiveJourneyNavigation(navController)
+        when (isTablet) {
+            false -> mainJourneyNavigation(navController)
+            true -> adaptiveJourneyNavigation(navController)
         }
     }
 }
