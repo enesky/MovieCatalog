@@ -6,6 +6,8 @@ import androidx.navigation.compose.navigation
 import dev.enesky.core.ui.navigation.Screen
 import dev.enesky.feature.adaptive.navigation.Adaptive
 import dev.enesky.feature.adaptive.navigation.adaptiveScreen
+import dev.enesky.feature.player.navigation.Player
+import dev.enesky.feature.player.navigation.playerScreen
 import dev.enesky.feature.splash.navigation.Splash
 import dev.enesky.feature.splash.navigation.splashScreen
 import kotlinx.serialization.Serializable
@@ -18,7 +20,7 @@ import kotlinx.serialization.Serializable
 object AdaptiveJourney : Screen
 
 internal fun NavGraphBuilder.adaptiveJourneyNavigation(navController: NavHostController) {
-    navigation<MainJourney>(startDestination = Splash) {
+    navigation<AdaptiveJourney>(startDestination = Splash) {
         splashScreen(
             onNavigateToHome = {
                 navController.onScreenNavigate(
@@ -28,6 +30,11 @@ internal fun NavGraphBuilder.adaptiveJourneyNavigation(navController: NavHostCon
                 )
             }
         )
-        adaptiveScreen()
+        adaptiveScreen(
+            onNavigateToPlayerScreen = {
+                navController.onScreenNavigate(Player())
+            }
+        )
+        playerScreen()
     }
 }
