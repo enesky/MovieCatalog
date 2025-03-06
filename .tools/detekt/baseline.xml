@@ -4,6 +4,8 @@
   <CurrentIssues>
     <ID>ComposableEventParameterNaming:MediaPlayer.kt$onIsFullscreenChanged: (Boolean) -&gt; Unit</ID>
     <ID>CyclomaticComplexMethod:MovieDetailMapper.kt$MovieDetailMapper$fun mapToDomain(dto: MovieDetailDto): MovieDetail</ID>
+    <ID>LongParameterList:MediaPlayer.kt$( context: Context, exoPlayer: ExoPlayer, isFullscreen: Boolean, isTablet: Boolean, isLandscape: Boolean, onFullscreenToggle: (Boolean) -&gt; Unit, )</ID>
+    <ID>LongParameterList:MediaPlayer.kt$( playerView: PlayerView, exoPlayer: ExoPlayer, isFullscreen: Boolean, isTablet: Boolean, isLandscape: Boolean, onFullscreenToggle: (Boolean) -&gt; Unit )</ID>
     <ID>MatchingDeclarationName:AdaptiveJourneyNavigation.kt$AdaptiveJourney : Screen</ID>
     <ID>MatchingDeclarationName:AdaptiveNav.kt$Adaptive : Screen</ID>
     <ID>MatchingDeclarationName:DetailNav.kt$Detail : Screen</ID>
@@ -11,7 +13,7 @@
     <ID>MatchingDeclarationName:MainJourneyNavigation.kt$MainJourney : Screen</ID>
     <ID>MatchingDeclarationName:PlayerNav.kt$Player : Screen</ID>
     <ID>MatchingDeclarationName:SplashNav.kt$Splash : Screen</ID>
-    <ID>ModifierReused:MediaPlayer.kt$AndroidView( modifier = modifier, factory = { ctx -&gt; createPlayerView( ctx, exoPlayer, isFullscreen, isLandscape, onFullscreenToggle, ).also { playerView -&gt; onPlayerViewCreate(playerView) } }, update = { playerView -&gt; updatePlayerView( playerView, exoPlayer, isFullscreen, isLandscape, onFullscreenToggle ) } )</ID>
+    <ID>ModifierReused:MediaPlayer.kt$AndroidView( modifier = modifier, factory = { ctx -&gt; createPlayerView( ctx, exoPlayer, isFullscreen, isTablet, isLandscape, onFullscreenToggle, ).also { playerView -&gt; onPlayerViewCreate(playerView) } }, update = { playerView -&gt; updatePlayerView( playerView, exoPlayer, isFullscreen, isTablet, isLandscape, onFullscreenToggle ) } )</ID>
     <ID>ModifierReused:MediaPlayer.kt$Box( modifier = modifier, contentAlignment = Alignment.Center ) { Text( text = stringResource(R.string.label_player_not_available), color = MaterialTheme.colorScheme.onSecondary ) }</ID>
     <ID>UnstableCollections:GenreItem.kt$List&lt;Genre&gt;?</ID>
   </CurrentIssues>
