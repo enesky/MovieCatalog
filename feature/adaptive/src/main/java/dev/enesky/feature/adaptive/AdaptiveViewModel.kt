@@ -15,8 +15,8 @@ import javax.inject.Inject
  * Created by Enes Kamil YILMAZ on 24/02/2025
  */
 @HiltViewModel
-class AdaptiveViewModel @Inject constructor(savedStateHandle: SavedStateHandle)
-    : BaseViewModel<AdaptiveUiState, AdaptiveEvent>(initialState = { AdaptiveUiState() }) {
+class AdaptiveViewModel @Inject constructor(savedStateHandle: SavedStateHandle) :
+    BaseViewModel<AdaptiveUiState, AdaptiveEvent>(initialState = { AdaptiveUiState() }) {
     init {
         val args: Adaptive = savedStateHandle.toRoute()
     }

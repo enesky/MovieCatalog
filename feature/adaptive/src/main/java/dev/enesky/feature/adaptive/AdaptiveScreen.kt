@@ -33,10 +33,10 @@ import kotlinx.coroutines.flow.emptyFlow
  */
 @Composable
 fun AdaptiveScreen(
-    modifier: Modifier = Modifier,
-    uiState: AdaptiveUiState = AdaptiveUiState(),
     homeUiState: HomeUiState,
     detailUiState: DetailUiState,
+    modifier: Modifier = Modifier,
+    uiState: AdaptiveUiState = AdaptiveUiState(),
     eventFlow: Flow<AdaptiveEvent> = emptyFlow(),
     homeEventFlow: Flow<HomeEvent> = emptyFlow(),
     detailEventFlow: Flow<DetailEvent> = emptyFlow(),
@@ -89,8 +89,8 @@ fun AdaptiveScreen(
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun AdaptiveContent(
-    modifier: Modifier = Modifier,
     uiState: AdaptiveUiState,
+    modifier: Modifier = Modifier,
     homeContent: @Composable () -> Unit = {},
     detailContent: @Composable () -> Unit = {},
     onBackClick: () -> Unit = {},
