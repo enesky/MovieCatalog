@@ -11,6 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.booleanResource
 import dev.enesky.core.common.utils.ObserveAsEvents
 import dev.enesky.core.domain.constant.MovieConstants
 import dev.enesky.core.domain.model.MovieDetail
@@ -49,7 +50,8 @@ fun PlayerContent(
     modifier: Modifier = Modifier,
     movieDetail: MovieDetail? = null
 ) {
-    var isFullscreen by rememberSaveable { mutableStateOf(false) }
+    val isTablet = booleanResource(id = dev.enesky.core.ui.R.bool.isTablet)
+    var isFullscreen by rememberSaveable { mutableStateOf(isTablet) }
 
     LazyColumn(modifier = modifier.fillMaxSize()) {
         item {
@@ -61,7 +63,7 @@ fun PlayerContent(
                 isInFullscreenMode = isFullscreen
             )
         }
-        if (isFullscreen.not()) {
+        if (isFullscreen.not() || isTablet) {
             item {
                 MovieDetails(movieDetail = movieDetail)
             }

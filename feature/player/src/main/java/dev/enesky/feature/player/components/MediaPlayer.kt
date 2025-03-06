@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.res.booleanResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -64,6 +65,7 @@ fun MediaPlayer(
     val context = LocalContext.current
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+    val isTablet = booleanResource(id = dev.enesky.core.ui.R.bool.isTablet)
     val systemUiController = rememberSystemUiController()
     var isFullscreen by rememberSaveable { mutableStateOf(isLandscape || isInFullscreenMode) }
     var playerView by remember { mutableStateOf<PlayerView?>(null) }
@@ -74,6 +76,7 @@ fun MediaPlayer(
     HandleFullscreenChanges(
         isFullscreen = isFullscreen,
         isInFullscreenMode = isInFullscreenMode,
+        isTablet = isTablet,
         isLandscape = isLandscape,
         systemUiController = systemUiController,
         context = context,
@@ -91,14 +94,14 @@ fun MediaPlayer(
         // This will trigger recomposition and update the AndroidView when fullscreen mode changes
     }
 
-    val playerModifier = modifier
-        .fillMaxWidth()
-        .height(calculateMoviePreviewHeight())
-
     MediaPlayerContent(
-        modifier = playerModifier.background(MovieCatalogTheme.colors.dark),
+        modifier = modifier
+            .fillMaxWidth()
+            .height(calculateMoviePreviewHeight())
+            .background(MovieCatalogTheme.colors.dark),
         exoPlayer = exoPlayer,
         isFullscreen = isFullscreen,
+        isTablet = isTablet,
         onFullscreenToggle = { fullscreen ->
             isFullscreen = fullscreen
             onFullscreenChange(fullscreen)
@@ -177,6 +180,7 @@ private fun LoadMediaContent(exoPlayer: ExoPlayer?, context: Context) {
 private fun HandleFullscreenChanges(
     isFullscreen: Boolean,
     isInFullscreenMode: Boolean,
+    isTablet: Boolean,
     isLandscape: Boolean,
     systemUiController: SystemUiController,
     context: Context,
@@ -187,7 +191,7 @@ private fun HandleFullscreenChanges(
         val newFullscreenState = isFullscreen || isInFullscreenMode
         onIsFullscreenChanged(newFullscreenState)
 
-        if (newFullscreenState) {
+        if (newFullscreenState || isTablet) {
             systemUiController.isSystemBarsVisible = false
             setLandscapeMode(context)
         } else {
@@ -239,6 +243,7 @@ private fun MediaPlayerContent(
     exoPlayer: ExoPlayer?,
     modifier: Modifier = Modifier,
     isFullscreen: Boolean = false,
+    isTablet: Boolean = false,
     onFullscreenToggle: (Boolean) -> Unit = {},
     onPlayerViewCreate: (PlayerView) -> Unit = {}
 ) {
@@ -267,6 +272,7 @@ private fun MediaPlayerContent(
                 ctx,
                 exoPlayer,
                 isFullscreen,
+                isTablet,
                 isLandscape,
                 onFullscreenToggle,
             ).also { playerView ->
@@ -278,6 +284,7 @@ private fun MediaPlayerContent(
                 playerView,
                 exoPlayer,
                 isFullscreen,
+                isTablet,
                 isLandscape,
                 onFullscreenToggle
             )
@@ -321,6 +328,7 @@ private fun createPlayerView(
     context: Context,
     exoPlayer: ExoPlayer,
     isFullscreen: Boolean,
+    isTablet: Boolean,
     isLandscape: Boolean,
     onFullscreenToggle: (Boolean) -> Unit,
 ): PlayerView {
@@ -329,6 +337,7 @@ private fun createPlayerView(
         setFullscreenButtonClickListener {
             onFullscreenToggle(!isFullscreen)
         }
+        setFullscreenButtonState((isTablet && isLandscape).not())
         resizeMode = getResizeMode(isFullscreen, isLandscape)
         controllerAutoShow = true
         controllerShowTimeoutMs = MediaConstants.TIMEOUT_MS
@@ -346,21 +355,25 @@ private fun updatePlayerView(
     playerView: PlayerView,
     exoPlayer: ExoPlayer,
     isFullscreen: Boolean,
+    isTablet: Boolean,
     isLandscape: Boolean,
     onFullscreenToggle: (Boolean) -> Unit
 ) {
-    playerView.player = exoPlayer
-    playerView.resizeMode = getResizeMode(isFullscreen, isLandscape)
+    playerView.apply {
+        player = exoPlayer
+        resizeMode = getResizeMode(isFullscreen, isLandscape)
 
-    // Important: Update the fullscreen button click listener to reflect current state
-    playerView.setFullscreenButtonClickListener {
-        onFullscreenToggle(!isFullscreen)
-    }
+        // Important: Update the fullscreen button click listener to reflect current state
+        setFullscreenButtonClickListener {
+            onFullscreenToggle(!isFullscreen)
+        }
+        setFullscreenButtonState((isTablet && isLandscape).not())
 
-    if (isFullscreen || isLandscape) {
-        playerView.layoutParams = playerView.layoutParams.apply {
-            width = -1 // MATCH_PARENT
-            height = -1 // MATCH_PARENT
+        if (isFullscreen || isLandscape) {
+            layoutParams = playerView.layoutParams.apply {
+                width = -1 // MATCH_PARENT
+                height = -1 // MATCH_PARENT
+            }
         }
     }
 }
