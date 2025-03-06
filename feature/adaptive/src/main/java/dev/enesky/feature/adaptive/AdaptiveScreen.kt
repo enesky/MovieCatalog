@@ -14,19 +14,17 @@ import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldDestinationIt
 import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirective
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.enesky.core.common.utils.ObserveAsEvents
-import dev.enesky.core.domain.model.MovieDetail
+import dev.enesky.feature.detail.DetailEvent
 import dev.enesky.feature.detail.DetailScreen
-import dev.enesky.feature.detail.DetailViewModel
+import dev.enesky.feature.detail.DetailUiState
+import dev.enesky.feature.home.HomeEvent
 import dev.enesky.feature.home.HomeScreen
-import dev.enesky.feature.home.HomeViewModel
+import dev.enesky.feature.home.HomeUiState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
@@ -37,16 +35,30 @@ import kotlinx.coroutines.flow.emptyFlow
 fun AdaptiveScreen(
     modifier: Modifier = Modifier,
     uiState: AdaptiveUiState = AdaptiveUiState(),
-    homeViewModel: HomeViewModel = hiltViewModel(),
-    detailViewModel: DetailViewModel = hiltViewModel(),
+    homeUiState: HomeUiState,
+    detailUiState: DetailUiState,
     eventFlow: Flow<AdaptiveEvent> = emptyFlow(),
+    homeEventFlow: Flow<HomeEvent> = emptyFlow(),
+    detailEventFlow: Flow<DetailEvent> = emptyFlow(),
+    onHomeRefresh: () -> Unit = {},
+    onDetailRefresh: () -> Unit = {},
+    onMovieClick: (Int) -> Unit = {},
+    onNavigateToPlayerScreen: (Int) -> Unit = {},
 ) {
-    val detailUiState by detailViewModel.uiState.collectAsStateWithLifecycle()
-    val homeUiState by homeViewModel.uiState.collectAsStateWithLifecycle()
-
     ObserveAsEvents(eventFlow) { adaptiveEvent ->
         when (adaptiveEvent) {
             is AdaptiveEvent.OnError -> { /* Handle error */ }
+        }
+    }
+    ObserveAsEvents(homeEventFlow) { homeEvent ->
+        when (homeEvent) {
+            is HomeEvent.OnError -> { /* Handle error */ }
+            is HomeEvent.OnMovieClick -> onMovieClick(homeEvent.movieId)
+        }
+    }
+    ObserveAsEvents(detailEventFlow) { detailEvent ->
+        when (detailEvent) {
+            is DetailEvent.OnError -> { /* Handle error */ }
         }
     }
 
@@ -54,18 +66,21 @@ fun AdaptiveScreen(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background),
+        uiState = uiState,
         homeContent = {
             HomeScreen(
                 uiState = homeUiState,
-                eventFlow = homeViewModel.eventFlow,
-                onRefresh = { homeViewModel.getConfig() }
+                eventFlow = homeEventFlow,
+                onRefresh = onHomeRefresh,
+                onMovieClick = onMovieClick,
             )
         },
         detailContent = {
             DetailScreen(
                 uiState = detailUiState,
-                eventFlow = detailViewModel.eventFlow,
-                onRefresh = { detailViewModel.getMovieDetails() },
+                eventFlow = detailEventFlow,
+                onRefresh = onDetailRefresh,
+                onNavigateToPlayerScreen = onNavigateToPlayerScreen
             )
         }
     )
@@ -75,11 +90,10 @@ fun AdaptiveScreen(
 @Composable
 fun AdaptiveContent(
     modifier: Modifier = Modifier,
-    movieDetail: MovieDetail? = null,
-    onMovieClick: (String) -> Unit = {},
-    onBackClick: () -> Unit = {},
+    uiState: AdaptiveUiState,
     homeContent: @Composable () -> Unit = {},
     detailContent: @Composable () -> Unit = {},
+    onBackClick: () -> Unit = {},
     windowAdaptiveInfo: WindowAdaptiveInfo = currentWindowAdaptiveInfo(),
 ) {
     val listDetailNavigator = rememberListDetailPaneScaffoldNavigator(
@@ -95,6 +109,7 @@ fun AdaptiveContent(
 
     val homeScreenWidth = calculateHomeScreenWidth()
     ListDetailPaneScaffold(
+        modifier = modifier,
         value = listDetailNavigator.scaffoldValue,
         directive = listDetailNavigator.scaffoldDirective,
         listPane = {
@@ -114,6 +129,6 @@ fun AdaptiveContent(
 private fun calculateHomeScreenWidth(): Dp {
     val config = LocalConfiguration.current
     val screenWidth = config.screenWidthDp.dp
-    val listScreenMultiplier = 0.6f
+    val listScreenMultiplier = 0.55f
     return screenWidth * listScreenMultiplier
 }

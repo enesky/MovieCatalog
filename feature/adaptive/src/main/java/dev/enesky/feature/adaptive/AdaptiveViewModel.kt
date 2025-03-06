@@ -8,7 +8,6 @@ import dev.enesky.core.common.data.base.BaseViewModel
 import dev.enesky.core.common.data.delegate.IErrorEvent
 import dev.enesky.core.common.data.delegate.IEvent
 import dev.enesky.core.common.data.delegate.IUiState
-import dev.enesky.core.domain.usecase.GetMovieDetailsUseCase
 import dev.enesky.feature.adaptive.navigation.Adaptive
 import javax.inject.Inject
 
@@ -16,13 +15,8 @@ import javax.inject.Inject
  * Created by Enes Kamil YILMAZ on 24/02/2025
  */
 @HiltViewModel
-class AdaptiveViewModel @Inject constructor(
-    private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
-    savedStateHandle: SavedStateHandle
-) : BaseViewModel<AdaptiveUiState, AdaptiveEvent>(
-    initialState = { AdaptiveUiState() }
-) {
-
+class AdaptiveViewModel @Inject constructor(savedStateHandle: SavedStateHandle)
+    : BaseViewModel<AdaptiveUiState, AdaptiveEvent>(initialState = { AdaptiveUiState() }) {
     init {
         val args: Adaptive = savedStateHandle.toRoute()
     }
