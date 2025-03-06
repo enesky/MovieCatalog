@@ -63,7 +63,8 @@ fun HomeScreen(
         topRatedMovies = topRatedMovies,
         upcomingMovies = upcomingMovies,
         onRefresh = onRefresh,
-        onMovieClick = onNavigateToDetail,
+        onMovieClick = onMovieClick,
+        onNavigateToDetail = onNavigateToDetail,
     )
 }
 
@@ -79,6 +80,7 @@ fun HomeContent(
     upcomingMovies: LazyPagingItems<Movie>? = null,
     onRefresh: () -> Unit = {},
     onMovieClick: (Int) -> Unit = {},
+    onNavigateToDetail: (Int) -> Unit = {},
 ) {
     fun isRefreshing() = nowPlayingMovies?.loadState?.refresh?.isLoading == true ||
             popularMovies?.loadState?.refresh?.isLoading == true ||
@@ -93,6 +95,11 @@ fun HomeContent(
         upcomingMovies?.refresh()
     }
     val listState = rememberLazyListState()
+
+    val onClick: (Int) -> Unit = { movieId ->
+        onMovieClick(movieId)
+        onNavigateToDetail(movieId)
+    }
 
     SwipeRefresh(
         modifier = modifier.fillMaxSize(),
@@ -111,35 +118,35 @@ fun HomeContent(
                 MoviePreview(
                     isLoading = isConfigLoaded.not(),
                     movieDetail = movieDetail,
-                    onMovieClick = onMovieClick,
+                    onMovieClick = onClick,
                 )
             }
             item {
                 MoviePagingRow(
                     title = stringResource(id = R.string.label_now_playing),
                     pagingItems = nowPlayingMovies,
-                    onMovieClick = onMovieClick,
+                    onMovieClick = onClick,
                 )
             }
             item {
                 MoviePagingRow(
                     title = stringResource(id = R.string.label_popular),
                     pagingItems = popularMovies,
-                    onMovieClick = onMovieClick,
+                    onMovieClick = onClick,
                 )
             }
             item {
                 MoviePagingRow(
                     title = stringResource(id = R.string.label_top_rated),
                     pagingItems = topRatedMovies,
-                    onMovieClick = onMovieClick,
+                    onMovieClick = onClick,
                 )
             }
             item {
                 MoviePagingRow(
                     title = stringResource(id = R.string.label_upcoming),
                     pagingItems = upcomingMovies,
-                    onMovieClick = onMovieClick,
+                    onMovieClick = onClick,
                 )
             }
         }
