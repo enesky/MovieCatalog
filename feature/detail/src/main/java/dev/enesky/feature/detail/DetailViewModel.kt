@@ -33,7 +33,7 @@ class DetailViewModel @Inject constructor(
         getMovieDetails()
     }
 
-    fun getMovieDetails() {
+    fun getMovieDetails(movieId: Int? = null) {
         viewModelScope.launch(Dispatchers.IO) {
             val args: Detail = try {
                 savedStateHandle.toRoute()
@@ -41,7 +41,7 @@ class DetailViewModel @Inject constructor(
                 Detail(movieId = RemoteConfigManager.Values.previewMovieId.toInt())
             }
             updateUiState { copy(isLoading = true) }
-            getMovieDetailUseCase.invoke(id = args.movieId).fold(
+            getMovieDetailUseCase.invoke(id = movieId ?: args.movieId).fold(
                 onSuccess = {
                     updateUiState {
                         copy(

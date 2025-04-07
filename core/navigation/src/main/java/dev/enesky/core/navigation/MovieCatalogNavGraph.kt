@@ -18,14 +18,15 @@ fun MovieCatalogNavGraph(
     modifier: Modifier = Modifier,
 ) {
     val isTablet = booleanResource(id = dev.enesky.core.ui.R.bool.isTablet)
+    val startDest = if (isTablet) AdaptiveJourney else MainJourney
     NavHost(
         navController = navController,
-        startDestination = MainJourney,
+        startDestination = startDest,
         modifier = modifier,
     ) {
         when (isTablet) {
-            false -> mainJourneyNavigation(navController)
             true -> adaptiveJourneyNavigation(navController)
+            false -> mainJourneyNavigation(navController)
         }
     }
 }

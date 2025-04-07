@@ -10,6 +10,7 @@ import dev.enesky.core.common.data.delegate.IErrorEvent
 import dev.enesky.core.common.data.delegate.IEvent
 import dev.enesky.core.common.data.delegate.IUiState
 import dev.enesky.core.common.data.fold
+import dev.enesky.core.common.remoteconfig.RemoteConfigManager
 import dev.enesky.core.domain.model.MovieDetail
 import dev.enesky.core.domain.usecase.GetMovieDetailsUseCase
 import dev.enesky.feature.player.navigation.Player
@@ -23,40 +24,41 @@ import javax.inject.Inject
 @HiltViewModel
 class PlayerViewModel @Inject constructor(
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
-    savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel<PlayerUiState, PlayerEvent>(
     initialState = { PlayerUiState() }
 ) {
 
     init {
-        val args: Player = savedStateHandle.toRoute()
-        viewModelScope.launch(Dispatchers.IO) {
-            getMovieDetails(args.movieId)
-        }
+        getMovieDetails()
     }
 
-    private suspend fun getMovieDetails(movieId: Int) {
-        updateUiState { copy(isLoading = true) }
-        getMovieDetailsUseCase.invoke(id = movieId).fold(
-            onSuccess = {
-                updateUiState {
-                    copy(
-                        isLoading = false,
-                        movieDetail = it,
-                        errorMessage = null
-                    )
+    private fun getMovieDetails() {
+        viewModelScope.launch(Dispatchers.IO) {
+            updateUiState { copy(isLoading = true) }
+            val args: Player? = savedStateHandle.toRoute()
+            val id = args?.movieId ?: RemoteConfigManager.Values.previewMovieId.toInt()
+            getMovieDetailsUseCase.invoke(id = id).fold(
+                onSuccess = {
+                    updateUiState {
+                        copy(
+                            isLoading = false,
+                            movieDetail = it,
+                            errorMessage = null
+                        )
+                    }
+                },
+                onError = {
+                    updateUiState {
+                        copy(
+                            isLoading = false,
+                            movieDetail = null,
+                            errorMessage = it.message
+                        )
+                    }
                 }
-            },
-            onError = {
-                updateUiState {
-                    copy(
-                        isLoading = false,
-                        movieDetail = null,
-                        errorMessage = it.message
-                    )
-                }
-            }
-        )
+            )
+        }
     }
 }
 

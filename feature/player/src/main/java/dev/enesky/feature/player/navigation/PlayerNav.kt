@@ -16,7 +16,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Player(
-    val movieId: Int
+    val movieId: Int? = null
 ) : Screen
 
 fun NavGraphBuilder.playerScreen() {

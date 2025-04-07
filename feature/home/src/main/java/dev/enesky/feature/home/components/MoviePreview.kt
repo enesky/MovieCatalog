@@ -135,8 +135,8 @@ private fun calculateMoviePreviewHeight(): Dp {
     val screenWidth = config.screenWidthDp.dp
     val screenHeight = config.screenHeightDp.dp
     val landscapeWidthMultiplier = 0.4f
-    val landscapeHeightMultiplier = 0.7f
-    val portraitMultiplier = 0.75f
+    val landscapeHeightMultiplier = 0.6f
+    val portraitMultiplier = 0.7f
 
     // In landscape, limit the height based on available screen height
     return if (isLandscape) {
