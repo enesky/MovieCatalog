@@ -1,0 +1,33 @@
+appId: dev.enesky.moviecatalog.debug
+---
+name: "No Network Dialog Test"
+description: "Checks if no network dialog appears when there is no internet connection"
+
+flows:
+  - runFlow:
+      when:
+        true: true
+      commands:
+        - clearState: true
+        - stopApp: dev.enesky.moviecatalog.debug
+        - toggleWifi: false
+        - launchApp:
+            appId: dev.enesky.moviecatalog.debug
+            clearState: false
+        # Check for Lottie animation instead of text
+        - assertVisible:
+            id: "lottieAnimation" # Add this test ID to your Lottie animation
+        - wait: 3000  # Wait for splash animation
+        - assertVisible: "No Connection"  # Match the exact title in R.string.label_no_connection
+        - takeScreenshot: "no_network_dialog"
+        # Use the correct button label from your dialog
+        - tapOn:
+            text: "OK" # Match the exact text on your dialog button
+        - toggleWifi: true
+        - wait: 2000
+        # If you have a retry mechanism, make sure this button exists
+        # If not, remove this line
+        # - tapOn: "Try Again"
+        - wait: 3000
+        - assertVisible: "Now Playing"  # Check if home screen loaded after connection restored
+        - takeScreenshot: "home_screen_after_connection_restored"

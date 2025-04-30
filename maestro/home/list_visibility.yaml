@@ -1,0 +1,92 @@
+appId: dev.enesky.moviecatalog.debug
+---
+name: "Movie List Visibility Test"
+description: "Checks if all movie lists are loaded and visible on the home screen"
+
+flows:
+  - runFlow:
+      when:
+        true: ${deviceInfo.isNetworkConnected}
+      commands:
+        - launchApp:
+            clearState: true
+        - wait: 5000  # Wait for splash and initial loading
+
+        # Check Now Playing section
+        - assertVisible: "Now Playing"
+        # Check for movie items with proper semantics
+        - scrollUntilVisible:
+            element:
+              className: "androidx.compose.ui.semantics.SemanticsNode"
+              contentDescription: "Movie item"  # Add this content description to your movie items
+              index: 0
+            direction: RIGHT
+            withinParent:
+              text: "Now Playing"
+            timeout: 5000
+        - assertVisible:
+            className: "androidx.compose.ui.semantics.SemanticsNode"
+            contentDescription: "Movie item"
+            index: 0
+
+        # Check Popular section
+        - scrollUntilVisible:
+            element: "Popular"
+            direction: DOWN
+            timeout: 5000
+        - assertVisible: "Popular"
+        - scrollUntilVisible:
+            element:
+              className: "androidx.compose.ui.semantics.SemanticsNode"
+              contentDescription: "Movie item"
+              index: 0
+            direction: RIGHT
+            withinParent:
+              text: "Popular"
+            timeout: 5000
+        - assertVisible:
+            className: "androidx.compose.ui.semantics.SemanticsNode"
+            contentDescription: "Movie item"
+            index: 0
+
+        # Check Top Rated section
+        - scrollUntilVisible:
+            element: "Top Rated"
+            direction: DOWN
+            timeout: 5000
+        - assertVisible: "Top Rated"
+        - scrollUntilVisible:
+            element:
+              className: "androidx.compose.ui.semantics.SemanticsNode"
+              contentDescription: "Movie item"
+              index: 0
+            direction: RIGHT
+            withinParent:
+              text: "Top Rated"
+            timeout: 5000
+        - assertVisible:
+            className: "androidx.compose.ui.semantics.SemanticsNode"
+            contentDescription: "Movie item"
+            index: 0
+
+        # Check Upcoming section
+        - scrollUntilVisible:
+            element: "Upcoming"
+            direction: DOWN
+            timeout: 5000
+        - assertVisible: "Upcoming"
+        - scrollUntilVisible:
+            element:
+              className: "androidx.compose.ui.semantics.SemanticsNode"
+              contentDescription: "Movie item"
+              index: 0
+            direction: RIGHT
+            withinParent:
+              text: "Upcoming"
+            timeout: 5000
+        - assertVisible:
+            className: "androidx.compose.ui.semantics.SemanticsNode"
+            contentDescription: "Movie item"
+            index: 0
+
+        - takeScreenshot: "all_movie_lists_visible"
